@@ -1,10 +1,14 @@
+
+import { NuxtPage } from '#build/components';
 <template>
-<NuxtLayout>
-    <NuxtWelcome/>
-    <nav>
-        <RouterLink to="/about">About (RoutLink)</RouterLink>
-        <br>
-        <a href="/about">About (pageload)</a>
-    </nav>
-</NuxtLayout>
+    <NuxtPage/>
+    <body>
+        <h1>Hello</h1>
+    </body>
+
+
 </template>
+
+<style>
+ @import url("~/assets/css/global.css");
+</style>
