@@ -3,12 +3,10 @@ import { NuxtPage } from '#build/components';
 <template>
     <NuxtPage/>
     <body>
-        <h1>Hello</h1>
+        <h1>Hello, world</h1>
     </body>
-
-
 </template>
 
-<style>
- @import url("~/assets/css/global.css");
+<style scoped>
+
 </style>
