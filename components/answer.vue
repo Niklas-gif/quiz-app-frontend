@@ -1,6 +1,6 @@
 <template>
-    <div class="answer" :class="{ 'isSelected': is_selected }" @click="toggleSelection">
-      {{ description }}
+    <div class="answer" :class="{ 'isSelected': is_selected }" @click="reveal">
+      {{ display_text }}
     </div>
   </template>
   
@@ -12,10 +12,20 @@
     is_true: Boolean
   });
   let is_selected = ref(false);
-  
+  let display_text = ref(props.description);
+
   function toggleSelection() {
     is_selected.value = !is_selected.value;
     console.log(is_selected.value);
+  }
+
+  function reveal() {
+     if(props.is_true === true) {
+        display_text.value = "True"
+     } else {
+        display_text.value = "False"
+     }
+     toggleSelection();
   }
   </script>
   

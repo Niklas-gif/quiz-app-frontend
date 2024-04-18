@@ -3,8 +3,8 @@
         <h1>Welcome to Quiz World!</h1>
     </header>
     <div class="content">
-        <Answer description="42 Ist die Antwort auf alles!"></Answer>  
-        <Answer description="42 Ist die Antwort auf alles!"></Answer>  
+        <Answer description="42 Ist die Antwort auf alles!" v-bind:is_true="true"></Answer>  
+        <Answer description="42 Ist die Antwort auf alles!" v-bind:is_true="false"></Answer>  
     </div>
   </template>
   
