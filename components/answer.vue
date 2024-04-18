@@ -1,31 +1,25 @@
 <template>
-<div class="answer" @click="toggle_selection">
-    42 is the answer to everything
-</div>
-</template>
-<script>
-//"is_selected ? 'bg-red' : 'answer'"
-export default {
-    
-    data(){
-        
-        return {
-        is_selected : false
-        };
-    },
-    methods: {
-        toggle_selection() {
-            this.is_selected = !this.is_selected;
-            console.log(this.is_selected)
-        }
-    }
-
-};
-
-</script>
-
-<style scoped>
-.answer {
+    <div class="answer" :class="{ 'isSelected': is_selected }" @click="toggleSelection">
+      {{ description }}
+    </div>
+  </template>
+  
+  <script setup lang="ts">
+  import { defineProps, ref } from 'vue';
+  
+  const props = defineProps({
+    description: String
+  });
+  let is_selected = ref(false);
+  
+  function toggleSelection() {
+    is_selected.value = !is_selected.value;
+    console.log(is_selected.value);
+  }
+  </script>
+  
+  <style scoped>
+  .answer {
     width: 360px;
     height: 120px;
     background-color: rgb(0, 132, 255);
@@ -35,12 +29,13 @@ export default {
     text-align: center;
     display: grid;
     padding: 10px;
-    @apply rounded-xl shadow-md;
-
-}
-
-.answer.isSelected {
+    border-radius: 20px;
+    cursor: pointer;
+    @apply shadow-lg;
+  }
+  
+  .answer.isSelected {
     background-color: rgb(1, 60, 116);
-}
-
-</style>
+  }
+  </style>
+  

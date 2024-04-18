@@ -1,13 +1,15 @@
-
-import { NuxtPage } from '#build/components';
 <template>
-    <NuxtPage/>
-    <body>
-        <h1 class="text-xl">Hello, world</h1>
-        <Answer/>    
-    </body>
-</template>
-
-<style scoped>
-
-</style>
+    <div>
+      <Answer description="42 Ist die Antwort auf alles!"></Answer>  
+    </div>
+  </template>
+  
+  <script>
+  import Answer from '~/components/answer.vue';
+  
+  export default {
+    components: {
+      Answer
+    }
+  };
+  </script>
