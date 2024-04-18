@@ -1,6 +1,6 @@
 <template>
     <header class="content-center text-white text-center text-6xl">
-        <h1>Welcome to Quiz World!</h1>
+        <h1 class="pt-5 pb-5">Welcome to Quiz World!</h1>
     </header>
     <div class="content">
         <Answer description="42 Ist die Antwort auf alles!" v-bind:is_true="true"></Answer>  
