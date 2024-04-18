@@ -1,10 +1,26 @@
 <template>
-<div class="answer">
+<div class="answer" @click="toggle_selection">
     42 is the answer to everything
 </div>
 </template>
-
 <script>
+//"is_selected ? 'bg-red' : 'answer'"
+export default {
+    
+    data(){
+        
+        return {
+        is_selected : false
+        };
+    },
+    methods: {
+        toggle_selection() {
+            this.is_selected = !this.is_selected;
+            console.log(this.is_selected)
+        }
+    }
+
+};
 
 </script>
 
