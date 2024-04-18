@@ -43,11 +43,12 @@
     margin: 10px;
     border-radius: 20px;
     cursor: pointer;
-    @apply shadow-lg;
+    @apply shadow-lg bg-blue-500 hover:bg-blue-300 border-b-4 border-blue-700;
   }
   
   .answer.isSelected {
     background-color: rgb(1, 60, 116);
+    @apply border-0;
   }
   </style>
   
