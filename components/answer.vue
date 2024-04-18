@@ -8,7 +8,8 @@
   import { defineProps, ref } from 'vue';
   
   const props = defineProps({
-    description: String
+    description: String,
+    is_true: Boolean
   });
   let is_selected = ref(false);
   
