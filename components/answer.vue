@@ -29,6 +29,7 @@
     text-align: center;
     display: grid;
     padding: 10px;
+    margin: 10px;
     border-radius: 20px;
     cursor: pointer;
     @apply shadow-lg;
