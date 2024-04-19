@@ -4,17 +4,18 @@
     </header>
     <div class="content">
         <Question :answers="questionAnswers" description="What is the answer to every question?"></Question>
+        <Question :answers="questionAnswers" description="Bal bla bla bla bla bla bla"></Question>
     </div>
   </template>
   
   <script>
   const questionAnswers = [{description:'42',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
-  import Answer from '~/components/answer.vue';
-  import Question from '~/components/question.vue';
+  import AnswerComponent from '~/components/answer_component.vue';
+  import QuestionComponent from '~/components/question_component.vue';
   
   export default {
     components: {
-      Answer,Question
+      Answer: AnswerComponent,Question: QuestionComponent
     },
     data() {
     return {
@@ -29,7 +30,7 @@
     color: white;
     margin-left: 100px;
     margin-right: 100px;
-    @apply flex justify-center items-center bg-gray-700 rounded-xl;
+    @apply flex flex-col justify-center items-center bg-gray-700 rounded-xl p-10;
 
   }
 </style>

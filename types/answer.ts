@@ -1,6 +1,5 @@
-type Answer = {
-    description: String,
-    is_true: Boolean,
+export type Answer = {
+    description: string,
+    is_true: boolean
 }
 
-export type {Answer};
