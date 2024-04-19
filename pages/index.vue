@@ -8,7 +8,7 @@
   </template>
   
   <script>
-  const questionAnswers = ['Red', 'Blue', 'Green', 'Yellow'];
+  const questionAnswers = [{description:'42',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
   import Answer from '~/components/answer.vue';
   import Question from '~/components/question.vue';
   
