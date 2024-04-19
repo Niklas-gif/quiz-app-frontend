@@ -4,25 +4,30 @@
     </header>
     <body>
       <div class="content">
-        <Question :answers="questionAnswers" description="What is the answer to every question?"></Question>
-        <Question :answers="questionAnswers" description="Bal bla bla bla bla bla bla"></Question>
+        <Question :answers="exampleAnswers" description="What is the answer to every question?"></Question>
+        <Question :answers="exampleAnswers" description="Bal bla bla bla bla bla bla"></Question>
+        <Quiz></Quiz>
       </div>
     </body>
   </template>
   
   <script>
-  const questionAnswers = [{description:'Das ist aber eine verdammt lange Anwort!',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
+  const exampleAnswers = [{description:'Das ist aber eine verdammt lange Anwort!',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
+  const exampleQuestions = [{description:"Question",exampleAnswers},{description:"Question",exampleAnswers},{description:"Question",exampleAnswers},{description:"Question",exampleAnswers}]
   import AnswerComponent from '~/components/answer_component.vue';
   import QuestionComponent from '~/components/question_component.vue';
+  import QuizComponent from '~/components/quiz_component.vue';
   
   export default {
     components: {
-      Answer: AnswerComponent,Question: QuestionComponent
+      Answer: AnswerComponent,
+      Question: QuestionComponent,
+      Quiz: QuizComponent
     },
     data() {
     return {
-      questionAnswers: questionAnswers
-    };
+      exampleAnswers: exampleAnswers
+    }
   }
 }
   </script>

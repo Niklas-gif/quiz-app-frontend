@@ -5,19 +5,19 @@
   </template>
   
   <script setup lang="ts">
-  import { defineProps, ref } from 'vue';
+  import { defineProps, ref } from 'vue'
   
   const props = defineProps({
     description: String,
     is_true: Boolean
   });
 
-  let is_selected = ref(false);
-  let display_text = ref(props.description);
+  let is_selected = ref(false)
+  let display_text = ref(props.description)
 
   function toggleSelection() {
-    is_selected.value = !is_selected.value;
-    console.log(is_selected.value);
+    is_selected.value = !is_selected.value
+    console.log(is_selected.value)
   }
 
   function reveal() {
@@ -26,7 +26,7 @@
      } else {
         display_text.value = "False"
      }
-     toggleSelection();
+     toggleSelection()
   }
   </script>
   
