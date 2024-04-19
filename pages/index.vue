@@ -3,22 +3,25 @@
         <h1 class="pt-5 pb-5">Welcome to Quiz World!</h1>
     </header>
     <div class="content">
-      <Answer description="42 Ist die Antwort auf alles!" v-bind:is_true="true"></Answer>  
-      <Answer description="42 Ist die Antwort auf alles!" v-bind:is_true="false"></Answer> 
-        <!--<Question answers="questionAnswers"></Question>-->
+        <Question :answers="questionAnswers" description="What is the answer to every question?"></Question>
     </div>
   </template>
   
   <script>
-  //const questionAnswers = ['Red', 'Blue', 'Green', 'Yellow'];
+  const questionAnswers = ['Red', 'Blue', 'Green', 'Yellow'];
   import Answer from '~/components/answer.vue';
   import Question from '~/components/question.vue';
   
   export default {
     components: {
-      Answer
-    }
-  };
+      Answer,Question
+    },
+    data() {
+    return {
+      questionAnswers: questionAnswers
+    };
+  }
+}
   </script>
 
 <style>
