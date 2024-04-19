@@ -1,6 +1,6 @@
 <template>
     <div class="answer" :class="{ 'isSelected': is_selected }" @click="reveal">
-      {{ display_text }}
+      <p>{{ display_text }}</p>
     </div>
   </template>
   
@@ -44,7 +44,7 @@
     margin: 10px;
     border-radius: 20px;
     cursor: pointer;
-    @apply shadow-lg bg-blue-500 hover:bg-blue-300 border-b-4 border-blue-700 hover:animate-pulse;
+    @apply break-words shadow-lg bg-blue-500 hover:bg-blue-300 border-b-4 border-blue-700 hover:animate-pulse;
   }
   
   .answer.isSelected {

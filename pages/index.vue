@@ -11,7 +11,7 @@
   </template>
   
   <script>
-  const questionAnswers = [{description:'42',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
+  const questionAnswers = [{description:'Das ist aber eine verdammt lange Anwort!',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
   import AnswerComponent from '~/components/answer_component.vue';
   import QuestionComponent from '~/components/question_component.vue';
   
