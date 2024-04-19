@@ -2,10 +2,12 @@
     <header class="content-center text-white text-center text-6xl">
         <h1 class="pt-5 pb-5">Welcome to Quiz World!</h1>
     </header>
-    <div class="content">
+    <body>
+      <div class="content">
         <Question :answers="questionAnswers" description="What is the answer to every question?"></Question>
         <Question :answers="questionAnswers" description="Bal bla bla bla bla bla bla"></Question>
-    </div>
+      </div>
+    </body>
   </template>
   
   <script>
