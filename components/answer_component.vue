@@ -11,6 +11,7 @@
     description: String,
     is_true: Boolean
   });
+
   let is_selected = ref(false);
   let display_text = ref(props.description);
 
@@ -43,12 +44,12 @@
     margin: 10px;
     border-radius: 20px;
     cursor: pointer;
-    @apply shadow-lg bg-blue-500 hover:bg-blue-300 border-b-4 border-blue-700;
+    @apply shadow-lg bg-blue-500 hover:bg-blue-300 border-b-4 border-blue-700 hover:animate-pulse;
   }
   
   .answer.isSelected {
     background-color: rgb(1, 60, 116);
-    @apply border-0;
+    @apply border-0 animate-pulse;
   }
   </style>
   
