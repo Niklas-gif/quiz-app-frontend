@@ -1,6 +1,8 @@
 <template>
-    <div v-for="(question, index) in questions" :key="index">
-        <QuestionComponent :description="question.description" :answers="question.answers"/> 
+    <div class="block">
+        <div v-for="(question, index) in questions" :key="index">
+            <QuestionComponent :description="question.description" :answers="question.answers"/> 
+        </div>
     </div>
 </template>
 

@@ -6,17 +6,27 @@
       <div class="content">
         <Question :answers="exampleAnswers" description="What is the answer to every question?"></Question>
         <Question :answers="exampleAnswers" description="Bal bla bla bla bla bla bla"></Question>
-        <Quiz></Quiz>
+        <Quiz description="Quiz1" :questions="exampleQuestions"></Quiz>
       </div>
     </body>
   </template>
   
   <script>
-  const exampleAnswers = [{description:'Das ist aber eine verdammt lange Anwort!',is_true:true},{description:'69',is_true:false},{description:'1337',is_true:false},{description:'420',is_true:false}];
-  const exampleQuestions = [{description:"Question",exampleAnswers},{description:"Question",exampleAnswers},{description:"Question",exampleAnswers},{description:"Question",exampleAnswers}]
-  import AnswerComponent from '~/components/answer_component.vue';
-  import QuestionComponent from '~/components/question_component.vue';
-  import QuizComponent from '~/components/quiz_component.vue';
+  const exampleAnswers = [
+    {description:'Das ist aber eine verdammt lange Anwort!',is_true:true},
+    {description:'69',is_true:false},{description:'1337',is_true:false},
+    {description:'420',is_true:false}
+  ]
+  const exampleQuestions = [
+    {description:"Question",answers:exampleAnswers}
+    ,{description:"Question",answers:exampleAnswers}
+    ,{description:"Question",answers:exampleAnswers}
+    ,{description:"Question",answers:exampleAnswers}
+  ]
+
+  import AnswerComponent from '~/components/answer_component.vue'
+  import QuestionComponent from '~/components/question_component.vue'
+  import QuizComponent from '~/components/quiz_component.vue'
   
   export default {
     components: {
@@ -26,7 +36,8 @@
     },
     data() {
     return {
-      exampleAnswers: exampleAnswers
+      exampleAnswers: exampleAnswers,
+      exampleQuestions: exampleQuestions
     }
   }
 }
