@@ -4,29 +4,32 @@
     </header>
     <body>
       <div class="content">
-        <Question :answers="exampleAnswers" description="What is the answer to every question?"></Question>
-        <Question :answers="exampleAnswers" description="Bal bla bla bla bla bla bla"></Question>
-        <Quiz description="Quiz1" :questions="exampleQuestions"></Quiz>
+        <Quiz description="Description" name="Name" :questions="exampleQuestions"></Quiz>
       </div>
     </body>
   </template>
   
   <script>
+  import AnswerComponent from '~/components/answer_component.vue'
+  import QuestionComponent from '~/components/question_component.vue'
+  import QuizComponent from '~/components/quiz_component.vue'
+  import test_quiz from '~/types/fromjsontest'
+
+ 
   const exampleAnswers = [
-    {description:'Das ist aber eine verdammt lange Anwort!',is_true:true},
-    {description:'69',is_true:false},{description:'1337',is_true:false},
-    {description:'420',is_true:false}
+    {description:'42 Das ist aber eine verdammt lange Anwort!',is_correct:true},
+    {description:'69',is_correct:false},{description:'1337',is_correct:false},
+    {description:'420',is_correct:false}
   ]
   const exampleQuestions = [
-    {description:"Question",answers:exampleAnswers}
+    {description:"What is the answer to every question?",answers:exampleAnswers}
     ,{description:"Question",answers:exampleAnswers}
     ,{description:"Question",answers:exampleAnswers}
     ,{description:"Question",answers:exampleAnswers}
   ]
 
-  import AnswerComponent from '~/components/answer_component.vue'
-  import QuestionComponent from '~/components/question_component.vue'
-  import QuizComponent from '~/components/quiz_component.vue'
+  //const exampleQuestions = test_quiz[0] <---- Fromjson
+  console.log(test_quiz[0])
   
   export default {
     components: {

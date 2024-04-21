@@ -9,7 +9,7 @@
   
   const props = defineProps({
     description: String,
-    is_true: Boolean
+    is_correct: Boolean
   });
 
   let is_selected = ref(false)
@@ -21,7 +21,7 @@
   }
 
   function reveal() {
-     if(props.is_true === true) {
+     if(props.is_correct === true) {
         display_text.value = "True"
      } else {
         display_text.value = "False"

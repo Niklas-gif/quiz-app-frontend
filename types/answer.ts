@@ -1,5 +1,5 @@
 export type Answer = {
     description: string,
-    is_true: boolean
+    is_correct: boolean
 }
 
