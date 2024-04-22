@@ -4,7 +4,7 @@
     </header>
     <body>
       <div class="content">
-        <Quiz description="Description" name="Name" :questions="exampleQuestions"></Quiz> <!--Quiz not question-->
+        <Quiz :description="exampleQuiz.description" :name="exampleQuiz.name" :questions="exampleQuiz.questions"></Quiz> 
       </div>
     </body>
   </template>
@@ -13,23 +13,9 @@
   import AnswerComponent from '~/components/answer_component.vue'
   import QuestionComponent from '~/components/question_component.vue'
   import QuizComponent from '~/components/quiz_component.vue'
-  import test_quiz from '~/types/fromjsontest'
+  import test_quiz from '~/testdata/fromjsontest'
 
- 
-  /*const exampleAnswers = [
-    {description:'42 Das ist aber eine verdammt lange Anwort!',is_correct:true},
-    {description:'69',is_correct:false},
-    {description:'1337',is_correct:false},
-    {description:'420',is_correct:false}
-  ]
-  const exampleQuestions = [
-    {description:"What is the answer to every question?",answers:exampleAnswers},
-    {description:"Question",answers:exampleAnswers},
-    {description:"Question",answers:exampleAnswers},
-    {description:"Question",answers:exampleAnswers}
-  ]*/
-
-  const exampleQuestions = test_quiz[0].questions
+  const exampleQuiz = test_quiz[0]
   
   export default {
     components: {
@@ -37,10 +23,10 @@
       Question: QuestionComponent,
       Quiz: QuizComponent
     },
+
     data() {
     return {
-      //exampleAnswers: exampleAnswers,
-      exampleQuestions: exampleQuestions
+      exampleQuiz: exampleQuiz
     }
   }
 }

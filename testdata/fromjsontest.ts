@@ -1,4 +1,4 @@
-import {type Quiz } from "./quiz"
+import {type Quiz } from "../types/quiz"
 const test_quiz: Quiz[] = [
     {
         "_id": "6613cd26e2bfb6cdbf4e5731",
