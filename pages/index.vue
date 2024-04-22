@@ -4,7 +4,7 @@
     </header>
     <body>
       <div class="content">
-        <Quiz description="Description" name="Name" :questions="exampleQuestions"></Quiz>
+        <Quiz description="Description" name="Name" :questions="exampleQuestions"></Quiz> <!--Quiz not question-->
       </div>
     </body>
   </template>
@@ -16,20 +16,20 @@
   import test_quiz from '~/types/fromjsontest'
 
  
-  const exampleAnswers = [
+  /*const exampleAnswers = [
     {description:'42 Das ist aber eine verdammt lange Anwort!',is_correct:true},
-    {description:'69',is_correct:false},{description:'1337',is_correct:false},
+    {description:'69',is_correct:false},
+    {description:'1337',is_correct:false},
     {description:'420',is_correct:false}
   ]
   const exampleQuestions = [
-    {description:"What is the answer to every question?",answers:exampleAnswers}
-    ,{description:"Question",answers:exampleAnswers}
-    ,{description:"Question",answers:exampleAnswers}
-    ,{description:"Question",answers:exampleAnswers}
-  ]
+    {description:"What is the answer to every question?",answers:exampleAnswers},
+    {description:"Question",answers:exampleAnswers},
+    {description:"Question",answers:exampleAnswers},
+    {description:"Question",answers:exampleAnswers}
+  ]*/
 
-  //const exampleQuestions = test_quiz[0] <---- Fromjson
-  console.log(test_quiz[0])
+  const exampleQuestions = test_quiz[0].questions
   
   export default {
     components: {
@@ -39,7 +39,7 @@
     },
     data() {
     return {
-      exampleAnswers: exampleAnswers,
+      //exampleAnswers: exampleAnswers,
       exampleQuestions: exampleQuestions
     }
   }
