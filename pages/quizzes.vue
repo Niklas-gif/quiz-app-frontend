@@ -9,16 +9,16 @@
 
 <script setup lang="ts">
   import QuizComponent from '~/components/quiz_component.vue' 
-  import QuestionComponent from '~/components/question_component.vue';
+  import QuestionComponent from '~/components/question_component.vue'
   import test_quiz from '~/testdata/fromjsontest'
 
-  import { type Answer } from '~/types/answer';
+  import { type Answer } from '~/types/answer'
 
-  let currentQuesiton = ref(test_quiz[0].questions[0]);
+  let currentQuesiton = ref(test_quiz[0].questions[0])
   let selectedAnswer: boolean | null = null
 
   function login_answer(answer: Answer) {
-    selectedAnswer =  answer.is_correct
+    selectedAnswer = answer.is_correct
 
     next_quesiton()
   }

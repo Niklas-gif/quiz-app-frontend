@@ -1,5 +1,5 @@
 <template>
-    <div class="answer" :class="{ 'isSelected': is_selected }" @click="reveal">
+    <div class="answer" :class="{ 'isSelected': is_selected }" @click="toggleSelection">
       <p>{{ display_text }}</p>
     </div>
   </template>
@@ -25,30 +25,34 @@
      } else {
         display_text.value = "False"
      }
-     toggleSelection()
   }
+
   </script>
   
   <style scoped>
   .answer {
     width: 360px;
     height: 120px;
-    background-color: rgb(0, 132, 255);
-    color: white;
-    justify-items: center;
-    align-items: center;
-    text-align: center;
-    display: grid;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    @apply break-words shadow-lg bg-blue-500 hover:bg-blue-300 border-b-4 border-blue-700 hover:animate-pulse;
+    @apply 
+    grid
+    text-center
+    items-center
+    justify-center
+    rounded-3xl
+    p-2 m-2 
+    cursor-pointer 
+  text-white 
+    break-words
+    shadow-lg
+    bg-blue-500
+    hover:bg-blue-300
+    border-b-4
+    border-blue-700
+    hover:animate-pulse;
   }
   
   .answer.isSelected {
-    background-color: rgb(1, 60, 116);
-    @apply border-0 animate-pulse;
+    @apply bg-cyan-900 border-0 animate-pulse;
   }
   </style>
   
