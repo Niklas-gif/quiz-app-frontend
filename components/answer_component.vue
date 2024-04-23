@@ -17,7 +17,6 @@
 
   function toggleSelection() {
     is_selected.value = !is_selected.value
-    console.log(is_selected.value)
   }
 
   function reveal() {

@@ -1,7 +1,7 @@
 <template>
     <body>
         <div class="content">
-          <QuizComponent :description="exampleQuiz.description" :name="exampleQuiz.name" :questions="exampleQuiz.questions"/>
+          <QuestionComponent :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answer-selected="login_answer"></QuestionComponent>
         </div>
     </body>
 
@@ -9,8 +9,26 @@
 
 <script setup lang="ts">
   import QuizComponent from '~/components/quiz_component.vue' 
+  import QuestionComponent from '~/components/question_component.vue';
   import test_quiz from '~/testdata/fromjsontest'
-  const exampleQuiz = test_quiz[0]
+
+  import { type Answer } from '~/types/answer';
+
+  let currentQuesiton = test_quiz[0].questions[0]
+  let selectedAnswer: boolean | null = null
+
+  function login_answer(answer: Answer) {
+    selectedAnswer =  answer.is_correct
+
+    //next_quesiton()
+  }
+
+  function next_quesiton() {
+    //TODO Timer!
+    if(selectedAnswer == true) {
+      currentQuesiton = test_quiz[0].questions[1]
+    }
+  }
 
 </script>
 
