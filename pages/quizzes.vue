@@ -14,19 +14,20 @@
 
   import { type Answer } from '~/types/answer';
 
-  let currentQuesiton = test_quiz[0].questions[0]
+  let currentQuesiton = ref(test_quiz[0].questions[0]);
   let selectedAnswer: boolean | null = null
 
   function login_answer(answer: Answer) {
     selectedAnswer =  answer.is_correct
 
-    //next_quesiton()
+    next_quesiton()
   }
 
   function next_quesiton() {
     //TODO Timer!
-    if(selectedAnswer == true) {
-      currentQuesiton = test_quiz[0].questions[1]
+    if(selectedAnswer === true) {
+      currentQuesiton.value = test_quiz[0].questions[1]
+      selectedAnswer = null
     }
   }
 
