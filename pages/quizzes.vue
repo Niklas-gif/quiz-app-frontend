@@ -2,6 +2,7 @@
     <body>
         <div class="content">
           <QuestionComponent :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answer-selected="login_answer"></QuestionComponent>
+          <button @click="next_quesiton"> next question </button>
         </div>
     </body>
 
@@ -16,6 +17,7 @@
 
   let currentQuesiton = ref(test_quiz[0].questions[0])
   let selectedAnswer: boolean | null = null
+  let index = ref(0)
 
   function login_answer(answer: Answer) {
     selectedAnswer = answer.is_correct
@@ -24,12 +26,11 @@
   }
 
   function next_quesiton() {
-    //TODO Timer!
-    if(selectedAnswer === true) {
-      currentQuesiton.value = test_quiz[0].questions[1]
-      selectedAnswer = null
+    if(index.value < test_quiz[0].questions.length) {
+      currentQuesiton.value = test_quiz[0].questions[index.value += 1]
     }
   }
+
 
 </script>
 

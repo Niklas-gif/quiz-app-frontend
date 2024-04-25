@@ -16,11 +16,11 @@ import {type Answer} from '../types/answer'
 import {type Question} from '../types/question'
 import {type Quiz} from '../types/quiz'
 
-const props = defineProps({
+const props = defineProps<({
     description: String,
     name: String,
     questions: Array<Question>,
-  })
+  })>()
 
 
 </script>

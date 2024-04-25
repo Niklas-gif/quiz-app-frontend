@@ -1,31 +1,31 @@
 <template>
     <div class="answer" :class="{ 'isSelected': is_selected }" @click="toggleSelection">
-      <p>{{ display_text }}</p>
+      <p>{{ props.description }}</p>
     </div>
   </template>
   
   <script setup lang="ts">
   import { defineProps, ref } from 'vue'
   
-  const props = defineProps({
+  const props = defineProps<({
     description: String,
     is_correct: Boolean
-  });
+  })>();
 
   let is_selected = ref(false)
-  let display_text = ref(props.description)
+  //let display_text = ref(props.description)
 
   function toggleSelection() {
     is_selected.value = !is_selected.value
   }
 
-  function reveal() {
+  /*function reveal() {
      if(props.is_correct === true) {
         display_text.value = "True"
      } else {
         display_text.value = "False"
      }
-  }
+  }*/
 
   </script>
   

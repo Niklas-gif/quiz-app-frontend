@@ -16,10 +16,11 @@ import { defineProps, ref } from 'vue'
 import AnswerComponent from './answer_component.vue'
 import {type Answer} from '../types/answer'
 
-const props = defineProps({
+const props = defineProps<({
     description: String,
     answers: Array<Answer>,
-  });
+  })>();
+  
   const emits = defineEmits(['answer-selected']);
   function selectAnswer(answer: Answer) {
     emits('answer-selected', answer);
