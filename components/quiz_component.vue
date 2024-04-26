@@ -1,7 +1,7 @@
 <template>
     <div class="block">
         <div v-for="(question, index) in questions" :key="index">
-
+            <!--<QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="selectCard"></QuestionComponent>-->
         </div>
     </div>
 </template>

@@ -21,10 +21,13 @@
   let index = ref(0)
 
   function selectCard(answer: Answer) {
-    if(!selectedAnswers.value.includes(answer)) {
-      selectedAnswers.value.push(answer) 
+    //TODO check if question is multipblechoice
+    if(selectedAnswers.value.includes(answer)) {
+      selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1) 
+    } else {
+      selectedAnswers.value.push(answer)
     }
-    submitAnswer(answer)
+    //submitAnswer(answer)
   }
 
   function submitAnswer(answer: Answer) {

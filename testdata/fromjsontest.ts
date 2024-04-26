@@ -21,7 +21,7 @@ const test_quiz: Quiz[] = [
                     },
                     {
                         "description": "Blahaghjajgajgag",
-                        "isCorrect": true
+                        "isCorrect": false
                     }
                 ],
                 "description": "Was ist die Hauptstadt von Deutschland?",
