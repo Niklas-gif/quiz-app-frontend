@@ -1,7 +1,7 @@
 <template>
     <body>
         <div class="content">
-          <QuestionComponent :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answer-selected="login_answer"></QuestionComponent>
+          <QuestionComponent :selected_cards="selected_answers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="select_card"></QuestionComponent>
           <button @click="next_quesiton"> next question </button>
         </div>
     </body>
@@ -15,14 +15,24 @@
 
   import { type Answer } from '~/types/answer'
 
+  let selected_answers: Ref<Answer[]> = ref([])
   let currentQuesiton = ref(test_quiz[0].questions[0])
   let selectedAnswer: boolean | null = null
   let index = ref(0)
 
-  function login_answer(answer: Answer) {
-    selectedAnswer = answer.is_correct
+  function select_card(answer: Answer) {
+    if(!selected_answers.value.includes(answer)) {
+      selected_answers.value.push(answer) 
+    }
+    submit_answer(answer)
+  }
 
-    next_quesiton()
+  function submit_answer(answer: Answer) {
+    selectedAnswer = answer.is_correct
+    if(selectedAnswer) {
+      next_quesiton()
+      selected_answers.value.pop()
+    }
   }
 
   function next_quesiton() {
