@@ -8,8 +8,7 @@
 
 <script setup lang="ts">
 
-import { defineProps, ref } from 'vue'
-
+import { defineProps } from 'vue'
 import {type Question} from '../types/question'
 
 const props = defineProps<({

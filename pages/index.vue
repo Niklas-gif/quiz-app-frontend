@@ -14,9 +14,9 @@
   import AnswerComponent from '~/components/answer_component.vue'
   import QuestionComponent from '~/components/question_component.vue'
   import QuizComponent from '~/components/quiz_component.vue'
-  import test_quiz from '~/testdata/fromjsontest'
+  import testQuiz from '~/testdata/fromjsontest'
 
-  const exampleQuiz = test_quiz[0]
+  const exampleQuiz = testQuiz[0]
   
   export default {
     components: {

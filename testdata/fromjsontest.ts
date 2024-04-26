@@ -9,41 +9,41 @@ const test_quiz: Quiz[] = [
                 "answers": [
                     {
                         "description": "Paris",
-                        "is_correct": false
+                        "isCorrect": false
                     },
                     {
                         "description": "London",
-                        "is_correct": false
+                        "isCorrect": false
                     },
                     {
                         "description": "Berlin",
-                        "is_correct": true
+                        "isCorrect": true
                     },
                     {
                         "description": "Blahaghjajgajgag",
-                        "is_correct": true
+                        "isCorrect": true
                     }
                 ],
                 "description": "Was ist die Hauptstadt von Deutschland?",
-                "is_multiple_choice": true
+                "isMultipleChoice": true
             },
             {
                 "answers": [
                     {
                         "description": "4",
-                        "is_correct": true
+                        "isCorrect": true
                     },
                     {
                         "description": "42",
-                        "is_correct": false
+                        "isCorrect": false
                     },
                     {
                         "description": "Banana",
-                        "is_correct": false
+                        "isCorrect": false
                     }
                 ],
                 "description": "Was ist 2 + 2?",
-                "is_multiple_choice": false
+                "isMultipleChoice": false
             }
         ]
     },
@@ -56,33 +56,33 @@ const test_quiz: Quiz[] = [
                 "answers": [
                     {
                         "description": "London",
-                        "is_correct": false
+                        "isCorrect": false
                     },
                     {
                         "description": "Berlin",
-                        "is_correct": true
+                        "isCorrect": true
                     }
                 ],
                 "description": "Was ist die Hauptstadt von Deutschland?",
-                "is_multiple_choice": true
+                "isMultipleChoice": true
             },
             {
                 "answers": [
                     {
                         "description": "4",
-                        "is_correct": true
+                        "isCorrect": true
                     },
                     {
                         "description": "42",
-                        "is_correct": false
+                        "isCorrect": false
                     },
                     {
                         "description": "Banana",
-                        "is_correct": false
+                        "isCorrect": false
                     }
                 ],
                 "description": "Was ist 2 + 2?",
-                "is_multiple_choice": false
+                "isMultipleChoice": false
             }
         ]
     }

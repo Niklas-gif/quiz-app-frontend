@@ -1,8 +1,8 @@
 <template>
     <body>
         <div class="content">
-          <QuestionComponent :selected_cards="selected_answers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="select_card"></QuestionComponent>
-          <button @click="next_quesiton"> next question </button>
+          <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="selectCard"></QuestionComponent>
+          <button @click="nextQuestion"> next question </button>
         </div>
     </body>
 
@@ -11,33 +11,33 @@
 <script setup lang="ts">
   import QuizComponent from '~/components/quiz_component.vue' 
   import QuestionComponent from '~/components/question_component.vue'
-  import test_quiz from '~/testdata/fromjsontest'
+  import testQuiz from '~/testdata/fromjsontest'
 
   import { type Answer } from '~/types/answer'
 
-  let selected_answers: Ref<Answer[]> = ref([])
-  let currentQuesiton = ref(test_quiz[0].questions[0])
+  let selectedAnswers: Ref<Answer[]> = ref([])
+  let currentQuesiton = ref(testQuiz[0].questions[0])
   let selectedAnswer: boolean | null = null
   let index = ref(0)
 
-  function select_card(answer: Answer) {
-    if(!selected_answers.value.includes(answer)) {
-      selected_answers.value.push(answer) 
+  function selectCard(answer: Answer) {
+    if(!selectedAnswers.value.includes(answer)) {
+      selectedAnswers.value.push(answer) 
     }
-    submit_answer(answer)
+    submitAnswer(answer)
   }
 
-  function submit_answer(answer: Answer) {
-    selectedAnswer = answer.is_correct
+  function submitAnswer(answer: Answer) {
+    selectedAnswer = answer.isCorrect
     if(selectedAnswer) {
-      next_quesiton()
-      selected_answers.value.pop()
+      nextQuestion()
+      selectedAnswers.value.pop()
     }
   }
 
-  function next_quesiton() {
-    if(index.value < test_quiz[0].questions.length) {
-      currentQuesiton.value = test_quiz[0].questions[index.value += 1]
+  function nextQuestion() {
+    if(index.value < testQuiz[0].questions.length) {
+      currentQuesiton.value = testQuiz[0].questions[index.value += 1]
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="answer" :class="{ 'isSelected': props.is_selected }">
+    <div class="answer" :class="{ 'isSelected': props.isSelected }">
       <p>{{ props.description }}</p>
     </div>
   </template>
@@ -9,8 +9,8 @@
   
   const props = defineProps<({
     description: String,
-    is_correct: boolean,
-    is_selected: boolean
+    isCorrect: boolean,
+    isSelected: boolean
   })>();
 
   </script>
