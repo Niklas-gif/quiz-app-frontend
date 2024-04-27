@@ -19,6 +19,7 @@ const props = defineProps<({
   })>()
 
   let selectedAnswers: Ref<Answer[]> = ref([])
+  let currentQuesiton: Question 
 
 
 </script>

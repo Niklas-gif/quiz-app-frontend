@@ -26,7 +26,7 @@
     } else {
       selectedAnswers.value.push(answer)
     }
-    //submitAnswer(answer)
+    submitAnswer(answer)
   }
 
   function submitAnswer(answer: Answer) {
@@ -36,6 +36,17 @@
       selectedAnswers.value.pop()
     }
   }
+
+  /*function submitAnswer(answer: Answer) {
+    selectedAnswer = answer.isCorrect
+    setTimeout(() => {
+      if(selectedAnswer) {
+      nextQuestion()
+      selectedAnswers.value.pop()
+    }
+    }, 5000);
+  
+  }*/
 
   function nextQuestion() {
     if(index.value < testQuiz[0].questions.length) {

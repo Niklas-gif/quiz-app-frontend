@@ -1,3 +1,4 @@
+import type { Answer } from "~/types/answer";
 import type { Quiz } from "~/types/quiz";
 
 export class QuizGame {
@@ -5,5 +6,10 @@ export class QuizGame {
 
     constructor(quiz: Quiz) {
         this.quiz = quiz
+    }
+
+
+    nextQuestion() {
+
     }
 }
