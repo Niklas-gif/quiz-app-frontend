@@ -1,6 +1,7 @@
 <template>
     <body>
         <div class="content">
+          <ProgressBar></ProgressBar>
           <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="selectCard"></QuestionComponent>
           <button @click="nextQuestion"> next question </button>
         </div>
@@ -10,6 +11,7 @@
 
 <script setup lang="ts">
   import QuestionComponent from '~/components/question_component.vue'
+  import ProgressBar from '~/components/progress_bar.vue'
   import testQuiz from '~/testdata/fromjsontest'
 
   import { type Answer } from '~/types/answer'
