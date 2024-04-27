@@ -5,7 +5,7 @@
     <body>
       <div class="content">
         <PlayButton></PlayButton>
-        <Quiz :description="exampleQuiz.description" :name="exampleQuiz.name" :questions="exampleQuiz.questions"></Quiz> 
+        <QuizComponent :description="exampleQuiz.description" :name="exampleQuiz.name" :questions="exampleQuiz.questions"></QuizComponent> 
       </div>
     </body>
   </template>

@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-  import QuizComponent from '~/components/quiz_component.vue' 
   import QuestionComponent from '~/components/question_component.vue'
   import testQuiz from '~/testdata/fromjsontest'
 
