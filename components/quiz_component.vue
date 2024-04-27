@@ -1,7 +1,7 @@
 <template>
     <div class="block">
         <div v-for="(question, index) in props.questions" :key="index">
-            <QuestionComponent :selected-answers="selectedAnswers"  :answers="question.answers" :description="question.description"></QuestionComponent>
+            <QuestionComponent :selected-answers="selectedAnswers" :answers="question.answers" :description="question.description"></QuestionComponent>
         </div>
     </div>
 </template>

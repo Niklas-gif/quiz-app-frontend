@@ -48,9 +48,8 @@
 
 <style>
 .content  {
-  color: white;
   margin-left: 100px;
   margin-right: 100px;
-  @apply flex flex-col justify-center items-center bg-gray-700 rounded-xl p-10;
+  @apply flex flex-col justify-center items-center text-white bg-gray-700 rounded-xl p-10;
 }
 </style>
