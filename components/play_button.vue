@@ -1,7 +1,10 @@
 <template>
-    <div class="button">
-        <IconController></IconController>
-    </div>
+    <NuxtLink to="/quizzes">
+        <div class="button">
+            <IconController/>
+        </div>     
+    </NuxtLink>
+
 
 </template>
 

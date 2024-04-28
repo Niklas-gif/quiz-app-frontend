@@ -1,11 +1,9 @@
 <template>
-    <body>
         <div class="content">
           <ProgressBar></ProgressBar>
           <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="selectCard"></QuestionComponent>
           <button @click="nextQuestion"> next question </button>
         </div>
-    </body>
 
 </template>
 
