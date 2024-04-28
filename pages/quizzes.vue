@@ -60,7 +60,7 @@
 </script>
 
 <style>
-.content  {
+.content {
   margin-left: 100px;
   margin-right: 100px;
   @apply flex flex-col mt-16 justify-center items-center text-white bg-gray-700 rounded-xl p-10;

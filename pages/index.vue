@@ -15,7 +15,7 @@
 </script>
 
 <style>
-.content  {
+.content {
     color: white;
     margin-left: 100px;
     margin-right: 100px;
