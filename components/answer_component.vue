@@ -1,7 +1,14 @@
 <template>
-    <div class="answer" :class="{ 'isSelected': props.isSelected }">
+  <div v-if="isCorrect">
+    <div class="answer" :class="{ 'isCorrect': props.isSelected }">
       <p>{{ props.description }}</p>
     </div>
+  </div>
+  <div v-else>
+    <div class="answer" :class="{ 'isFalse': props.isSelected }">
+      <p>{{ props.description }}</p>
+    </div>
+  </div> 
   </template>
   
   <script setup lang="ts">
@@ -39,6 +46,14 @@
   
   .answer.isSelected {
     @apply bg-cyan-900 border-0 animate-pulse;
+  }
+
+  .answer.isCorrect {
+    @apply bg-green-400 border-0 animate-pulse;
+  }
+  
+  .answer.isFalse {
+    @apply bg-red-500 border-0 animate-pulse;
   }
   </style>
   

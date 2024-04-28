@@ -6,14 +6,19 @@
 
 <script setup lang="ts">
 
+/*import { defineProps } from 'vue';
+
+
+const props = defineProps<({
+    //progress: number
+  })>();*/
+
 let progress = ref(100)
 
 onMounted(()=> {
      setInterval(() => {
         if(progress.value != 0) {
             progress.value -= 1
-        } else {
-            progress.value = 0
         }
      },100)  
 })

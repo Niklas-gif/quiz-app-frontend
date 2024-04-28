@@ -5,33 +5,14 @@
     <body>
       <div class="content">
         <PlayButton></PlayButton>
-        <QuizComponent :description="exampleQuiz.description" :name="exampleQuiz.name" :questions="exampleQuiz.questions"></QuizComponent> 
       </div>
     </body>
-  </template>
-  
-  <script>
-  import AnswerComponent from '~/components/answer_component.vue'
-  import QuestionComponent from '~/components/question_component.vue'
-  import QuizComponent from '~/components/quiz_component.vue'
-  import testQuiz from '~/testdata/fromjsontest'
 
-  const exampleQuiz = testQuiz[0]
-  
-  export default {
-    components: {
-      Answer: AnswerComponent,
-      Question: QuestionComponent,
-      Quiz: QuizComponent
-    },
+</template>
 
-    data() {
-    return {
-      exampleQuiz: exampleQuiz
-    }
-  }
-}
-  </script>
+<script setup lang="ts">
+
+</script>
 
 <style>
 .content  {
