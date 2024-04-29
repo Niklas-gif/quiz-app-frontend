@@ -25,30 +25,24 @@
       selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1) 
     } else {
       selectedAnswers.value.push(answer)
+
+      setTimeout(() => {
+      if(selectedAnswers.value.length != 0) { 
+        submitAnswer(answer)
+      }
+     },1000)
     }
-    setTimeout(() => {
-      submitAnswer(answer)
-     },2000)  
+      
   }
+
 
   function submitAnswer(answer: Answer) {
     selectedAnswer = answer.isCorrect
     if(selectedAnswer) {
       nextQuestion()
-      selectedAnswers.value.pop()
+      selectedAnswers.value = []
     }
   }
-
-  /*function submitAnswer(answer: Answer) {
-    selectedAnswer = answer.isCorrect
-    setTimeout(() => {
-      if(selectedAnswer) {
-      nextQuestion()
-      selectedAnswers.value.pop()
-    }
-    }, 5000);
-  
-  }*/
 
   function nextQuestion() {
     if(index.value < testQuiz[0].questions.length) {

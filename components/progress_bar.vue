@@ -5,22 +5,17 @@
 </template>
 
 <script setup lang="ts">
-
-/*import { defineProps } from 'vue';
-
-
-const props = defineProps<({
-    //progress: number
-  })>();*/
-
 let progress = ref(100)
+const emits = defineEmits(['timeout']);
 
 onMounted(()=> {
      setInterval(() => {
         if(progress.value != 0) {
             progress.value -= 1
+        } else {
+            emits('timeout',true)
         }
-     },100)  
+     },100) 
 })
 
 </script>
