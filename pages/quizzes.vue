@@ -16,7 +16,6 @@
 
   let selectedAnswers: Ref<Answer[]> = ref([])
   let currentQuesiton = ref(testQuiz[0].questions[0])
-  let selectedAnswer: boolean | null = null
   let index = ref(0)
 
   function selectCard(answer: Answer) {
@@ -37,15 +36,14 @@
 
 
   function submitAnswer(answer: Answer) {
-    selectedAnswer = answer.isCorrect
-    if(selectedAnswer) {
+    if(answer.isCorrect) {
       nextQuestion()
       selectedAnswers.value = []
     }
   }
 
   function nextQuestion() {
-    if(index.value < testQuiz[0].questions.length) {
+    if(index.value + 1 < testQuiz[0].questions.length) {
       currentQuesiton.value = testQuiz[0].questions[index.value += 1]
     }
   }

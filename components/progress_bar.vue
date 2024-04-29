@@ -13,7 +13,7 @@ onMounted(()=> {
         if(progress.value != 0) {
             progress.value -= 1
         } else {
-            emits('timeout',true)
+            emits('timeout')
         }
      },100) 
 })
