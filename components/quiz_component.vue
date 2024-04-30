@@ -9,8 +9,8 @@
 <script setup lang="ts">
 
 import { defineProps } from 'vue'
-import {type Question} from '../types/question'
-import type { Answer } from '~/types/answer';
+import { type Question} from '~/types/question'
+import { type  Answer } from '~/types/answer'
 
 const props = defineProps<({
     description: String,
@@ -19,7 +19,5 @@ const props = defineProps<({
   })>()
 
   let selectedAnswers: Ref<Answer[]> = ref([])
-  let currentQuesiton: Question 
-
 
 </script>
