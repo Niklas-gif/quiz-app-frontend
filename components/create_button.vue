@@ -15,7 +15,7 @@ import IconEditPen from "assets/icons/icon_edit_pen.vue"
 
 <style>
 .button {
-    @apply self-center hover:bg-purple-400 bg-purple-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl;
+    @apply hover:bg-purple-400 bg-purple-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl;
 }
 
 </style>
