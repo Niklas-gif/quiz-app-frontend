@@ -4,7 +4,8 @@
         <h1 class="pt-5 pb-5">Welcome to Quiz World!</h1>
     </header>
       <div class="content">
-       <QuizListComponent :quizzes="data"></QuizListComponent>
+      <div v-if="isLoading"> Is loading</div>
+       <QuizListComponent v-else :quizzes="data"></QuizListComponent>
         <div class="flex flex-col p-5">
           <PlayButton class="self-center"></PlayButton>
           <p> Play now!</p>
@@ -23,13 +24,18 @@
   import QuizListComponent from '~/components/quizlist_component.vue'
   import type { Quiz } from '~/types/quiz';
 
-  const data :Ref<Quiz[]> = ref([])
-  const dataTwice = await fetch('http://localhost:3030/quizzes')
-  data.value = await dataTwice.json()
+  const data  = ref([])
+  const isLoading  = ref(true)
 
   onMounted(async () => {
-    const dataTwice = await fetch('http://localhost:3030/quizzes')
-    data.value = await dataTwice.json()
+    isLoading.value = true
+    try {
+      const response = await fetch('http://localhost:3030/quizzes')
+      data.value = await response.json()
+    } catch(error) {
+      console.log(error)
+    }
+    isLoading.value = false
   })
 
 </script>
