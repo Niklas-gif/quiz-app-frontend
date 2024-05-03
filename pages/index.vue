@@ -25,12 +25,12 @@ import type { Quiz } from '~/types/quiz';
 /*const dataTwice = await fetch('http://localhost:3030/quizzes')
 let data = await dataTwice.json()
 let exampleQuiz :Quiz[] = data*/
-let exampleQuiz :Ref<Quiz[]> = ref([])
+//let exampleQuiz :Ref<Quiz[]> = ref([])
 
 
 const dataTwice = await fetch('http://localhost:3030/quizzes')
 let data = await dataTwice.json()
-exampleQuiz.value = data
+let exampleQuiz = data
 /*onMounted(async ()=>{
 
 })*/
