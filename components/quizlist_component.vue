@@ -1,8 +1,8 @@
 <template> 
 <ul>
-    <li  v-for="(quiz) in props.quizzes" @click="toggleDetails">
+    <li  v-for="(quiz) in props.quizzes" @click="toggleDetails" class="item">
          {{quiz.name}}   
-        <span v-if="detailIsVisible">
+        <span v-if="detailIsVisible" class="flex flex-col">
             {{quiz.description}}
         </span>
     </li>
@@ -26,6 +26,9 @@ const props = defineProps<({
 </script>
 
 <style>
+.item {
+ @apply text-white bg-orange-600 rounded-3xl p-5 m-5 hover:bg-orange-500
+}
 
 
 </style>
