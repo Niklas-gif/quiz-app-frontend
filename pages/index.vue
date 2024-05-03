@@ -4,7 +4,7 @@
         <h1 class="pt-5 pb-5">Welcome to Quiz World!</h1>
     </header>
       <div class="content">
-      <div v-if="isLoading"> Is loading</div>
+      <IconLoading v-if="isLoading"></IconLoading>
        <QuizListComponent v-else :quizzes="data"></QuizListComponent>
         <div class="flex flex-col p-5">
           <PlayButton class="self-center"></PlayButton>
@@ -23,6 +23,7 @@
   import { ref } from 'vue';
   import QuizListComponent from '~/components/quizlist_component.vue'
   import type { Quiz } from '~/types/quiz';
+  import IconLoading from "assets/icons/icon_loading.vue"
 
   const data  = ref([])
   const isLoading  = ref(true)

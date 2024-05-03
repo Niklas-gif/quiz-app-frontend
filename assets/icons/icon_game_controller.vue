@@ -10,11 +10,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .icon {
   width: 48px;
   height: 48px;
   @apply fill-white;
 }
-
 </style>
