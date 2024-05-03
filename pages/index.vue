@@ -20,9 +20,8 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
-  import type { Quiz } from '~/types/quiz';
   import IconLoading from "assets/icons/icon_loading.vue"
 
   const data  = ref([])
