@@ -1,12 +1,12 @@
 <template>
   <div v-if="isCorrect">
     <div class="answer" :class="{ 'isCorrect': props.isSelected }">
-      <p>{{ props.description }}</p>
+      <p class="md:break-all">{{ props.description }}</p>
     </div>
   </div>
   <div v-else>
     <div class="answer" :class="{ 'isFalse': props.isSelected }">
-      <p>{{ props.description }}</p>
+      <p class="md:break-all">{{ props.description }}</p>
     </div>
   </div> 
   </template>
@@ -24,9 +24,13 @@
   
   <style scoped>
   .answer {
-    width: 360px;
-    height: 120px;
+    /*width: 360px;
+    height: 120px;*/
     @apply 
+    max-w-[360px]
+    max-h-[120px]
+    min-w-36
+    min-h-24
     grid
     text-center
     items-center

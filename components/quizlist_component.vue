@@ -28,7 +28,7 @@ function toggleDetails(index: number) {
 
 <style>
 .item {
- @apply text-white bg-orange-600 rounded-3xl p-5 m-5 hover:bg-orange-500
+ @apply text-white bg-orange-600 rounded-3xl p-5 m-5 hover:bg-orange-500 hover:cursor-pointer
 }
 
 
