@@ -1,8 +1,8 @@
 <template> 
 <ul>
-    <li  v-for="(quiz) in props.quizzes" @click="toggleDetails" class="item">
+    <li  v-for="(quiz, index) in props.quizzes" :key="index" @click="toggleDetails(index)" class="item">
          {{quiz.name}}   
-        <span v-if="detailIsVisible" class="flex flex-col">
+        <span v-if="visibleItems[index]" class="flex flex-col">
             {{quiz.description}}
         </span>
     </li>
@@ -14,14 +14,15 @@
 import {type Quiz } from "../types/quiz"
 import { defineProps, ref } from 'vue'
 
-let detailIsVisible = ref(false)
 const props = defineProps<({
     quizzes: Array<Quiz>,
   })>()
 
-  function toggleDetails() {
-    detailIsVisible.value = !detailIsVisible.value
-  }
+const visibleItems = ref(Array(props.quizzes.length).fill(false));
+
+function toggleDetails(index: number) {
+  visibleItems.value[index] = ! visibleItems.value[index]
+}
 
 </script>
 
