@@ -14,7 +14,13 @@
   import testQuiz from '~/testdata/fromjsontest'
 
   import { type Answer } from '~/types/answer'
-
+  import { defineProps } from 'vue'
+  import type { Quiz } from '~/types/quiz'
+  
+  const props = defineProps<({
+    quiz: Quiz,
+  })>();
+  
   let selectedAnswers: Ref<Answer[]> = ref([])
   let currentQuesiton = ref(testQuiz[0].questions[0])
   let index = ref(0)
