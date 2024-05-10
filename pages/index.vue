@@ -14,6 +14,7 @@
           <CreateButton class="self-center"></CreateButton>
           <p> Create Quiz!</p>
         </div>
+        <NuxtLink :to="`/quizzes/${data[0]}`">Test</NuxtLink>
       </div>
   </div>
 
@@ -23,9 +24,14 @@
   import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
+  import  QuizComponent  from '~/components/quiz_component.vue'
+import type { NuxtLink } from '#build/components';
 
+  const router = useRouter()
   const data  = ref([])
   const isLoading  = ref(true)
+
+  //router.addRoute({name: 'quizzes',path:'/quizzes',component: QuizComponent})
 
   onMounted(async () => {
     isLoading.value = true

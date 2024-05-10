@@ -17,6 +17,7 @@
   import { defineProps } from 'vue'
   import type { Quiz } from '~/types/quiz'
   
+  const router = useRouter()
   const props = defineProps<({
     quiz: Quiz,
   })>();
