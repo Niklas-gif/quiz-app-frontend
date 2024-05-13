@@ -13,7 +13,7 @@
 </script>
 
 <style scoped>
-.content  {
+.content {
     @apply text-white flex flex-row justify-center items-center rounded-xl p-10 sm:m-20 m-5;
   }
 .form {
