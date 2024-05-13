@@ -3,7 +3,7 @@
     <li  v-for="(quiz, index) in props.quizzes" :key="index" @click="toggleDetails(index)" class="item">
          {{quiz.name}}   
         <span v-if="visibleItems[index]" class="flex flex-col">
-            {{quiz.description}}
+            {{quiz.description}}        
         </span>
     </li>
 </ul>

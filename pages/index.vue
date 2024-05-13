@@ -1,53 +1,26 @@
 <template>
-  <div>
-    <header class="content-center text-white text-center text-6xl">
-        <h1 class="pt-5 pb-5">Welcome to Quiz World!</h1>
-    </header>
+    <div class="content">
 
-      <div class="content">
-        
-        <div class="flex flex-col p-5">
-          <PlayButton class="self-center"></PlayButton>
-          <p> Play now!</p>
+        <div v-if="!showList" class="flex flex-col p-5">
+            <PlayButton class="self-center" @click="toggleList"></PlayButton>
+            <p> Play now!</p>
         </div>
-
-        <button @click="toggletest">click</button>
-          <div v-if="test">
+        <div v-if="showList">
             <IconLoading v-if="isLoading"></IconLoading>
-            <QuizListComponent v-else :quizzes="data"></QuizListComponent>
-          </div>
-
-        <NuxtLayout v-if="test" :name="layout">
-          <NuxtPage />
-        </NuxtLayout>
-
-        <div class="flex flex-col p-5">
-          <CreateButton class="self-center"></CreateButton>
-          <p> Create Quiz!</p>
+            <QuizListComponent v-else  :quizzes="data"/>
         </div>
-
-        <NuxtLink :to="`/quizzes/${data[0]}`">Test</NuxtLink>
-      </div>
-  </div>
+    </div>
 
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+
+import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
-  import type { NuxtLink } from '#build/components';
-
-  const layout = 'quiz-layout'
-  const router = useRouter()
   const data  = ref([])
   const isLoading  = ref(true)
-  const test = ref(false)
-
-  function toggletest() {
-    test.value = !test.value
-  }
-  //router.addRoute({name: 'quizzes',path:'/quizzes',component: QuizComponent})
+  const showList = ref(false)
 
   onMounted(async () => {
     isLoading.value = true
@@ -60,10 +33,16 @@
     isLoading.value = false
   })
 
+function toggleList() {
+    showList.value = !showList.value
+}
+
+
+
 </script>
 
 <style scoped>
-.content  {
+.content {
     @apply text-white flex flex-row justify-center items-center bg-gray-700 rounded-xl p-10 sm:m-20 m-5;
   }
 

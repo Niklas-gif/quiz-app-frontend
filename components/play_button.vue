@@ -1,11 +1,7 @@
 <template>
-    <NuxtLink to="/quizzes">
-        <div class="button">
-            <IconController />
-        </div>     
-    </NuxtLink>
-
-
+    <div class="button">
+        <IconController />
+    </div>     
 </template>
 
 <script setup lang="ts">
