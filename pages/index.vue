@@ -10,6 +10,10 @@
           <PlayButton class="self-center"></PlayButton>
           <p> Play now!</p>
         </div>
+        <button @click="toggletest">click</button>
+        <NuxtLayout v-if="test" :name="layout">
+          <NuxtPage />
+        </NuxtLayout>
         <div class="flex flex-col p-5">
           <CreateButton class="self-center"></CreateButton>
           <p> Create Quiz!</p>
@@ -25,12 +29,17 @@
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
   import  QuizComponent  from '~/components/quiz_component.vue'
-import type { NuxtLink } from '#build/components';
+  import type { NuxtLink } from '#build/components';
 
+  const layout = 'quiz-layout'
   const router = useRouter()
   const data  = ref([])
   const isLoading  = ref(true)
+  const test = ref(false)
 
+  function toggletest() {
+    test.value = !test.value
+  }
   //router.addRoute({name: 'quizzes',path:'/quizzes',component: QuizComponent})
 
   onMounted(async () => {
