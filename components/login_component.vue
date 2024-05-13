@@ -14,7 +14,7 @@
 
 <style scoped>
 .content  {
-    @apply text-white flex flex-row justify-center items-center bg-gray-700 rounded-xl p-10 sm:m-20 m-5;
+    @apply text-white flex flex-row justify-center items-center rounded-xl p-10 sm:m-20 m-5;
   }
 .form {
     @apply  flex flex-col p-5 m-5 rounded-lg
