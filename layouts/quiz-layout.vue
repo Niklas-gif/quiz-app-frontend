@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-      <p>{{layoutCustomProps.quiz.name}}</p>
+      <p>{{attributes.quiz.name}}</p>
       <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
       <ProgressBar></ProgressBar>
       <QuestionComponent 
@@ -18,48 +18,43 @@
 import QuestionComponent from '~/components/question_component.vue'
 import ProgressBar from '~/components/progress_bar.vue'
 import testQuiz from '~/testdata/fromjsontest'
-
 import { type Answer } from '~/types/answer'
-import { defineProps } from 'vue'
-import type { Quiz } from '~/types/quiz'
 
-const layoutCustomProps= useAttrs()
-const router = useRouter()
+const attributes= useAttrs()
 
 let selectedAnswers: Ref<Answer[]> = ref([])
-let currentQuesiton = ref(layoutCustomProps.quiz.questions[0])
+let currentQuesiton = ref(attributes.quiz.questions[0]) //TODO FIX THIS MESS AND CAST IT TO HELL
 let index = ref(0)
 
 function selectCard(answer: Answer) {
 //TODO check if question is multipblechoice
-if(selectedAnswers.value.includes(answer)) {
-  selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1) 
-} else {
-  selectedAnswers.value.push(answer)
+  if(selectedAnswers.value.includes(answer)) {
+    selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1) 
+  } else {
+    selectedAnswers.value.push(answer)
 
-  setTimeout(() => {
-  if(selectedAnswers.value.length != 0) { 
-    submitAnswer(answer)
-  }
- },1000)
+    setTimeout(() => {
+    if(selectedAnswers.value.length != 0) { 
+      submitAnswer(answer)
+    }
+  },1000)
 }
   
 }
 
 
 function submitAnswer(answer: Answer) {
-if(answer.isCorrect) {
-  nextQuestion()
-  selectedAnswers.value = []
-}
+  if(answer.isCorrect) {
+    nextQuestion()
+    selectedAnswers.value = []
+  }
 }
 
 function nextQuestion() {
-if(index.value + 1 < testQuiz[0].questions.length) {
-  currentQuesiton.value = testQuiz[0].questions[index.value += 1]
+  if(index.value + 1 < testQuiz[0].questions.length) {
+    currentQuesiton.value = testQuiz[0].questions[index.value += 1]
+  }
 }
-}
-
 
 </script>
 
