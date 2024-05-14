@@ -2,7 +2,12 @@
         <div class="content">
           <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
           <ProgressBar></ProgressBar>
-          <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers" :description="currentQuesiton.description" @answerSelected="selectCard"></QuestionComponent>
+            <QuestionComponent 
+              :selected-answers="selectedAnswers" 
+              :answers="currentQuesiton.answers" 
+              :description="currentQuesiton.description" 
+              @answerSelected="selectCard">
+          </QuestionComponent>
           <button @click="nextQuestion"> next question </button>
         </div>
 
