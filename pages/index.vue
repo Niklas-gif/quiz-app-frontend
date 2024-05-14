@@ -1,7 +1,10 @@
 <template>
     <div class="content">
         <div v-if="currentQuiz !== null && currentQuiz !== undefined">
-          <QuizComponent :description="currentQuiz.description" :name="currentQuiz.name" :questions="currentQuiz.questions"></QuizComponent>
+         <!--<QuizComponent :description="currentQuiz.description" :name="currentQuiz.name" :questions="currentQuiz.questions"></QuizComponent>-->
+          <NuxtLayout :name="layout" :quiz="currentQuiz">
+            <NuxtPage/>
+          </NuxtLayout>
         </div>
         <div v-else>
           <div v-if="!showList" class="flex flex-col p-5">
@@ -23,6 +26,7 @@
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
   import type { Quiz } from '~/types/quiz';
+  const layout = 'quiz-layout'
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)

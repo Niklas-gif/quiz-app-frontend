@@ -1,5 +1,6 @@
 <template>
     <div class="content">
+      <p>{{layoutCustomProps.quiz.name}}</p>
       <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
       <ProgressBar></ProgressBar>
       <QuestionComponent 
@@ -22,13 +23,11 @@ import { type Answer } from '~/types/answer'
 import { defineProps } from 'vue'
 import type { Quiz } from '~/types/quiz'
 
+const layoutCustomProps= useAttrs()
 const router = useRouter()
-const props = defineProps<({
-quiz: Quiz,
-})>();
 
 let selectedAnswers: Ref<Answer[]> = ref([])
-let currentQuesiton = ref(testQuiz[0].questions[0])
+let currentQuesiton = ref(layoutCustomProps.quiz.questions[0])
 let index = ref(0)
 
 function selectCard(answer: Answer) {
