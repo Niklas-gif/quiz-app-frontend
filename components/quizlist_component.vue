@@ -3,7 +3,8 @@
     <li  v-for="(quiz, index) in props.quizzes" :key="index" @click="toggleDetails(index)" class="item">
          {{quiz.name}}   
         <span v-if="visibleItems[index]" class="flex flex-col">
-            {{quiz.description}}        
+            {{quiz.description}}
+            <button class="button" @click="emits('quizSelected',quiz)">Play now</button>
         </span>
     </li>
 </ul>
@@ -19,6 +20,7 @@ const props = defineProps<({
   })>()
 
 const visibleItems = ref(Array(props.quizzes.length).fill(false));
+const emits = defineEmits(['quizSelected'])
 
 function toggleDetails(index: number) {
   visibleItems.value[index] = ! visibleItems.value[index]
@@ -26,9 +28,13 @@ function toggleDetails(index: number) {
 
 </script>
 
-<style>
+<style scoped>
 .item {
  @apply text-white bg-orange-600 rounded-3xl p-5 m-5 hover:bg-orange-500 hover:cursor-pointer
+}
+
+.button {
+  @apply hover:bg-purple-400 bg-purple-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
 }
 
 
