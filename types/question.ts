@@ -2,6 +2,6 @@ import type { Answer } from "./answer"
 
 export type Question = {
     description: string,
-    isMultipleChoice: boolean,
+    is_multiple_choice: boolean,
     answers: Array<Answer>;
 }

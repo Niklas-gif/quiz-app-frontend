@@ -6,7 +6,7 @@
                 <AnswerComponent 
                     :is-selected= "selectedAnswers.includes(answer)" 
                     :description="answer.description" 
-                    :is-correct="answer.isCorrect"/> 
+                    :is-correct="answer.is_correct"/> 
             </div>
         </div>
     </div>
@@ -20,9 +20,9 @@ import AnswerComponent from './answer_component.vue'
 import {type Answer} from '../types/answer'
 
 const props = defineProps<({
-    description: String,
-    answers: Array<Answer>,
-    selectedAnswers: Array<Answer>
+    description: string,
+    answers: Answer[],
+    selectedAnswers: Answer[]
   })>();
 
   const emits = defineEmits(['answerSelected']);

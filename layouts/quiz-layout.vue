@@ -6,7 +6,7 @@
       <QuestionComponent 
         :selected-answers="selectedAnswers" 
         :answers="currentQuesiton.answers" 
-        :description="currentQuesiton.description" 
+        :description="currentQuesiton.description"
         @answerSelected="selectCard">
       </QuestionComponent>
       <button @click="nextQuestion"> next question </button>
@@ -20,7 +20,7 @@ import ProgressBar from '~/components/progress_bar.vue'
 import testQuiz from '~/testdata/fromjsontest'
 import { type Answer } from '~/types/answer'
 
-const attributes= useAttrs()
+const attributes= useAttrs() as any
 
 let selectedAnswers: Ref<Answer[]> = ref([])
 let currentQuesiton = ref(attributes.quiz.questions[0]) //TODO FIX THIS MESS AND CAST IT TO HELL
@@ -44,15 +44,16 @@ function selectCard(answer: Answer) {
 
 
 function submitAnswer(answer: Answer) {
-  if(answer.isCorrect) {
+
+  if(answer.is_correct) {
     nextQuestion()
     selectedAnswers.value = []
   }
 }
 
 function nextQuestion() {
-  if(index.value + 1 < testQuiz[0].questions.length) {
-    currentQuesiton.value = testQuiz[0].questions[index.value += 1]
+  if(index.value + 1 < attributes.quiz.questions.length) {
+    currentQuesiton.value = attributes.quiz.questions[index.value += 1]
   }
 }
 

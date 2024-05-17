@@ -49,7 +49,7 @@
 
 
   function submitAnswer(answer: Answer) {
-    if(answer.isCorrect) {
+    if(answer.is_correct) {
       nextQuestion()
       selectedAnswers.value = []
     }
