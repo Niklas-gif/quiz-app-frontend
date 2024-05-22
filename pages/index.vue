@@ -9,10 +9,12 @@
               <IconLoading v-if="isLoading"></IconLoading>
               <QuizListComponent v-else  :quizzes="data"/>
           </div>
-          <div class="flex flex-col p-5">
-            <CreateButton class="self-center"></CreateButton>
-            <p> Create or Edit!</p>
-          </div>     
+            <NuxtLink to="/create">  
+              <div class="flex flex-col p-5">
+                <CreateButton class="self-center"></CreateButton>
+                <p class="self-center"> Create </p>
+              </div>     
+            </NuxtLink>
       </div>
     </div>
 
