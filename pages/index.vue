@@ -1,25 +1,18 @@
 <template>
     <div class="content">
-        <div v-if="currentQuiz !== null && currentQuiz !== undefined">
-         <!--<QuizComponent :description="currentQuiz.description" :name="currentQuiz.name" :questions="currentQuiz.questions"></QuizComponent>-->
-          <NuxtLayout :name="layout" :quiz="currentQuiz">
-            <NuxtPage/>
-          </NuxtLayout>
-        </div>
-        <div v-else class="flex flex-row">
+        <div class="flex flex-row">
           <div v-if="!showList" class="flex flex-col p-5">
               <PlayButton class="self-center" @click="toggleList"></PlayButton>
               <p> Play now!</p>
           </div>
           <div v-if="showList">
               <IconLoading v-if="isLoading"></IconLoading>
-              <QuizListComponent v-else  :quizzes="data" @quiz-selected="setCurrentQuiz"/>
+              <QuizListComponent v-else  :quizzes="data"/>
           </div>
           <div class="flex flex-col p-5">
             <CreateButton class="self-center"></CreateButton>
             <p> Create or Edit!</p>
-          </div>
-          <NuxtLink :to="{ path: 'quiz', query: { currentQuiz: 'Quiz2' }}"> TO QUIZ TEST</NuxtLink>
+          </div>     
       </div>
     </div>
 
@@ -30,12 +23,9 @@
   import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
-  import type { Quiz } from '~/types/quiz';
-  const layout = 'quiz-layout'
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)
-  const currentQuiz = ref<Quiz | null>(null)
   
   onMounted(async () => {
     isLoading.value = true
@@ -50,10 +40,6 @@
 
 function toggleList() {
     showList.value = !showList.value
-}
-
-function setCurrentQuiz(quiz: Quiz) {
-  currentQuiz.value = quiz
 }
 
 </script>

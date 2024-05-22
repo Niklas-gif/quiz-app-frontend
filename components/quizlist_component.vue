@@ -4,7 +4,9 @@
          {{quiz.name}}   
         <span v-if="visibleItems[index]" class="flex flex-col">
             {{quiz.description}}
-            <button class="button" @click="emits('quizSelected',quiz)">Play now</button>
+            <NuxtLink :to="{ path: 'game', query: { currentQuiz: quiz.name }}">
+              <button class="button">Play now</button>
+            </NuxtLink>
         </span>
     </li>
 </ul>
@@ -20,7 +22,6 @@ const props = defineProps<({
   })>()
 
 const visibleItems = ref(Array(props.quizzes.length).fill(false));
-const emits = defineEmits(['quizSelected'])
 
 function toggleDetails(index: number) {
   visibleItems.value[index] = ! visibleItems.value[index]

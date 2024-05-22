@@ -9,8 +9,9 @@
 <script setup lang="ts">
 
 const layout = 'quiz-layout'
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import type { Quiz } from '../types/quiz';
+import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const data  = ref()
