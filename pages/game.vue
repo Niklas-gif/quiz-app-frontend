@@ -1,9 +1,11 @@
 <template>
+  <div>
     <div v-if="!isLoading && currentQuiz != null">
         <NuxtLayout :name="layout" :quiz="currentQuiz">
             <NuxtPage/>
         </NuxtLayout>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +25,6 @@ onMounted(async () => {
     try {
       const response = await fetch(`http://localhost:3030/quizzes/${route.query.currentQuiz}`)
       data.value = await response.json()
-      console.log(data.value)
       currentQuiz.value = data.value[0] //TODO inside of the backend every Quiz with the name gets returned FIX THIS!
     } catch(error) {
       console.log(error)
