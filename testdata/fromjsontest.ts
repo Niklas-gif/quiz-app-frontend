@@ -3,7 +3,7 @@ const test_quiz: Quiz[] = [
     {
         "_id": "6613cd26e2bfb6cdbf4e5731",
         "description": "Sample Quiz",
-        "name": "Quiz2",
+        "name": "QUIZ_FRONTEND",
         "questions": [
             {
                 "answers": [
