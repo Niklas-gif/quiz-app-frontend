@@ -19,7 +19,7 @@
             <CreateButton class="self-center"></CreateButton>
             <p> Create or Edit!</p>
           </div>
-          <NuxtLink :to="{ path: 'quiz', query: { currentQuiz: 'quiz1' }}"> TO QUIZ TEST</NuxtLink>
+          <NuxtLink :to="{ path: 'quiz', query: { currentQuiz: 'Quiz2' }}"> TO QUIZ TEST</NuxtLink>
       </div>
     </div>
 

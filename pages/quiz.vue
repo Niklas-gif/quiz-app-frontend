@@ -12,14 +12,15 @@ const layout = 'quiz-layout'
 import { ref } from 'vue';
 import type { Quiz } from '../types/quiz';
 
+const route = useRoute()
 const data  = ref()
 const isLoading  = ref(true)
-let currentQuiz = ref<Quiz | null>(null)
+const currentQuiz = ref<Quiz | null>(null)
 
 onMounted(async () => {
     isLoading.value = true
     try {
-      const response = await fetch('http://localhost:3030/quizzes/Quiz2')
+      const response = await fetch(`http://localhost:3030/quizzes/${route.query.currentQuiz}`)
       data.value = await response.json()
       console.log(data.value)
       currentQuiz.value = data.value[0] //TODO inside of the backend every Quiz with the name gets returned FIX THIS!
