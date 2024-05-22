@@ -6,7 +6,7 @@
             <NuxtPage/>
           </NuxtLayout>
         </div>
-        <div v-else>
+        <div v-else class="flex flex-row">
           <div v-if="!showList" class="flex flex-col p-5">
               <PlayButton class="self-center" @click="toggleList"></PlayButton>
               <p> Play now!</p>
@@ -14,6 +14,10 @@
           <div v-if="showList">
               <IconLoading v-if="isLoading"></IconLoading>
               <QuizListComponent v-else  :quizzes="data" @quiz-selected="setCurrentQuiz"/>
+          </div>
+          <div class="flex flex-col p-5">
+            <CreateButton class="self-center"></CreateButton>
+            <p> Create or Edit!</p>
           </div>
       </div>
     </div>

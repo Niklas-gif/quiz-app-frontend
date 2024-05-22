@@ -1,10 +1,7 @@
 <template>
-    <NuxtLink to="/create">
-        <div class="button">
-            <IconEditPen />
-        </div>     
-    </NuxtLink>
-
+    <div class="button">
+        <IconEditPen />
+    </div>     
 
 </template>
 
