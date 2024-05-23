@@ -1,18 +1,21 @@
 <template>
     <div class="content">
-        <input class="input" placeholder="Name of your quiz" v-model="newQuiz.name">
-        <input class="input" placeholder="A short description of your quiz." v-model="newQuiz.description">
-        <AddQuizButton @click="createQuestion"></AddQuizButton>
-        <div v-if="newQuestion != null" class="flex flex-col bg-slate-900 rounded-lg p-5">
-            <input class="input" placeholder="Name of your quiz" v-model="newQuestion.description">
-            <button @click="addAnswer"> Add Answer</button>
-            <button> Toggle </button>
-            <button @click="addQuestion"> Submit </button>
+        <input class="input m-2" placeholder="Name of your quiz" v-model="newQuiz.name">
+        <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
+        <AddQuizButton @click="createQuestion"/>
+        <div v-if="newQuestion != null" class="flex flex-col bg-slate-900 rounded-lg p-5 space-y-5">
+            <input class="input" placeholder="Question description" v-model="newQuestion.description">
+            <div class="flex flex-row space-x-2">
+                <label for="isMultipleChoice">Multiple choice question</label>
+                <input type="checkbox" id="isMultipleChoice" v-model="newQuestion.is_multiple_choice" />
+            </div>
+            <button @click="addAnswer" class="add-answer-button"> Add Answer</button>
+            <button @click="addQuestion" class="submit-button"> Add question </button>
         </div>
         <div v-for="(question, index) in newQuiz?.questions" :key="index" class="flex flex-col">
             <div>{{ question.description }}</div>
             <div>{{ question.is_multiple_choice }}</div>
-            <div>{{question.answers}}</div>
+            <div>{{ question.answers }}</div>
         </div>
         <button class="submit-button" @click="submitQuiz">SUBMIT</button>
     </div>
@@ -23,6 +26,7 @@
 import type { Quiz } from '~/types/quiz';
 import type { Question } from '~/types/question';
 import type { Answer } from '~/types/answer';
+
 const newQuiz: Ref<Quiz> = ref<Quiz>({
     _id: "",
     name: "",
@@ -80,7 +84,7 @@ async function submitQuiz(/*quiz: Quiz*/) {
   }
 
 .input {
-    @apply p-2 m-2  bg-slate-500 rounded-lg
+    @apply p-2  bg-slate-500 rounded-lg
 }
 
 .submit-button {
@@ -90,6 +94,16 @@ async function submitQuiz(/*quiz: Quiz*/) {
     border-stone-800 
     text-white font-bold 
     p-4 m-5
+    rounded-3xl;
+}
+
+.add-answer-button {
+    @apply 
+    hover:bg-blue-400 
+    bg-blue-600 border-b-4 
+    border-stone-800 
+    text-white font-bold 
+    p-2 m-2
     rounded-3xl;
 }
 
