@@ -1,20 +1,24 @@
 <template>
     <div class="content">
-        <div class="flex flex-row">
-          <div v-if="!showList" class="flex flex-col p-5">
-              <PlayButton class="self-center" @click="toggleList"></PlayButton>
-              <p> Play now!</p>
-          </div>
-          <div v-if="showList">
-              <IconLoading v-if="isLoading"></IconLoading>
-              <QuizListComponent v-else  :quizzes="data"/>
-          </div>
-            <NuxtLink to="/create">  
-              <div class="flex flex-col p-5">
-                <CreateButton class="self-center"></CreateButton>
-                <p class="self-center"> Create </p>
-              </div>     
-            </NuxtLink>
+      <img v-if="!showList" src="/assets/images/game_console.png" class="max-h-96">
+      <div class="flex flex-col mx-10 px-10">
+        <h1 v-if="!showList" class="self-center text-xl font-bold">Welcome to Quiz World!</h1>
+          <div class="flex flex-row">
+            <div v-if="!showList" class="flex flex-col p-5">
+                <PlayButton class="self-center" @click="toggleList"></PlayButton>
+               <p class="self-center"> Play now!</p>
+            </div>
+            <div v-if="showList">
+               <IconLoading v-if="isLoading"></IconLoading>
+                <QuizListComponent v-else  :quizzes="data"/>
+            </div>
+              <NuxtLink v-if="!showList" to="/create">  
+                <div class="flex flex-col p-5">
+                  <CreateButton class="self-center"></CreateButton>
+                  <p class="self-center"> Create </p>
+                </div>     
+              </NuxtLink>
+        </div>
       </div>
     </div>
 </template>
