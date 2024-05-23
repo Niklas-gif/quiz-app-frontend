@@ -9,7 +9,15 @@
                 <label for="isMultipleChoice">Multiple choice question</label>
                 <input type="checkbox" id="isMultipleChoice" v-model="newQuestion.is_multiple_choice" />
             </div>
-            <button @click="addAnswer" class="add-answer-button"> Add Answer</button>
+            <button @click="createAnswer" class="add-answer-button"> Add Answer</button>
+            <div v-if="newAnswer != null" class="flex flex-col">
+                <input class="input" placeholder="Answer" v-model="newAnswer.description">
+                <div class="flex flex-row space-x-2">
+                    <label for="is_correct">Multiple choice question</label>
+                    <input type="checkbox" id="is_correct" v-model="newAnswer.is_correct" />
+                </div>
+                <button class="submit-button" @click="addAnswer">+</button>
+            </div>
             <button @click="addQuestion" class="submit-button"> Add question </button>
         </div>
         <div v-for="(question, index) in newQuiz?.questions" :key="index" class="flex flex-col">
@@ -34,6 +42,8 @@ const newQuiz: Ref<Quiz> = ref<Quiz>({
     questions: []
 });
 
+const newAnswer: Ref<Answer | null> = ref(null)
+
 const newQuestion: Ref<Question | null> = ref(null)
 
 function createQuestion() {
@@ -49,13 +59,17 @@ function addQuestion() {
     newQuestion.value = null
 }
 
-function addAnswer() {
-    newQuestion.value!.answers =  [
-        {description:"Antwort 1",is_correct: false},
-    {description:"Antwort 1",is_correct: false},
-    {description:"Antwort 3 ist Richtig",is_correct: true},
-]
+function createAnswer() {
+    newAnswer.value = {
+        description: "",
+        is_correct: false
+    }
+}
 
+function addAnswer() {
+    if(newAnswer.value != null) {
+        newQuestion.value!.answers.push(newAnswer.value)
+    }
 }
 
 async function submitQuiz(/*quiz: Quiz*/) {
