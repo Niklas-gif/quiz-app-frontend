@@ -3,26 +3,26 @@
         <input class="input" placeholder="Name of your quiz" v-model="newQuiz.name">
         <input class="input" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"></AddQuizButton>
-        <div v-if="newQuestion != null" class="flex flex-col bg-slate-900 rounded-lg">
+        <div v-if="newQuestion != null" class="flex flex-col bg-slate-900 rounded-lg p-5">
             <input class="input" placeholder="Name of your quiz" v-model="newQuestion.description">
             <button @click="addAnswer"> Add Answer</button>
             <button> Toggle </button>
             <button @click="addQuestion"> Submit </button>
         </div>
-        <div v-for="(question, index) in newQuiz?.questions" :key="index">
-            <div>{{ question }}</div>
+        <div v-for="(question, index) in newQuiz?.questions" :key="index" class="flex flex-col">
+            <div>{{ question.description }}</div>
+            <div>{{ question.is_multiple_choice }}</div>
+            <div>{{question.answers}}</div>
         </div>
-        <button @click="submitQuiz">SUBMIT Test Quiz</button>
+        <button class="submit-button" @click="submitQuiz">SUBMIT</button>
     </div>
 
 </template>
 
 <script setup lang="ts">
-import test_quiz from '~/testdata/fromjsontest';
 import type { Quiz } from '~/types/quiz';
 import type { Question } from '~/types/question';
 import type { Answer } from '~/types/answer';
-const testQuiz = test_quiz
 const newQuiz: Ref<Quiz> = ref<Quiz>({
     _id: "",
     name: "",
@@ -81,6 +81,16 @@ async function submitQuiz(/*quiz: Quiz*/) {
 
 .input {
     @apply p-2 m-2  bg-slate-500 rounded-lg
+}
+
+.submit-button {
+    @apply 
+    hover:bg-green-400 
+    bg-green-600 border-b-4 
+    border-stone-800 
+    text-white font-bold 
+    p-4 m-5
+    rounded-3xl;
 }
 
 </style>
