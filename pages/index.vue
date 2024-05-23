@@ -1,9 +1,9 @@
 <template>
     <div class="content">
-      <img v-if="!showList" src="/assets/images/game_console.png" class="max-h-96">
-      <div class="flex flex-col mx-10 px-10">
-        <h1 v-if="!showList" class="self-center text-xl font-bold">Welcome to Quiz World!</h1>
-          <div class="flex flex-row">
+      <div class="flex flex-col lg:flex-row mx-10 px-10">
+        <img v-if="!showList" src="/assets/images/game_console.png" class="max-h-96">
+          <div class="flex flex-col">
+            <h1 v-if="!showList" class="self-center text-xl font-bold">Welcome to Quiz World!</h1>
             <div v-if="!showList" class="flex flex-col p-5">
                 <PlayButton class="self-center" @click="toggleList"></PlayButton>
                <p class="self-center"> Play now!</p>
