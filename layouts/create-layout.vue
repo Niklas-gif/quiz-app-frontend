@@ -9,15 +9,20 @@
                 <label for="isMultipleChoice">Multiple choice question</label>
                 <input type="checkbox" id="isMultipleChoice" v-model="newQuestion.is_multiple_choice" />
             </div>
-            <button @click="createAnswer" class="add-answer-button"> Add Answer</button>
-            <div v-if="newAnswer != null" class="flex flex-col">
-                <input class="input" placeholder="Answer" v-model="newAnswer.description">
-                <div class="flex flex-row space-x-2">
-                    <label for="is_correct">Is true</label>
-                    <input type="checkbox" id="is_correct" v-model="newAnswer.is_correct" />
+            <button @click="createAnswer" class="add-answer-button"> New Answer</button>
+
+            <div v-if="newAnswers?.length != 0" class="flex flex-col">
+                <div v-for="(answer) in newAnswers">
+                    <input class="input" placeholder="Answer" v-model="answer.description">
+                    <div class="flex flex-row space-x-2">
+                        <label for="is_correct">Is true</label>
+                        <input type="checkbox" id="is_correct" v-model="answer.is_correct" />
+                        <button class="remove-button" @click="removeAnswer(answer)">Remove answer</button>
+                    </div>
                 </div>
-                <button class="submit-button" @click="addAnswer">+</button>
             </div>
+            <div v-else> IST NULL {{ newAnswers }}</div>
+
             <button @click="addQuestion" class="submit-button"> Add question </button>
         </div>
         <div v-for="(question, index) in newQuiz?.questions" :key="index" class="flex flex-col">
@@ -42,7 +47,7 @@ const newQuiz: Ref<Quiz> = ref<Quiz>({
     questions: []
 });
 
-const newAnswer: Ref<Answer | null> = ref(null)
+const newAnswers: Ref<Answer[]> = ref([])
 
 const newQuestion: Ref<Question | null> = ref(null)
 
@@ -55,21 +60,27 @@ function createQuestion() {
 }
 
 function addQuestion() {
+    addAnswer()
     newQuiz.value?.questions.push(newQuestion.value!)
     newQuestion.value = null
+    newAnswers.value = []
 }
 
 function createAnswer() {
-    newAnswer.value = {
+    newAnswers.value?.push({
         description: "",
         is_correct: false
-    }
+    })
 }
 
 function addAnswer() {
-    if(newAnswer.value != null) {
-        newQuestion.value!.answers.push(newAnswer.value)
-    }
+    newAnswers.value.forEach(answer => {
+        newQuestion.value!.answers.push(answer);
+    });
+}
+
+function removeAnswer(answerToRemove: Answer) {
+    newAnswers.value = newAnswers.value.filter(answer => answer !== answerToRemove)
 }
 
 async function submitQuiz(/*quiz: Quiz*/) {
@@ -110,6 +121,17 @@ async function submitQuiz(/*quiz: Quiz*/) {
     p-4 m-5
     rounded-3xl;
 }
+
+.remove-button {
+    @apply 
+    hover:bg-red-400 
+    bg-red-600 border-b-4 
+    border-stone-800 
+    text-white font-bold 
+    p-4 m-5
+    rounded-3xl;
+}
+
 
 .add-answer-button {
     @apply 
