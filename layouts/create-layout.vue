@@ -13,7 +13,7 @@
             <div v-if="newAnswer != null" class="flex flex-col">
                 <input class="input" placeholder="Answer" v-model="newAnswer.description">
                 <div class="flex flex-row space-x-2">
-                    <label for="is_correct">Multiple choice question</label>
+                    <label for="is_correct">Is true</label>
                     <input type="checkbox" id="is_correct" v-model="newAnswer.is_correct" />
                 </div>
                 <button class="submit-button" @click="addAnswer">+</button>
@@ -21,9 +21,9 @@
             <button @click="addQuestion" class="submit-button"> Add question </button>
         </div>
         <div v-for="(question, index) in newQuiz?.questions" :key="index" class="flex flex-col">
-            <div>{{ question.description }}</div>
-            <div>{{ question.is_multiple_choice }}</div>
-            <div>{{ question.answers }}</div>
+            <div>Description: {{ question.description }}</div>
+            <div>Is multiple choice: {{ question.is_multiple_choice }}</div>
+            <div>Answers: {{ question.answers }}</div>
         </div>
         <button class="submit-button" @click="submitQuiz">SUBMIT</button>
     </div>
