@@ -3,12 +3,40 @@
         <form class="form" action="post">
             <input class="input" placeholder="email" type="email">
             <input class="input" placeholder="password" type="password">
-            <button class="login_button">Login</button>
+            <!--<button @click="login" class="login_button">Login</button>-->
         </form>
+        <button @click="login" class="login_button">Login</button>
     </div>
 </template>
 
 <script setup lang="ts">
+import type { User } from '~/types/user';
+
+//const user: ref<User | null> = ref<null>
+
+async function login() {
+    try {
+        const response = await fetch('http://localhost:3030/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                <User> {
+                id: 1,
+                email: "fake@mail.com",
+                password: "password1"
+            })
+        })
+        if (response.ok) {
+            const jsonResponse = await response.json()
+            document.cookie = "Token=" + jsonResponse.token
+            console.log(document.cookie)
+        }
+    } catch (error) {
+        console.error('Error sending quiz data:', error);
+    }
+}
 
 </script>
 
