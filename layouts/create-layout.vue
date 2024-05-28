@@ -4,7 +4,7 @@
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>
 
-        <div class="flex flex-row space-x-5">
+        <div class="grid grid-cols-1 lg:grid-cols-3 space-x-5">
         <div v-for="question in newQuestions" class="flex flex-col bg-slate-900 rounded-lg p-5 mb-5 space-y-5">
             <div class="flex flex-row">
                 <input class="input" placeholder="Question description" v-model="question.description">
@@ -93,7 +93,12 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
     question.answers = question.answers.filter(answer => answer !== answerToRemove)
 }
 
-async function submitQuiz(/*quiz: Quiz*/) {
+async function submitQuiz() {
+    /*const token = localStorage.getItem('token')
+      
+      const response = await fetch('http://localhost:3030/quizzes',{ headers: {
+            'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+          }})*/
     addQuestions()
     console.log(newQuiz)
     try {
