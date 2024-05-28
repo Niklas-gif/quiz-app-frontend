@@ -1,5 +1,6 @@
 <template>
     <div class="content">
+      <p v-if="!isRunning"> GAME OVER!</p>
       <p>{{attributes.quiz.name}}</p>
       <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
       <ProgressBar></ProgressBar>
@@ -17,31 +18,29 @@
 <script setup lang="ts">
 import QuestionComponent from '~/components/question_component.vue'
 import ProgressBar from '~/components/progress_bar.vue'
-import testQuiz from '~/testdata/fromjsontest'
 import { type Answer } from '~/types/answer'
 
 const attributes= useAttrs() as any
 
 let selectedAnswers: Ref<Answer[]> = ref([])
-let currentQuesiton = ref(attributes.quiz.questions[0]) //TODO FIX THIS MESS AND CAST IT TO HELL
+let currentQuesiton = ref(attributes.quiz.questions[0])
 let index = ref(0)
+let isRunning = ref(true)
 
 function selectCard(answer: Answer) {
 //TODO check if question is multipblechoice
   if(selectedAnswers.value.includes(answer)) {
     selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1) 
   } else {
-    selectedAnswers.value.push(answer)
-
-    setTimeout(() => {
-    if(selectedAnswers.value.length != 0) { 
-      submitAnswer(answer)
-    }
-  },1000)
+      selectedAnswers.value.push(answer)
+      setTimeout(() => {
+      if(selectedAnswers.value.length != 0) { 
+        submitAnswer(answer)
+      } 
+    },1000)
 }
   
 }
-
 
 function submitAnswer(answer: Answer) {
 
@@ -54,6 +53,8 @@ function submitAnswer(answer: Answer) {
 function nextQuestion() {
   if(index.value + 1 < attributes.quiz.questions.length) {
     currentQuesiton.value = attributes.quiz.questions[index.value += 1]
+  } else {
+    isRunning.value = false;
   }
 }
 
