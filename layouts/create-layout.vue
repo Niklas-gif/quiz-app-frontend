@@ -94,17 +94,13 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
 }
 
 async function submitQuiz() {
-    /*const token = localStorage.getItem('token')
-      
-      const response = await fetch('http://localhost:3030/quizzes',{ headers: {
-            'Authorization': `Bearer ${token}` // Include the token in the Authorization header
-          }})*/
     addQuestions()
-    console.log(newQuiz)
     try {
+        const token = localStorage.getItem('Bearer')
         const response = await fetch('http://localhost:3030/add', {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newQuiz.value)

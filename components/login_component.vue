@@ -30,7 +30,7 @@ async function login() {
         })
         if (response.ok) {
             const jsonResponse = await response.json()
-            document.cookie = "Token=" + jsonResponse.token
+            localStorage.setItem("Bearer",jsonResponse.token)
             console.log(document.cookie)
         }
     } catch (error) {
