@@ -44,46 +44,26 @@ const props = defineProps<({
   })>();
 
   function addQuestions() {
-    /*newQuestions.value.forEach(question => {
-        newQuiz.value.questions.push(question)
+    props.questions.forEach(question => {
+        props.questions.push(question)
     })
-    newQuestions.value = []*/
+    //props.questions = []
 }
 
 function removeQuestion(questionToRemove: Question) {
-    //newQuestions.value = newQuestions.value.filter(question => question !== questionToRemove)
+    //props.questions = props.questions.filter(question => question !== questionToRemove)
 }
 
 function createAnswer(question: Question) {
-    /*question.answers.push({
+    question.answers.push({
         description: "",
         is_correct: false
-    })*/
+    })
 }
 
 
 function removeAnswer(question: Question, answerToRemove: Answer) {
-    //question.answers = question.answers.filter(answer => answer !== answerToRemove)
-}
-
-async function submitQuiz() {
-   /* addQuestions()
-    try {
-        const token = localStorage.getItem('Bearer')
-        const response = await fetch('http://localhost:3030/add', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newQuiz.value)
-        })
-        if (response.ok) {
-            console.log(response);
-        }
-    } catch (error) {
-        console.error('Error sending quiz data:', error);
-    }*/
+    question.answers = question.answers.filter(answer => answer !== answerToRemove)
 }
 
 
