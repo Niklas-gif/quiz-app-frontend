@@ -4,9 +4,9 @@
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>
         <div class="grid grid-cols-1 lg:grid-cols-3 space-x-5">
-        <div v-for="question in newQuestions" class="flex flex-col bg-slate-900 rounded-lg p-5 mb-5 space-y-5">
+        <div v-for="question in newQuestions" class="question-box">
             <div class="flex flex-row">
-                <input class="input" placeholder="Question description" v-model="question.description">
+                <input class="input-container" placeholder="Question description" v-model="question.description">
                 <button @click="removeQuestion(question)" class="remove-button">
                     <IconTrash></IconTrash>
                 </button>
@@ -19,7 +19,7 @@
             <div v-if="question.answers.length != 0" class="flex flex-col">
                 <div v-for="(answer) in question.answers">
                     <div class="flex flex-row">
-                        <input class="input" placeholder="Answer" v-model="answer.description">
+                        <input class="input-container" placeholder="Answer" v-model="answer.description">
                         <button class="remove-button" @click="removeAnswer(question,answer)">
                             <IconTrash></IconTrash>
                         </button>
@@ -107,7 +107,11 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
   }
 
 .input {
-    @apply p-2  bg-slate-500 rounded-lg w-48 flex-shrink-0
+    @apply p-2 bg-slate-500 rounded-lg ;
+}
+
+.input-container {
+    @apply p-2 bg-slate-500 rounded-lg w-full h-auto;
 }
 
 .submit-button {
@@ -123,11 +127,13 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
 .remove-button {
     @apply 
     hover:bg-red-400 
-    bg-red-600 border-b-4 
+    bg-red-600
+    border-b-4 
     border-stone-800 
     text-white font-bold 
-    p-4 m-5
-    rounded-full;
+    p-4 
+    m-2
+    rounded-3xl;
 }
 
 
@@ -137,8 +143,12 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
     bg-blue-600 border-b-4 
     border-stone-800 
     text-white font-bold 
-    p-2 m-2
+    p-2 m-0
     rounded-3xl;
+}
+
+.question-box {
+    @apply flex flex-col bg-slate-900 rounded-lg p-3 mb-5  space-y-3;
 }
 
 </style>

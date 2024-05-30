@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="!isLoading && newQuiz != null">
-            <NuxtLayout name="create-layout" :quiz="newQuiz">
+            <NuxtLayout name="create-layout"> <!--:quiz="newQuiz"-->
                 <NuxtPage/>
             </NuxtLayout>
         </div>

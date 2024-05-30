@@ -47,7 +47,7 @@ async function submitQuiz() {
 
 <style scoped>
 .content  {
-    @apply text-white flex flex-col justify-center items-center bg-gray-700 rounded-xl p-10 sm:m-20 m-5;
+    @apply text-white flex flex-col justify-center items-center bg-gray-700 rounded-xl sm:m-20 m-5;
   }
 
 .input {
