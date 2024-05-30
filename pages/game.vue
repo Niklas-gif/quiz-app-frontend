@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!isLoading && currentQuiz != null">
-        <NuxtLayout :name="layout" :quiz="currentQuiz">
+        <NuxtLayout name="quiz-layout" :quiz="currentQuiz">
             <NuxtPage/>
         </NuxtLayout>
     </div>
@@ -9,9 +9,6 @@
 </template>
 
 <script setup lang="ts">
-
-const layout = 'quiz-layout'
-import { onMounted, ref } from 'vue';
 import type { Quiz } from '../types/quiz';
 import { useRoute } from 'vue-router';
 

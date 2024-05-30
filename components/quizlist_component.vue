@@ -19,6 +19,7 @@ import { defineProps, ref } from 'vue'
 
 const props = defineProps<({
     quizzes: Array<Quiz>,
+    //TODO Path and query as prop?
   })>()
 
 const visibleItems = ref(Array(props.quizzes.length).fill(false));

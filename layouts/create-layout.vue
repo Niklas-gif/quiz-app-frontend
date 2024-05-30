@@ -3,8 +3,6 @@
         <input class="input m-2" placeholder="Name of your quiz" v-model="newQuiz.name">
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>
-       <!-- <CreateQuizComponent :questions="newQuestions"></CreateQuizComponent>-->
-
         <div class="grid grid-cols-1 lg:grid-cols-3 space-x-5">
         <div v-for="question in newQuestions" class="flex flex-col bg-slate-900 rounded-lg p-5 mb-5 space-y-5">
             <div class="flex flex-row">
@@ -52,34 +50,23 @@
 import type { Quiz } from '~/types/quiz';
 import type { Question } from '~/types/question';
 import type { Answer } from '~/types/answer';
-import CreateQuizComponent from '~/components/create_quiz_component.vue'
 import IconTrash from "assets/icons/icon_trash.vue"
 
+const attributes= useAttrs() as any
 const newQuiz: Ref<Quiz> = ref<Quiz>({
     _id: "",
     name: "",
     description: "",
     questions: []
 });
-
-const route = useRoute()
-
-const isLoading = ref(false)
-
-onMounted(async () => {
-    isLoading.value = true
-    try {
-      const response = await fetch(`http://localhost:3030/quizzes/${route.query.currentQuiz}`)
-      const data = await response.json()
-      newQuiz.value = data[0]
-      console.log(newQuiz.value)
-    } catch(error) {
-      console.log(error)
-    }
-    isLoading.value = false
-})
-
 const newQuestions: Ref<Question[]> = ref([])
+
+onMounted(()=>{
+    if(attributes != null) {
+        newQuiz.value = attributes.quiz
+        newQuestions.value = attributes.quiz.questions
+    }
+})
 
 function createQuestion() {
     newQuestions.value.push ({
