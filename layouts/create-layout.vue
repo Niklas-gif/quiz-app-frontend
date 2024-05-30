@@ -63,7 +63,6 @@ const newQuestions: Ref<Question[]> = ref([])
 
 onMounted(()=>{
     if(attributes.quiz != null) {
-        console.log()
         newQuiz.value = attributes.quiz
         newQuestions.value = attributes.quiz.questions
     }

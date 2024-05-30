@@ -22,7 +22,6 @@ onMounted(async () => {
       const response = await fetch(`http://localhost:3030/quizzes/${route.query.currentQuiz}`)
       data.value = await response.json()
       newQuiz.value = data.value[0]
-      console.log(newQuiz.value)
     } catch(error) {
       console.log(error)
     }
