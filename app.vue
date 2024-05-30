@@ -1,10 +1,27 @@
 <template>
   <div>
+  <header>
+    <button @click="toggleLogin">Login</button>
+    <LoginComponent v-show="showLogin"/>
+  </header>
+  <div>
     <NuxtPage/>
   </div>
+</div>
 </template>
 
+<script setup lang="ts">
+const showLogin = ref(false)
+
+function toggleLogin() {
+  showLogin.value = !showLogin.value
+}
+
+
+</script>
+
 <style>
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

@@ -1,8 +1,6 @@
 <template>
     <div class="content">
       <div class="flex flex-col lg:flex-row mx-10 px-10">
-        <!--<img v-show="!showList" src="/assets/images/game_console.png" class="max-h-96">-->
-        <LoginComponent v-show="!showList"/>
           <div class="flex flex-col">
             <h1 v-show="!showList" class="self-center text-xl font-bold">Welcome to Quiz World!</h1>
             <div v-show="!showList" class="flex flex-col p-5">

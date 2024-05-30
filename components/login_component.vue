@@ -42,10 +42,20 @@ async function login() {
 
 <style scoped>
 .content {
-    @apply text-white flex flex-row justify-center items-center rounded-xl p-10 sm:m-20 m-5;
+    @apply 
+    bg-slate-700
+    text-white 
+    flex flex-col 
+    justify-center 
+    items-center 
+    rounded-xl 
+    sm:m-20 
+    w-fit 
+    m-5
+    p-5;
   }
 .form {
-    @apply  flex flex-col p-5 m-5 rounded-lg
+    @apply  flex flex-col rounded-lg
 }
 .input {
     @apply p-2 m-2  bg-slate-500 rounded-lg
@@ -56,8 +66,7 @@ async function login() {
     bg-purple-600 border-b-4 
     border-stone-800 
     text-white font-bold 
-    py-5 px-5
-    mt-5
-    rounded-3xl;
+    py-1 px-5
+    rounded-2xl;
 }
 </style>
