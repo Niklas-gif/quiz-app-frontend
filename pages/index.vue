@@ -19,6 +19,13 @@
                   <p class="self-center"> Create </p>
                 </div>     
               </NuxtLink>
+              <!--DEBUG-->
+              <div>
+                <p>LIST FOR EDITING DEBUG!!!!</p>
+                <IconLoading v-if="isLoading"></IconLoading>
+                <QuizListComponent v-else path="edit"  :quizzes="data"/>
+              </div>
+              <!--DEBUG-->
         </div>
       </div>
     </div>
