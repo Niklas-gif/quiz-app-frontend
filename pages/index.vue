@@ -11,7 +11,7 @@
             </div>
             <div v-if="showList">
                <IconLoading v-if="isLoading"></IconLoading>
-                <QuizListComponent v-else  :quizzes="data"/>
+                <QuizListComponent v-else path="game"  :quizzes="data"/>
             </div>
               <NuxtLink v-show="!showList" to="/create">  
                 <div class="flex flex-col p-5">

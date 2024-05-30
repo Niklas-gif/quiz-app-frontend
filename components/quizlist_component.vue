@@ -4,7 +4,7 @@
          {{quiz.name}}   
         <span v-if="visibleItems[index]" class="flex flex-col">
             {{quiz.description}}
-            <NuxtLink :to="{ path: 'game', query: { currentQuiz: quiz.name }}">
+            <NuxtLink :to="{ path: path, query: { currentQuiz: quiz.name }}">
               <button class="button">Play now</button>
             </NuxtLink>
         </span>
@@ -19,6 +19,8 @@ import { defineProps, ref } from 'vue'
 
 const props = defineProps<({
     quizzes: Array<Quiz>,
+    path: string,
+
     //TODO Path and query as prop?
   })>()
 
