@@ -2,8 +2,8 @@
     <div class="content">
         <div v-show="!isLogedIn">
             <form class="form" action="post">
-                <input class="input" placeholder="email" type="email">
-                <input class="input" placeholder="password" type="password">
+                <input class="input" placeholder="email" type="email" v-model="email">
+                <input class="input" placeholder="password" type="password" v-model="password">
                 <!--<button @click="login" class="login_button">Login</button>-->
             </form>
             <button @click="login" class="login-button">Login</button>
@@ -19,6 +19,9 @@ import type { User } from '~/types/user';
 
 //const user: ref<User | null> = ref<null>
 const isLogedIn = ref(false)
+const email = ref("")
+const password = ref("")
+
 
 onMounted(()=> {
     if(localStorage.getItem("Bearer") != null){
@@ -38,8 +41,8 @@ async function login() {
             body: JSON.stringify(
                 <User> {
                 id: 1,
-                email: "fake@mail.com",
-                password: "password1"
+                email: email.value,
+                password: password.value,
             })
         })
         if (response.ok) {
