@@ -100,7 +100,7 @@ async function submitQuiz() {
     try {
         const token = localStorage.getItem('Bearer')
         const response = await fetch('http://localhost:3030/add', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
