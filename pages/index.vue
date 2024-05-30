@@ -17,14 +17,15 @@
                   <p class="self-center"> Create </p>
                 </div>     
               </NuxtLink>
-              <!--DEBUG-->
-              <div>
-                <p>LIST FOR EDITING DEBUG!!!!</p>
-                <IconLoading v-if="isLoading"></IconLoading>
-                <QuizListComponent v-else path="edit"  :quizzes="data"/>
-              </div>
-              <!--DEBUG-->
         </div>
+        <!--DEBUG-->
+        <button class="bg-red-500 h-fit p-5 m-5" @click="toggleDebug">EDIT DEBUG!!!!</button>
+        <div v-show="debug">
+          <p>LIST FOR EDITING DEBUG!!!!</p>
+          <IconLoading v-if="isLoading"></IconLoading>
+          <QuizListComponent v-else path="edit"  :quizzes="data"/>
+        </div>
+        <!--DEBUG-->
       </div>
     </div>
 </template>
@@ -37,6 +38,7 @@
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)
+  const debug = ref(false)
   
   onMounted(async () => {
     isLoading.value = true
@@ -51,6 +53,10 @@
 
 function toggleList() {
     showList.value = !showList.value
+}
+
+function toggleDebug() {
+  debug.value = !debug.value
 }
 
 </script>

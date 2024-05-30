@@ -1,7 +1,7 @@
 <template>
   <div>
   <header>
-    <button @click="toggleLogin">Login</button>
+    <button class="login" @click="toggleLogin">Login</button>
     <LoginComponent v-show="showLogin"/>
   </header>
   <div>
@@ -19,6 +19,12 @@ function toggleLogin() {
 
 
 </script>
+
+<style scoped>
+  .login {
+    @apply bg-slate-400;
+  }
+</style>
 
 <style>
 
