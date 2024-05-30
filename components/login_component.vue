@@ -17,7 +17,6 @@
 <script setup lang="ts">
 import type { User } from '~/types/user';
 
-//const user: ref<User | null> = ref<null>
 const isLogedIn = ref(false)
 const email = ref("")
 const password = ref("")
@@ -58,15 +57,15 @@ async function login() {
 function logout() {
     localStorage.removeItem("Bearer")
     isLogedIn.value = false
-    console.log(isLogedIn.value)
 }
 
 </script>
 
 <style scoped>
 .content {
-    @apply 
+    @apply
     fixed
+    right-0
     bg-slate-600
     text-white 
     flex flex-col 

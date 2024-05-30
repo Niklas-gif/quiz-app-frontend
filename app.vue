@@ -1,11 +1,17 @@
 <template>
   <div>
   <header class="header">
-    <button class="login" @click="toggleLogin">
-      <iconLogin class="m-5 bg-red-300"></iconLogin>
+    <NuxtLink  to="/"> 
+        <button>
+          <IconHome class="icon-header"></IconHome>
+        </button>
+    </NuxtLink>
+    
+    <button  @click="toggleLogin">
+      <IconLogin class="icon-header"></IconLogin>
     </button>
   </header>
-  <LoginComponent v-show="showLogin"/>
+  <LoginComponent v-show="showLogin"/> 
   <div>
     <NuxtPage/>
   </div>
@@ -14,6 +20,7 @@
 
 <script setup lang="ts">
 import IconLogin from "assets/icons/icon_login.vue"
+import IconHome from "assets/icons/icon_home.vue"
 const showLogin = ref(false)
 
 function toggleLogin() {
@@ -30,7 +37,11 @@ function toggleLogin() {
 <style>
 
 .header {
-  @apply bg-slate-600
+  @apply bg-slate-600 flex justify-between; 
+}
+
+.header-icon {
+  @apply fill-yellow-300 hover:fill-yellow-600 h-12 w-12 m-5;
 }
 
 .page-enter-active,
