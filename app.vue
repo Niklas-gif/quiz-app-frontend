@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-const showLogin = ref(false)
 import IconLogin from "assets/icons/icon_login.vue"
+const showLogin = ref(false)
 
 function toggleLogin() {
   showLogin.value = !showLogin.value

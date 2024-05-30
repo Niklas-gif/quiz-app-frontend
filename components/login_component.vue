@@ -1,11 +1,16 @@
 <template>
     <div class="content">
-        <form class="form" action="post">
-            <input class="input" placeholder="email" type="email">
-            <input class="input" placeholder="password" type="password">
-            <!--<button @click="login" class="login_button">Login</button>-->
-        </form>
-        <button @click="login" class="login_button">Login</button>
+        <div v-show="!isLogedIn">
+            <form class="form" action="post">
+                <input class="input" placeholder="email" type="email">
+                <input class="input" placeholder="password" type="password">
+                <!--<button @click="login" class="login_button">Login</button>-->
+            </form>
+            <button @click="login" class="login-button">Login</button>
+        </div>
+        <div v-show="isLogedIn">
+            <button  @click="logout" class="logout-button">Logout</button>
+        </div>
     </div>
 </template>
 
@@ -13,6 +18,15 @@
 import type { User } from '~/types/user';
 
 //const user: ref<User | null> = ref<null>
+const isLogedIn = ref(false)
+
+onMounted(()=> {
+    if(localStorage.getItem("Bearer") != null){
+        isLogedIn.value = true
+    } else {
+        isLogedIn.value = false
+    }
+})
 
 async function login() {
     try {
@@ -31,11 +45,17 @@ async function login() {
         if (response.ok) {
             const jsonResponse = await response.json()
             localStorage.setItem("Bearer",jsonResponse.token)
-            console.log(document.cookie)
+            isLogedIn.value = true
         }
     } catch (error) {
-        console.error('Error sending quiz data:', error);
+        console.error('Error sending quiz data:', error)
     }
+}
+
+function logout() {
+    localStorage.removeItem("Bearer")
+    isLogedIn.value = false
+    console.log(isLogedIn.value)
 }
 
 </script>
@@ -60,7 +80,17 @@ async function login() {
 .input {
     @apply p-2 m-2  bg-slate-500 rounded-lg
 }
-.login_button {
+.login-button {
+    @apply 
+    hover:bg-purple-400 
+    bg-purple-600
+    drop-shadow-lg
+    text-white font-bold 
+    py-1 px-5
+    rounded-2xl;
+}
+
+.logout-button {
     @apply 
     hover:bg-purple-400 
     bg-purple-600
