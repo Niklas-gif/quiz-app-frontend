@@ -63,9 +63,11 @@ const props = defineProps<({
 const newQuestions: Ref<Question[]> = ref([])
 
   onMounted(()=>{
-    if(props.quiz != null) {
+    if(props.quiz != null && props.quiz.questions != null) {
         newQuiz.value = props.quiz
         newQuestions.value = props.quiz.questions
+    } else {
+        console.log("Props failed")
     }
   })
 

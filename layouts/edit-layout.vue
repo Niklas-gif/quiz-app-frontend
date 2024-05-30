@@ -1,16 +1,13 @@
 <template>
     <div class="content">
         <CreateQuizComponent :quiz="newQuiz"></CreateQuizComponent>
-        <button class="submit-button" @click="submitQuiz">SUBMIT</button>
+        <button class="submit-button" @click="submitQuiz">Submit Changes</button>
     </div>
 
 </template>
 
 <script setup lang="ts">
 import type { Quiz } from '~/types/quiz';
-import type { Question } from '~/types/question';
-import type { Answer } from '~/types/answer';
-import IconTrash from "assets/icons/icon_trash.vue"
 
 const attributes= useAttrs() as any
 const newQuiz: Ref<Quiz> = ref<Quiz>({
@@ -20,7 +17,7 @@ const newQuiz: Ref<Quiz> = ref<Quiz>({
     questions: []
 });
 
-onMounted(()=>{
+onBeforeMount(()=>{
     if(attributes.quiz != null) {
         newQuiz.value = attributes.quiz
     }
