@@ -86,11 +86,12 @@ const newQuestions: Ref<Question[]> = ref([])
     newQuestions.value.forEach(question => {
         newQuiz.value.questions.push(question)
     })
-    newQuestions.value = []
+    //newQuestions.value = []
 }
 
 function removeQuestion(questionToRemove: Question) {
     newQuestions.value = newQuestions.value.filter(question => question !== questionToRemove)
+    newQuiz.value.questions = newQuestions.value
 }
 
 function createAnswer(question: Question) {
@@ -102,10 +103,10 @@ function createAnswer(question: Question) {
 
 function removeAnswer(question: Question, answerToRemove: Answer) {
     question.answers = question.answers.filter(answer => answer !== answerToRemove)
+    //BAD
 }
 
 function emitChanges() {
-    console.log("Emit!")
     addQuestions()
     emits('quizChanged',newQuiz)
 }
