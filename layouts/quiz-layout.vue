@@ -2,6 +2,7 @@
     <div class="content">
       <p v-if="!isRunning"> GAME OVER!</p>
       <p>{{attributes.quiz.name}}</p>
+      <p>{{attributes.quiz.id}}</p>
       <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
       <ProgressBar></ProgressBar>
       <QuestionComponent 

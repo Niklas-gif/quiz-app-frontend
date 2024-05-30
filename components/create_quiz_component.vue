@@ -35,13 +35,6 @@
 
         </div>
         </div>
-
-        <div v-for="(question, index) in newQuiz?.questions" :key="index" class="flex flex-col">
-            <div>Description: {{ question.description }}</div>
-            <div>Is multiple choice: {{ question.is_multiple_choice }}</div>
-            <div>Answers: {{ question.answers }}</div>
-        </div>
-        <button @click="emitChanges">Emit changes</button>
     </div>
 </template>
 
@@ -105,12 +98,6 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
     question.answers = question.answers.filter(answer => answer !== answerToRemove)
     //BAD
 }
-
-function emitChanges() {
-    addQuestions()
-    emits('quizChanged',newQuiz)
-}
-
 
 </script>
 

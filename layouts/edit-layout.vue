@@ -26,6 +26,7 @@ onBeforeMount(()=>{
 async function submitQuiz() {
     try {
         const token = localStorage.getItem('Bearer')
+        console.log(newQuiz.value._id)
         const response = await fetch('http://localhost:3030/update', {
             method: 'PUT',
             headers: {
