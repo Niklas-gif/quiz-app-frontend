@@ -43,15 +43,15 @@ async function login() {
 <style scoped>
 .content {
     @apply 
-    bg-slate-700
+    fixed
+    bg-slate-600
     text-white 
     flex flex-col 
     justify-center 
     items-center 
-    rounded-xl 
-    sm:m-20 
+    rounded-b-xl 
+    mb-5
     w-fit 
-    m-5
     p-5;
   }
 .form {
@@ -63,8 +63,8 @@ async function login() {
 .login_button {
     @apply 
     hover:bg-purple-400 
-    bg-purple-600 border-b-4 
-    border-stone-800 
+    bg-purple-600
+    drop-shadow-lg
     text-white font-bold 
     py-1 px-5
     rounded-2xl;

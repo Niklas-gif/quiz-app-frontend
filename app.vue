@@ -1,9 +1,11 @@
 <template>
   <div>
-  <header>
-    <button class="login" @click="toggleLogin">Login</button>
-    <LoginComponent v-show="showLogin"/>
+  <header class="header">
+    <button class="login" @click="toggleLogin">
+      <iconLogin class="m-5 bg-red-300"></iconLogin>
+    </button>
   </header>
+  <LoginComponent v-show="showLogin"/>
   <div>
     <NuxtPage/>
   </div>
@@ -12,6 +14,7 @@
 
 <script setup lang="ts">
 const showLogin = ref(false)
+import IconLogin from "assets/icons/icon_login.vue"
 
 function toggleLogin() {
   showLogin.value = !showLogin.value
@@ -21,12 +24,14 @@ function toggleLogin() {
 </script>
 
 <style scoped>
-  .login {
-    @apply bg-slate-400;
-  }
+
 </style>
 
 <style>
+
+.header {
+  @apply bg-slate-600
+}
 
 .page-enter-active,
 .page-leave-active {
