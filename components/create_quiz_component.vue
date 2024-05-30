@@ -41,6 +41,7 @@
             <div>Is multiple choice: {{ question.is_multiple_choice }}</div>
             <div>Answers: {{ question.answers }}</div>
         </div>
+        <button @click="emitChanges">Emit changes</button>
     </div>
 </template>
 
@@ -60,6 +61,8 @@ const props = defineProps<({
     description: "",
     questions: []
 });
+
+const emits = defineEmits(['quizChanged'])
 const newQuestions: Ref<Question[]> = ref([])
 
   onMounted(()=>{
@@ -97,9 +100,14 @@ function createAnswer(question: Question) {
     })
 }
 
-
 function removeAnswer(question: Question, answerToRemove: Answer) {
     question.answers = question.answers.filter(answer => answer !== answerToRemove)
+}
+
+function emitChanges() {
+    console.log("Emit!")
+    addQuestions()
+    emits('quizChanged',newQuiz)
 }
 
 

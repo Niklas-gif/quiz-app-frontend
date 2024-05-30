@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <CreateQuizComponent :quiz="newQuiz"></CreateQuizComponent>
+        <CreateQuizComponent :quiz="newQuiz" :quiz-changed="newQuiz"></CreateQuizComponent>
         <button class="submit-button" @click="submitQuiz">Submit Changes</button>
     </div>
 
@@ -23,19 +23,10 @@ onBeforeMount(()=>{
     }
 })
 
-
-function addQuestions() {
-    /*newQuestions.value.forEach(question => {
-        newQuiz.value.questions.push(question)
-    })
-    newQuestions.value = []*/
-}
-
 async function submitQuiz() {
-    addQuestions()
     try {
         const token = localStorage.getItem('Bearer')
-        const response = await fetch('http://localhost:3030/add', {
+        const response = await fetch('http://localhost:3030/update', {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
