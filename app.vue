@@ -13,7 +13,9 @@
   </header>
   <LoginComponent v-show="showLogin"/> 
   <div>
-    <NuxtPage/>
+  <NuxtLayout>
+      <NuxtPage/>
+  </NuxtLayout>
   </div>
 </div>
 </template>
