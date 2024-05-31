@@ -43,7 +43,7 @@
   onMounted(async () => {
     isLoading.value = true
     try {
-      const response = await fetch('http://localhost:3030/quizzes')
+      const response = await fetch('http://localhost:3030/quizzes') //TODO: Replace with env.
       data.value = await response.json()
     } catch(error) {
       console.log(error)
