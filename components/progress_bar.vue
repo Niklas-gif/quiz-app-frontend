@@ -8,6 +8,14 @@
 let progress = ref(100)
 const emits = defineEmits(['timeout']);
 
+/*const props = defineProps<({
+    reset: Boolean,
+  })>()
+
+  if(props.reset) {
+    progress.value = 100;
+  }*/
+
 onMounted(()=> {
      setInterval(() => {
         if(progress.value != 0) {

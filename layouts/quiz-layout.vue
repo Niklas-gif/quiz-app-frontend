@@ -4,7 +4,7 @@
     <p>{{ attributes.quiz.name }}</p>
     <p>{{ attributes.quiz.id }}</p>
     <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
-    <ProgressBar></ProgressBar>
+    <ProgressBar @timeout="submitAnswer"></ProgressBar>
     <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
       :description="currentQuesiton.description" @answerSelected="selectCard">
     </QuestionComponent>
@@ -20,9 +20,11 @@ import { type Answer } from '~/types/answer'
 import { type Question } from '~/types/question'
 
 const attributes = useAttrs() as any
+const emits = defineEmits(['reset'])
 
 let selectedAnswers: Ref<Answer[]> = ref([])
 let currentQuesiton: Ref<Question> = ref(attributes.quiz.questions[0])
+const reset = ref(false)
 let index = ref(0)
 let isRunning = ref(true)
 
@@ -35,31 +37,24 @@ function selectCard(answer: Answer) {
       return
     }
     selectedAnswers.value.push(answer)
-    setTimeout(() => {
-      if (selectedAnswers.value.length != 0) {
-        submitAnswer(answer)
-      }
-    }, 1000)
   }
 
 }
 
-function submitAnswer(answer: Answer) {
-
-  if(answer.is_correct && !currentQuesiton.value.is_multiple_choice) {
-    nextQuestion()
-    selectedAnswers.value = []
-    return
-  }
-
+function submitAnswer() {
   if(currentQuesiton.value.is_multiple_choice) {
     let i = 0
     selectedAnswers.value.forEach(answer => {
       if(answer.is_correct) {
         i++
       }
-      console.log(i,"out of",currentQuesiton.value.answers.length,"are correct!")
     });
+    console.log(i,"out of",currentQuesiton.value.answers.length,"are correct!")
+
+    setTimeout(() => {
+      selectedAnswers.value = []
+      nextQuestion()
+    }, 5000)
   }
 }
 
