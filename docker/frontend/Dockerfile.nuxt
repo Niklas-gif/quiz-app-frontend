@@ -5,6 +5,13 @@ WORKDIR /app
 
 RUN git clone -b redesign https://github.com/Niklas-gif/quiz-app-frontend.git .
 
+COPY package*.json ./
+
 RUN npm install
 
 RUN npm run build
+
+EXPOSE 3000
+
+#switch to build!
+CMD ["npm","run","dev"] 
