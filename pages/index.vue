@@ -7,10 +7,12 @@
                 <PlayButton class="self-center" @click="toggleList"></PlayButton>
                <p class="self-center"> Play now!</p>
             </div>
+            <Transition>
             <div v-if="showList">
                <IconLoading v-if="isLoading"></IconLoading>
                 <QuizListComponent v-else :quizzes="data" />
             </div>
+          </Transition>
               <NuxtLink v-show="!showList" to="/create">  
                 <div class="flex flex-col p-5">
                   <CreateButton class="self-center"></CreateButton>

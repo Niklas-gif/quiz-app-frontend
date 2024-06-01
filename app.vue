@@ -46,8 +46,7 @@ function toggleLogin() {
   @apply fill-yellow-300 hover:fill-yellow-600 h-12 w-12 m-5;
 }
 
-.page-enter-active,
-.page-leave-active {
+.page-enter-active{
   transition: all 0.4s;
 }
 .page-enter-from,
@@ -55,12 +54,21 @@ function toggleLogin() {
   opacity: 0;
   filter: blur(1rem);
 }
-.layout-enter-active,
-.layout-leave-active {
+.layout-enter-active {
   transition: all 0.4s;
 }
 .layout-enter-from,
 .layout-leave-to {
   filter: blur(1rem);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition:  0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
