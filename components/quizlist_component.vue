@@ -16,8 +16,11 @@
     <div>
       <p>{{ selectedQuiz.name }}</p>
       <p>{{selectedQuiz.description}}</p>
-      <NuxtLink :to="{ path: path, query: { currentQuiz: selectedQuiz.name }}">
+      <NuxtLink :to="{ path: '/game', query: { currentQuiz: selectedQuiz.name }}">
         <button class="button">Play now</button>
+      </NuxtLink>
+      <NuxtLink :to="{ path: '/edit', query: { currentQuiz: selectedQuiz.name }}">
+        <button class="button">Edit</button>
       </NuxtLink>
       <button class="button-delete" @click="deleteQuiz(selectedQuiz)"> Delete Quiz</button>
     </div>
@@ -31,7 +34,6 @@ import { defineProps, ref } from 'vue'
 
 const props = defineProps<({
     quizzes: Array<Quiz>,
-    path: string,
   })>()
 
 //const visibleItems = ref(Array(props.quizzes.length).fill(false));

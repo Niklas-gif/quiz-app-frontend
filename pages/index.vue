@@ -9,7 +9,7 @@
             </div>
             <div v-if="showList">
                <IconLoading v-if="isLoading"></IconLoading>
-                <QuizListComponent v-else path="game"  :quizzes="data"/>
+                <QuizListComponent v-else :quizzes="data" />
             </div>
               <NuxtLink v-show="!showList" to="/create">  
                 <div class="flex flex-col p-5">
@@ -18,14 +18,6 @@
                 </div>     
               </NuxtLink>
         </div>
-        <!--DEBUG-->
-        <button class="bg-red-500 h-fit p-5 m-5" @click="toggleDebug">EDIT DEBUG!!!!</button>
-        <div v-show="debug">
-          <p>LIST FOR EDITING DEBUG!!!!</p>
-          <IconLoading v-if="isLoading"></IconLoading>
-          <QuizListComponent v-else path="edit"  :quizzes="data"/>
-        </div>
-        <!--DEBUG-->
       </div>
     </div>
 </template>
