@@ -7,6 +7,7 @@
             <NuxtLink :to="{ path: path, query: { currentQuiz: quiz.name }}">
               <button class="button">Play now</button>
             </NuxtLink>
+            <button @click="deleteQuiz(quiz)"> Delete Quiz</button>
         </span>
     </li>
 </ul>
@@ -28,6 +29,25 @@ const visibleItems = ref(Array(props.quizzes.length).fill(false));
 
 function toggleDetails(index: number) {
   visibleItems.value[index] = ! visibleItems.value[index]
+}
+
+async function deleteQuiz(quiz: Quiz) {
+    try {
+        const token = localStorage.getItem('Bearer')
+        const response = await fetch('http://localhost:3030/delete', {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(quiz)
+        })
+        if (response.ok) {
+            console.log(response);
+        }
+    } catch (error) {
+        console.error('Error sending quiz data:', error);
+    }
 }
 
 </script>
