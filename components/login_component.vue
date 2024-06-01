@@ -64,8 +64,6 @@ function logout() {
 <style scoped>
 .content {
     @apply
-    fixed
-    right-0
     bg-slate-600
     text-white 
     flex flex-col 
