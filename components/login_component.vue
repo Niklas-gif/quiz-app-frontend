@@ -64,12 +64,12 @@ function logout() {
 <style scoped>
 .content {
     @apply
-    bg-slate-600
+    bg-slate-800
     text-white 
     flex flex-col 
     justify-center 
     items-center 
-    rounded-b-xl 
+    rounded-bl-xl 
     mb-5
     w-fit 
     p-5;

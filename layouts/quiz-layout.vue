@@ -92,6 +92,6 @@ function nextQuestion() {
 
 <style scoped>
 .content {
-  @apply flex flex-col justify-center items-center text-white bg-gray-700 rounded-xl p-5 lg:m-20 m-5;
+  @apply flex flex-col justify-center items-center text-white bg-gray-700 bg-opacity-75 rounded-b-xl py-5 sm:mx-10 ;
 }
 </style>

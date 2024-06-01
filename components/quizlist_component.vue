@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row bg-slate-900 bg-opacity-50 rounded-2xl">
+  <div class="flex flex-row bg-slate-900 bg-opacity-50 rounded-r-2xl">
     <ul class="list">
       <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
         :class="{ 'selected': quiz == selectedQuiz }">
@@ -87,7 +87,7 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .list {
-  @apply mr-5;
+  @apply sm:m-5;
 }
 
 .item {

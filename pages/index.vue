@@ -55,7 +55,7 @@ function toggleDebug() {
 
 <style scoped>
 .content {
-    @apply text-white flex flex-row  items-center bg-gray-700 bg-opacity-75 rounded-none py-5 sm:mr-10 sm:rounded-br-xl;
+    @apply text-white flex flex-row items-center bg-gray-700 bg-opacity-75 rounded-none py-5 sm:mx-10 sm:rounded-b-xl;
   }
 
 .content.listopen {
