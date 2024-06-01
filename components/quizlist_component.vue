@@ -19,11 +19,11 @@
         <p>{{ selectedQuiz.description }}</p>
       </div>
       <div class="button-container">
-        <NuxtLink :to="{ path: '/game', query: { currentQuiz: selectedQuiz.name } }">
-          <button class="button">Play now</button>
+        <NuxtLink class="button" :to="{ path: '/game', query: { currentQuiz: selectedQuiz.name } }">
+          Play now!
         </NuxtLink>
-        <NuxtLink :to="{ path: '/edit', query: { currentQuiz: selectedQuiz.name } }">
-          <button class="button">Edit</button>
+        <NuxtLink class="button" :to="{ path: '/edit', query: { currentQuiz: selectedQuiz.name } }">
+          Edit
         </NuxtLink>
         <button class="button-delete" @click="deleteQuiz(selectedQuiz)"> Delete Quiz</button>
       </div>
@@ -107,7 +107,7 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .button-container {
-  @apply flex space-x-1;
+  @apply flex flex-col;
 }
 
 .info-container {
