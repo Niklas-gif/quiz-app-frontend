@@ -4,9 +4,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 pt-5 pb-5">
             <div v-for="(answer) in props.answers" @click="emits('answerSelected',answer)">
                 <AnswerComponent 
-                    :is-selected= "selectedAnswers.includes(answer)" 
+                    :is-selected="selectedAnswers.includes(answer)" 
                     :description="answer.description" 
-                    :is-correct="answer.is_correct"/> 
+                    :is-correct="answer.is_correct"
+                    :is-revealed="false"/> 
             </div>
         </div>
     </div>
@@ -22,7 +23,8 @@ import {type Answer} from '../types/answer'
 const props = defineProps<({
     description: string,
     answers: Answer[],
-    selectedAnswers: Answer[]
+    selectedAnswers: Answer[],
+    //isRoundOver: boolean
   })>();
 
   const emits = defineEmits(['answerSelected']);

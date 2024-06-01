@@ -1,15 +1,21 @@
 <template>
-  <div v-if="isCorrect">
-    <div class="answer" :class="{ 'isCorrect': props.isSelected }">
-      <p class="md:break-all">{{ props.description }}</p>
+
+  <div v-if="isRevealed">
+    <div v-if="isCorrect">
+      <div class="answer isCorrect">
+        <p class="md:break-all">{{ props.description }}</p>
+      </div>
+    </div>
+    <div v-else>
+      <div class="answer isFalse">
+        <p class="md:break-all">{{ props.description }}</p>
+      </div>
     </div>
   </div>
-  <div v-else>
-    <div class="answer" :class="{ 'isFalse': props.isSelected }">
-      <p class="md:break-all">{{ props.description }}</p>
-    </div>
-  </div> 
-  </template>
+  <div v-else class="answer" :class="{ 'isSelected': props.isSelected}">
+    <p class="md:break-all">{{ props.description }}</p>
+  </div>
+</template>
   
   <script setup lang="ts">
   import { defineProps } from 'vue'
@@ -17,15 +23,14 @@
   const props = defineProps<({
     description: String,
     isCorrect: boolean,
-    isSelected: boolean
+    isSelected: boolean,
+    isRevealed: boolean,
   })>();
 
   </script>
   
   <style scoped>
   .answer {
-    /*width: 360px;
-    height: 120px;*/
     @apply 
     max-w-[360px]
     max-h-[120px]
