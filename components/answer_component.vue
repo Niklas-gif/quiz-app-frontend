@@ -67,5 +67,9 @@
   .answer.isFalse {
     @apply bg-red-500 border-0 animate-pulse;
   }
+
+  .answer.isDisabled {
+    @apply bg-gray-500 border-0;
+  }
   </style>
   

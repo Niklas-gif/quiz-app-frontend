@@ -29,8 +29,13 @@ const currentQuesiton: Ref<Question> = ref(attributes.quiz.questions[0])
 const progress = ref(100)
 const index = ref(0)
 const gameIsRunning = ref(true)
+const roundIsRunning = ref(true)
 
 function selectCard(answer: Answer) {
+  if (!roundIsRunning.value) {
+    return
+  }
+
   if (selectedAnswers.value.includes(answer)) {
     selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1)
   } else {
@@ -40,6 +45,7 @@ function selectCard(answer: Answer) {
     }
     selectedAnswers.value.push(answer)
   }
+  console.log(selectedAnswers.value)
 }
 
 onMounted(() => {
@@ -52,6 +58,7 @@ function startRound() {
     if (progress.value != 0) {
       progress.value -= 1
     } else if(gameIsRunning.value) {
+      roundIsRunning.value = false
       submitAnswer()
       clearInterval(interval)
     }
@@ -73,9 +80,10 @@ function nextQuestion() {
   if (index.value + 1 < attributes.quiz.questions.length) {
     currentQuesiton.value = attributes.quiz.questions[index.value += 1]
     progress.value = 100
+    roundIsRunning.value = true
     startRound()
   } else {
-    gameIsRunning.value = false;
+    gameIsRunning.value = false
     console.log("Gameover")
   }
 }
