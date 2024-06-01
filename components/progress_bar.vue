@@ -1,6 +1,9 @@
 <template>
     <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: props.progress + '%' }"></div>
+        <div v-if="$props.progress == 100">
+            <div class="progress-bar-reset" :style="{ width: props.progress + '%' }"></div>
+        </div>
+        <div v-else class="progress-bar" :style="{ width: props.progress + '%' }"></div>
     </div>    
 </template>
 
@@ -25,6 +28,11 @@ const props = defineProps<({
 .progress-bar {
     height: 100%;
     background-color: #ea00ff;
-    transition: width linear;
+    transition: width 1s linear;
+}
+
+.progress-bar-reset {
+    height: 100%;
+    background-color: #ea00ff;
 }
 </style>
