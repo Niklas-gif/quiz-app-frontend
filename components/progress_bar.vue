@@ -1,30 +1,15 @@
 <template>
     <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: progress + '%' }"></div>
+        <div class="progress-bar" :style="{ width: props.progress + '%' }"></div>
     </div>    
 </template>
 
 <script setup lang="ts">
-let progress = ref(100)
 const emits = defineEmits(['timeout']);
 
-/*const props = defineProps<({
-    reset: Boolean,
+const props = defineProps<({
+    progress: Number,
   })>()
-
-  if(props.reset) {
-    progress.value = 100;
-  }*/
-
-onMounted(()=> {
-     setInterval(() => {
-        if(progress.value != 0) {
-            progress.value -= 1
-        } else {
-            emits('timeout')
-        }
-     },100) 
-})
 
 </script>
 
@@ -40,6 +25,6 @@ onMounted(()=> {
 .progress-bar {
     height: 100%;
     background-color: #ea00ff;
-    transition: width 1s linear;
+    transition: width linear;
 }
 </style>

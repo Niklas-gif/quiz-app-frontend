@@ -1,10 +1,10 @@
 <template>
   <div class="content">
-    <p v-if="!isRunning"> GAME OVER!</p>
+    <p v-if="!gameIsRunning"> GAME OVER!</p>
     <p>{{ attributes.quiz.name }}</p>
     <p>{{ attributes.quiz.id }}</p>
     <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
-    <ProgressBar @timeout="submitAnswer"></ProgressBar>
+    <ProgressBar :progress="progress"></ProgressBar>
     <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
       :description="currentQuesiton.description" @answerSelected="selectCard">
     </QuestionComponent>
@@ -22,11 +22,11 @@ import { type Question } from '~/types/question'
 const attributes = useAttrs() as any
 const emits = defineEmits(['reset'])
 
-let selectedAnswers: Ref<Answer[]> = ref([])
-let currentQuesiton: Ref<Question> = ref(attributes.quiz.questions[0])
-const reset = ref(false)
-let index = ref(0)
-let isRunning = ref(true)
+const selectedAnswers: Ref<Answer[]> = ref([])
+const currentQuesiton: Ref<Question> = ref(attributes.quiz.questions[0])
+const progress = ref(100)
+const index = ref(0)
+const gameIsRunning = ref(true)
 
 function selectCard(answer: Answer) {
   if (selectedAnswers.value.includes(answer)) {
@@ -38,19 +38,26 @@ function selectCard(answer: Answer) {
     }
     selectedAnswers.value.push(answer)
   }
+}
 
+onMounted(() => {
+  startRound()
+})
+
+function startRound() {
+  const interval = setInterval(() => {
+    if (progress.value != 0) {
+      progress.value -= 1
+    } else if(gameIsRunning.value) {
+      submitAnswer()
+      clearInterval(interval)
+    }
+  }, 100)
 }
 
 function submitAnswer() {
-  if(currentQuesiton.value.is_multiple_choice) {
-    let i = 0
-    selectedAnswers.value.forEach(answer => {
-      if(answer.is_correct) {
-        i++
-      }
-    });
-    console.log(i,"out of",currentQuesiton.value.answers.length,"are correct!")
-
+  //We wait for 5 seconds after the round has ended!
+  if (gameIsRunning.value) {
     setTimeout(() => {
       selectedAnswers.value = []
       nextQuestion()
@@ -58,11 +65,18 @@ function submitAnswer() {
   }
 }
 
+function revealAnswers() {
+
+}
+
 function nextQuestion() {
   if (index.value + 1 < attributes.quiz.questions.length) {
     currentQuesiton.value = attributes.quiz.questions[index.value += 1]
+    progress.value = 100
+    startRound()
   } else {
-    isRunning.value = false;
+    gameIsRunning.value = false;
+    console.log("Gameover")
   }
 }
 
