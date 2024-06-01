@@ -17,8 +17,8 @@ import { type Question} from '~/types/question'
 import { type  Answer } from '~/types/answer'
 
 const props = defineProps<({
-    description: String,
-    name: String,
+    description: string,
+    name: string,
     questions: Array<Question>,
   })>()
 

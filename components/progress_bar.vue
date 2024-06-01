@@ -11,7 +11,7 @@
 const emits = defineEmits(['timeout']);
 
 const props = defineProps<({
-    progress: Number,
+    progress: number,
   })>()
 
 </script>

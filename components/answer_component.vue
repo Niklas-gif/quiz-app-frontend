@@ -21,7 +21,7 @@
   import { defineProps } from 'vue'
   
   const props = defineProps<({
-    description: String,
+    description: string,
     isCorrect: boolean,
     isSelected: boolean,
     isRevealed: boolean,
