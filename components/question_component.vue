@@ -6,8 +6,7 @@
                 <AnswerComponent 
                     :is-selected="selectedAnswers.includes(answer)" 
                     :description="answer.description" 
-                    :is-correct="answer.is_correct"
-                    :is-revealed="false"/> 
+                    :is-correct="answer.is_correct"/> 
             </div>
         </div>
     </div>
@@ -24,7 +23,6 @@ const props = defineProps<({
     description: string,
     answers: Answer[],
     selectedAnswers: Answer[],
-    //isRoundOver: boolean
   })>();
 
   const emits = defineEmits(['answerSelected']);

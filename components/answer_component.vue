@@ -24,8 +24,11 @@
     description: string,
     isCorrect: boolean,
     isSelected: boolean,
-    isRevealed: boolean,
   })>();
+
+  //provided by quiz-layout
+  const isRevealed = inject('revealAnswers')
+
 
   </script>
   

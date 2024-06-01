@@ -18,9 +18,13 @@ import QuestionComponent from '~/components/question_component.vue'
 import ProgressBar from '~/components/progress_bar.vue'
 import { type Answer } from '~/types/answer'
 import { type Question } from '~/types/question'
+import { provide } from 'vue';
 
 const attributes = useAttrs() as any
-const emits = defineEmits(['reset'])
+const revealAnswers = ref(false)
+
+//gets injected in answer components
+provide('revealAnswers', revealAnswers)
 
 const selectedAnswers: Ref<Answer[]> = ref([])
 const currentQuesiton: Ref<Question> = ref(attributes.quiz.questions[0])
@@ -45,6 +49,7 @@ onMounted(() => {
 })
 
 function startRound() {
+  revealAnswers.value = false
   const interval = setInterval(() => {
     if (progress.value != 0) {
       progress.value -= 1
@@ -58,15 +63,12 @@ function startRound() {
 function submitAnswer() {
   //We wait for 5 seconds after the round has ended!
   if (gameIsRunning.value) {
+    revealAnswers.value = true
     setTimeout(() => {
       selectedAnswers.value = []
       nextQuestion()
     }, 5000)
   }
-}
-
-function revealAnswers() {
-
 }
 
 function nextQuestion() {
