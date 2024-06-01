@@ -39,7 +39,7 @@ function toggleLogin() {
 <style>
 
 .header {
-  @apply bg-slate-600 flex justify-between items-center; 
+  @apply bg-slate-800 flex justify-between items-center shadow-lg; 
 }
 
 .header-icon {

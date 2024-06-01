@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row">
+  <div class="flex flex-row bg-slate-900 bg-opacity-50 rounded-2xl">
     <ul class="list">
       <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
         :class="{ 'selected': quiz == selectedQuiz }">
@@ -13,7 +13,7 @@
         </span>-->
       </li>
     </ul>
-    <div class="flex flex-col">
+    <div class="flex flex-col p-5">
       <div class="info-container">
         <p class="quiz-heading">{{ selectedQuiz.name }}</p>
         <p>{{ selectedQuiz.description }}</p>
@@ -83,7 +83,7 @@ async function deleteQuiz(quiz: Quiz) {
 
 <style scoped>
 .quiz-heading {
-  @apply text-xl
+  @apply text-3xl font-bold
 }
 
 .list {
