@@ -28,7 +28,7 @@ const props = defineProps<({
 .progress-bar {
     height: 100%;
     background-color: #ea00ff;
-    transition: width 1s linear;
+    transition: width 100ms linear;
 }
 
 .progress-bar-reset {
