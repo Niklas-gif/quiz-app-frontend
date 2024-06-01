@@ -2,13 +2,11 @@
   <div class="content">
     <p v-if="!gameIsRunning"> GAME OVER!</p>
     <p>{{ attributes.quiz.name }}</p>
-    <p>{{ attributes.quiz.id }}</p>
-    <NuxtLink to="/" class="p-5 hover:text-purple-400">Go back to main</NuxtLink>
+    <p>Question {{ index+1 }} from {{ attributes.quiz.questions.length }}</p>
     <ProgressBar :progress="progress"></ProgressBar>
     <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
       :description="currentQuesiton.description" @answerSelected="selectCard">
     </QuestionComponent>
-    <button @click="nextQuestion"> next question </button>
   </div>
 
 </template>
