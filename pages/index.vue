@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-      <div class="flex flex-col lg:flex-row mx-10 px-10">
+      <div class="flex flex-col lg:flex-row">
           <div class="flex flex-col">
             <h1 v-show="!showList" class="self-center text-xl font-bold">Welcome to Quiz World!</h1>
             <div v-show="!showList" class="flex flex-col p-5">
@@ -55,7 +55,7 @@ function toggleDebug() {
 
 <style scoped>
 .content {
-    @apply text-white flex flex-row justify-center items-center bg-gray-700 rounded-xl p-5 sm:m-20;
+    @apply text-white flex flex-row justify-center items-center bg-gray-700 rounded-none p-5 sm:m-20 sm:rounded-xl;
   }
 
 </style>
