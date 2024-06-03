@@ -75,32 +75,40 @@ async function deleteQuiz(quiz: Quiz) {
 
 <style scoped>
 .quiz-heading {
-  @apply text-3xl font-bold truncate
+  @apply text-3xl text-sky-300 font-bold truncate
 }
 
 .list {
   @apply sm:m-5;
 }
 
-.item {
+/*.item {
  @apply  p-2 text-white bg-sky-500 hover:bg-sky-400 border-b-sky-700 border-b-2 hover:cursor-pointer;
+}*/
+
+.item {
+ @apply  p-2 text-white hover:text-sky-400 border-l-sky-700 hover:border-l-sky-300 border-l-2 hover:cursor-pointer;
 }
 
-.item.selected {
+/*.item.selected {
   @apply bg-sky-700 hover:bg-sky-600
+}*/
+
+.item.selected {
+  @apply text-sky-400 border-l-sky-400
 }
 
 
 .button-play {
-  @apply text-center hover:bg-purple-400 bg-purple-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+  @apply text-center hover:bg-purple-400 bg-purple-600 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
 }
 
 .button-edit {
-  @apply text-center hover:bg-sky-400 bg-sky-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+  @apply text-center hover:bg-sky-300 bg-sky-500 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
 }
 
 .button-delete {
-  @apply text-center hover:bg-red-400 bg-red-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+  @apply text-center hover:bg-red-400 bg-red-600 text-white font-bold px-4 py-2 rounded-xl hover:cursor-pointer;
 }
 
 .button-container {
