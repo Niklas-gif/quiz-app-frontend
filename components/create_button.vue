@@ -10,7 +10,7 @@ import IconEditPen from "assets/icons/icon_edit_pen.vue"
 
 </script>
 
-<style>
+<style scoped>
 .button {
     @apply 
     hover:bg-purple-400 

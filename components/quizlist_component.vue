@@ -1,28 +1,20 @@
 <template>
-  <div class="flex flex-row bg-slate-900 bg-opacity-50 rounded-r-2xl">
+  <div class="flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl">
     <ul class="list">
       <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
         :class="{ 'selected': quiz == selectedQuiz }">
         {{ quiz.name }}
-        <!--<span v-if="quiz == selectedQuiz" class="flex flex-row">
-            {{quiz.description}}
-            <NuxtLink :to="{ path: path, query: { currentQuiz: quiz.name }}">
-              <button class="button">Play now</button>
-            </NuxtLink>
-            <button @click="deleteQuiz(quiz)"> Delete Quiz</button>
-        </span>-->
       </li>
     </ul>
-    <div class="flex flex-col p-5">
+    <div class="flex flex-col p-5 justify-between">
       <div class="info-container">
         <p class="quiz-heading">{{ selectedQuiz.name }}</p>
-        <p>{{ selectedQuiz.description }}</p>
       </div>
       <div class="button-container">
-        <NuxtLink class="button" :to="{ path: '/game', query: { currentQuiz: selectedQuiz.name } }">
+        <NuxtLink class="button-play" :to="{ path: '/game', query: { currentQuiz: selectedQuiz.name } }">
           Play now!
         </NuxtLink>
-        <NuxtLink class="button" :to="{ path: '/edit', query: { currentQuiz: selectedQuiz.name } }">
+        <NuxtLink class="button-edit" :to="{ path: '/edit', query: { currentQuiz: selectedQuiz.name } }">
           Edit
         </NuxtLink>
         <button class="button-delete" @click="deleteQuiz(selectedQuiz)"> Delete Quiz</button>
@@ -83,7 +75,7 @@ async function deleteQuiz(quiz: Quiz) {
 
 <style scoped>
 .quiz-heading {
-  @apply text-3xl font-bold
+  @apply text-3xl font-bold truncate
 }
 
 .list {
@@ -98,20 +90,25 @@ async function deleteQuiz(quiz: Quiz) {
   @apply bg-orange-800 hover:bg-orange-700
 }
 
-.button {
-  @apply flex-1 hover:bg-purple-400 bg-purple-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+
+.button-play {
+  @apply text-center hover:bg-purple-400 bg-purple-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+}
+
+.button-edit {
+  @apply text-center hover:bg-orange-400 bg-orange-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
 }
 
 .button-delete {
-  @apply flex-1 hover:bg-red-400 bg-red-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+  @apply text-center hover:bg-red-400 bg-red-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
 }
 
 .button-container {
-  @apply flex flex-col;
+  @apply flex flex-col w-fit space-y-2;
 }
 
 .info-container {
-  @apply pb-10 space-y-2;
+  @apply flex pb-10 space-y-2 w-fit max-w-36 min-w-36;
 }
 
 
