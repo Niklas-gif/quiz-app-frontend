@@ -83,11 +83,11 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .item {
- @apply  p-2 text-white bg-orange-600 hover:bg-orange-500 border-b-orange-700 border-b-2 hover:cursor-pointer;
+ @apply  p-2 text-white bg-sky-500 hover:bg-sky-400 border-b-sky-700 border-b-2 hover:cursor-pointer;
 }
 
 .item.selected {
-  @apply bg-orange-800 hover:bg-orange-700
+  @apply bg-sky-700 hover:bg-sky-600
 }
 
 
@@ -96,7 +96,7 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .button-edit {
-  @apply text-center hover:bg-orange-400 bg-orange-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
+  @apply text-center hover:bg-sky-400 bg-sky-600 border-b-4 border-stone-800 text-white font-bold py-4 px-4 rounded-3xl hover:cursor-pointer;
 }
 
 .button-delete {

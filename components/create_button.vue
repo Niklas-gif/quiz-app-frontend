@@ -13,8 +13,8 @@ import IconEditPen from "assets/icons/icon_edit_pen.vue"
 <style scoped>
 .button {
     @apply 
-    hover:bg-purple-400 
-    bg-purple-600 border-b-4 
+    hover:bg-sky-400 
+    bg-sky-600 border-b-4 
     border-stone-800 
     text-white font-bold 
     py-4 px-4 
