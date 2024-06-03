@@ -59,7 +59,7 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .info-container {
-    @apply mb-5
+    @apply mb-5 w-fit text-wrap max-w-2xl
 }
 
 .quiz-title {
