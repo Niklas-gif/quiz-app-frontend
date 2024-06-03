@@ -11,7 +11,7 @@
       <IconLogin class="icon-header"></IconLogin>
     </button>
   </header>
-  <LoginComponent class="absolute right-10" v-show="showLogin"/> 
+  <LoginComponent class="absolute right-20" v-show="showLogin"/> 
   <div>
   <NuxtLayout>
       <NuxtPage/>

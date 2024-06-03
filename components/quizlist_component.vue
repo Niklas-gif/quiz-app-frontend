@@ -12,7 +12,7 @@
       </div>
     </div>
   </Transition>
-  <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"> Hide </button>
+  <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"><IconForward/></button>
     <DetailComponent :quiz="selectedQuiz"></DetailComponent>
   </div>
 </template>
@@ -20,6 +20,8 @@
 <script setup lang="ts">
 import { type Quiz } from "../types/quiz"
 import { defineProps, ref } from 'vue'
+import IconForward from "~/assets/icons/icon_forward.vue"
+import IconBackward from "~/assets/icons/icon_back.vue"
 
 const props = defineProps<({
   quizzes: Array<Quiz>,

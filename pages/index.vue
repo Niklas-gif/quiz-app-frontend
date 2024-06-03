@@ -1,27 +1,26 @@
 <template>
-    <div class="content" :class="{'listopen': !showList}">
-      <div class="flex flex-col lg:flex-row">
-        <h1 v-show="!showList" class="self-center text-3xl font-bold">Welcome to Quiz World!</h1>
-          <div class="flex flex-row">  
-            <div v-show="!showList" class="flex flex-col p-5">
-                <PlayButton class="self-center" @click="toggleList"></PlayButton>
-               <p class="self-center"> Play now!</p>
-            </div>
-            <Transition>
-            <div v-if="showList">
-               <IconLoading v-if="isLoading"></IconLoading>
-                <QuizListComponent v-else :quizzes="data" />
-            </div>
-          </Transition>
-              <NuxtLink v-show="!showList" to="/create">  
-                <div class="flex flex-col p-5">
-                  <CreateButton class="self-center"></CreateButton>
-                  <p class="self-center"> Create </p>
-                </div>     
-              </NuxtLink>
-        </div>
+  <!--<div class="content" :class="{ 'listopen': !showList }">-->
+  <div class="content" :class="{ 'listopen': showList }">
+    <h1 v-show="!showList" class="text-3xl font-bold my-5">Welcome to Quiz World!</h1>
+    <div class="button-container">
+      <div v-show="!showList" class="flex flex-col p-5">
+        <PlayButton class="self-center" @click="toggleList"></PlayButton>
+        <p class="self-center"> Play now!</p>
       </div>
+      <NuxtLink v-show="!showList" to="/create">
+        <div class="flex flex-col p-5">
+          <CreateButton class="self-center"></CreateButton>
+          <p class="self-center"> Create </p>
+        </div>
+      </NuxtLink>
     </div>
+    <Transition>
+      <div v-if="showList">
+        <IconLoading v-if="isLoading"></IconLoading>
+        <QuizListComponent v-else :quizzes="data" />
+      </div>
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -57,11 +56,14 @@ function toggleDebug() {
 
 <style scoped>
 .content {
-    @apply h-svh text-white flex flex-row items-center bg-gray-700 bg-opacity-75 rounded-none sm:mx-20 sm:rounded-b-xl;
+    @apply items-center flex flex-col h-svh text-white  bg-gray-700 bg-opacity-75 rounded-none sm:mx-20 sm:rounded-b-xl
   }
+.button-container {
+  @apply flex flex-row space-x-2
+}
 
-.content.listopen {
-  @apply justify-center;
+.listopen.content {
+  @apply items-start justify-normal
 }
 
 </style>

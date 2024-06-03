@@ -55,7 +55,7 @@ async function deleteQuiz(quiz: Quiz) {
 
 <style scoped>
 .content {
-    @apply p-10
+    @apply sm:p-10 flex flex-col p-5
 }
 
 .info-container {
