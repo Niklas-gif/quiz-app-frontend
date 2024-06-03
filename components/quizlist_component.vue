@@ -1,46 +1,45 @@
 <template>
-  <div class="flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl">
-    <ul class="list">
-      <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
-        :class="{ 'selected': quiz == selectedQuiz }">
-        {{ quiz.name }}
-      </li>
-    </ul>
-    <div class="flex flex-col p-5 justify-between">
-      <div class="info-container">
-        <p class="quiz-heading">{{ selectedQuiz.name }}</p>
-      </div>
-      <div class="button-container">
-        <NuxtLink class="button-play" :to="{ path: '/game', query: { currentQuiz: selectedQuiz.name } }">
-          Play now!
-        </NuxtLink>
-        <NuxtLink class="button-edit" :to="{ path: '/edit', query: { currentQuiz: selectedQuiz.name } }">
-          Edit
-        </NuxtLink>
-        <button class="button-delete" @click="deleteQuiz(selectedQuiz)"> Delete Quiz</button>
+  <div class="flex flex-row h-svh">
+    <Transition :name="transitionName">
+    <div v-if="isVisible" class="list-container">
+      <ul class="list">
+        <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
+          :class="{ 'selected': quiz == selectedQuiz }">
+          {{ quiz.name }}
+        </li>
+      </ul>
+      <div class="flex flex-col p-5 justify-center">
       </div>
     </div>
+  </Transition>
+  <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"> Hide </button>
+    <DetailComponent :quiz="selectedQuiz"></DetailComponent>
   </div>
-
 </template>
 
 <script setup lang="ts">
-import {type Quiz } from "../types/quiz"
+import { type Quiz } from "../types/quiz"
 import { defineProps, ref } from 'vue'
 
 const props = defineProps<({
-    quizzes: Array<Quiz>,
-  })>()
+  quizzes: Array<Quiz>,
+})>()
 
 //const visibleItems = ref(Array(props.quizzes.length).fill(false));
-const selectedQuiz: Ref<Quiz> = ref(props.quizzes[0]) 
-const currentQuizzes: Ref<Quiz[]> =  ref(props.quizzes)
+const selectedQuiz: Ref<Quiz> = ref(props.quizzes[0])
+const currentQuizzes: Ref<Quiz[]> = ref(props.quizzes)
+const isVisible = ref(true)
 
+const transitionName = computed(() => isVisible.value ? 'slide-right' : 'slide-left')
 
 //TODO Delete quiz for the current state!!!
 /*function toggleDetails(index: number) {
   visibleItems.value[index] = ! visibleItems.value[index]
 }*/
+
+function toggleVisibility() {
+  isVisible.value = !isVisible.value
+}
 
 function selectQuiz(quiz: Quiz) {
   selectedQuiz.value = quiz
@@ -51,24 +50,24 @@ function selectQuiz(quiz: Quiz) {
 }*/
 
 async function deleteQuiz(quiz: Quiz) {
-    try {
-        const token = localStorage.getItem('Bearer')
-        const response = await fetch('http://localhost:3030/delete', {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(quiz)
-        })
-        if (response.ok) {
-            console.log(response);
-            //removeQuizFromList(selectedQuiz.value)
-            selectedQuiz.value = currentQuizzes.value[0]
-        }
-    } catch (error) {
-        console.error('Error sending quiz data:', error);
+  try {
+    const token = localStorage.getItem('Bearer')
+    const response = await fetch('http://localhost:3030/delete', {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(quiz)
+    })
+    if (response.ok) {
+      console.log(response);
+      //removeQuizFromList(selectedQuiz.value)
+      selectedQuiz.value = currentQuizzes.value[0]
     }
+  } catch (error) {
+    console.error('Error sending quiz data:', error);
+  }
 }
 
 </script>
@@ -76,6 +75,10 @@ async function deleteQuiz(quiz: Quiz) {
 <style scoped>
 .quiz-heading {
   @apply text-3xl text-sky-300 font-bold truncate
+}
+
+.list-container {
+  @apply flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl;
 }
 
 .list {
@@ -87,7 +90,7 @@ async function deleteQuiz(quiz: Quiz) {
 }*/
 
 .item {
- @apply  p-2 text-white hover:text-sky-400 border-l-sky-700 hover:border-l-sky-300 border-l-2 hover:cursor-pointer;
+  @apply p-2 text-white hover:text-sky-400 border-l-sky-700 hover:border-l-sky-300 border-l-2 hover:cursor-pointer;
 }
 
 /*.item.selected {
@@ -98,26 +101,30 @@ async function deleteQuiz(quiz: Quiz) {
   @apply text-sky-400 border-l-sky-400
 }
 
-
-.button-play {
-  @apply text-center hover:bg-purple-400 bg-purple-600 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
-}
-
-.button-edit {
-  @apply text-center hover:bg-sky-300 bg-sky-500 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
-}
-
-.button-delete {
-  @apply text-center hover:bg-red-400 bg-red-600 text-white font-bold px-4 py-2 rounded-xl hover:cursor-pointer;
-}
-
-.button-container {
-  @apply flex flex-col w-fit space-y-2;
-}
-
 .info-container {
   @apply flex pb-10 space-y-2 w-fit max-w-36 min-w-36;
 }
 
-
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.2s;
+}
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translate(50px, 0);
+}
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translate(-50px, 0);
+}
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translate(-50px, 0);
+}
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translate(50px, 0);
+}
 </style>
