@@ -56,7 +56,7 @@ function toggleDebug() {
 
 <style scoped>
 .content {
-    @apply items-center flex flex-col h-svh text-white  bg-gray-700 bg-opacity-75 rounded-none sm:mx-20 sm:rounded-b-xl
+    @apply items-center flex flex-col h-svh text-white  bg-gray-700 bg-opacity-75 rounded-none sm:mx-10 lg:mx-32 sm:rounded-b-xl
   }
 .button-container {
   @apply flex flex-row space-x-2

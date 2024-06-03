@@ -11,7 +11,7 @@
       <IconLogin class="icon-header"></IconLogin>
     </button>
   </header>
-  <LoginComponent class="absolute right-20" v-show="showLogin"/> 
+  <LoginComponent class="absolute right-0 sm:right-10 lg:right-32" v-show="showLogin"/> 
   <div>
   <NuxtLayout>
       <NuxtPage/>
@@ -39,7 +39,7 @@ function toggleLogin() {
 <style>
 
 .header {
-  @apply bg-slate-800 flex justify-between items-center shadow-lg sm:mx-20; 
+  @apply bg-slate-800 flex justify-between items-center shadow-lg sm:mx-10 lg:mx-32; 
 }
 
 .header-icon {

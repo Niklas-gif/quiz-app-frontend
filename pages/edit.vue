@@ -19,7 +19,7 @@ const newQuiz = ref<Quiz|null>(null)
 onMounted(async () => {
     isLoading.value = true
     try {
-      const response = await fetch(`http://localhost:3030/quizzes/${route.query.currentQuiz}`)
+      const response = await fetch(`http://localhost:3030/quizzes/${route.query.currentQuiz}`) //import.meta.env.VITE_ADDRESS
       data.value = await response.json()
       newQuiz.value = data.value[0]
     } catch(error) {

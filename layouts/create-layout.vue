@@ -123,7 +123,7 @@ async function submitQuiz() {
 
 <style scoped>
 .content  {
-    @apply text-white flex flex-col justify-center items-center bg-gray-700 bg-opacity-75 rounded-none py-5 sm:mx-20 sm:rounded-b-xl;
+    @apply text-white flex flex-col h-svh  items-center bg-gray-700 bg-opacity-75 rounded-none py-5 sm:mx-10 lg:mx-32 sm:rounded-b-xl;
   }
 
 .input {
