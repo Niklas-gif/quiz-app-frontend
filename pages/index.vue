@@ -1,7 +1,7 @@
 <template>
     <div class="content" :class="{'listopen': !showList}">
-      <h1 v-show="!showList" class="self-center text-3xl font-bold">Welcome to Quiz World!</h1>
       <div class="flex flex-col lg:flex-row">
+        <h1 v-show="!showList" class="self-center text-3xl font-bold">Welcome to Quiz World!</h1>
           <div class="flex flex-row">  
             <div v-show="!showList" class="flex flex-col p-5">
                 <PlayButton class="self-center" @click="toggleList"></PlayButton>
@@ -57,7 +57,7 @@ function toggleDebug() {
 
 <style scoped>
 .content {
-    @apply text-white flex flex-row items-center bg-gray-700 bg-opacity-75 rounded-none sm:mx-20 sm:rounded-b-xl;
+    @apply h-svh text-white flex flex-row items-center bg-gray-700 bg-opacity-75 rounded-none sm:mx-20 sm:rounded-b-xl;
   }
 
 .content.listopen {
