@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="container">
         <input class="input m-2" placeholder="Name of your quiz" v-model="newQuiz.name">
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>
@@ -102,7 +102,7 @@ function removeAnswer(question: Question, answerToRemove: Answer) {
 </script>
 
 <style scoped>
-.content  {
+.container  {
     @apply text-white flex flex-col justify-center items-center sm:m-20 ;
   }
 
