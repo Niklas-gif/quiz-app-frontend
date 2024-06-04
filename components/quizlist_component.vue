@@ -54,27 +54,6 @@ function selectQuiz(quiz: Quiz) {
   currentQuizzes.value = currentQuizzes.value.filter(quiz => { quizToDelete == quiz })
 }*/
 
-async function deleteQuiz(quiz: Quiz) {
-  try {
-    const token = localStorage.getItem('Bearer')
-    const response = await fetch('http://localhost:3030/delete', {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(quiz)
-    })
-    if (response.ok) {
-      console.log(response);
-      //removeQuizFromList(selectedQuiz.value)
-      selectedQuiz.value = currentQuizzes.value[0]
-    }
-  } catch (error) {
-    console.error('Error sending quiz data:', error);
-  }
-}
-
 </script>
 
 <style scoped>

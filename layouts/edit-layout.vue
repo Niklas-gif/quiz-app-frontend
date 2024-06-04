@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import type { Quiz } from '~/types/quiz';
+const runtimeConfig = useRuntimeConfig()
 
 const attributes= useAttrs() as any
 const newQuiz: Ref<Quiz> = ref<Quiz>({
@@ -26,7 +27,7 @@ onBeforeMount(()=>{
 async function submitQuiz() {
     try {
         const token = localStorage.getItem('Bearer')
-        const response = await fetch('http://localhost:3030/update', {
+        const response = await fetch(`${runtimeConfig.public.BACKEND_URL}update`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

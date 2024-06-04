@@ -51,7 +51,7 @@ import type { Quiz } from '~/types/quiz';
 import type { Question } from '~/types/question';
 import type { Answer } from '~/types/answer';
 import IconTrash from "assets/icons/icon_trash.vue"
-
+const runtimeConfig = useRuntimeConfig()
 const attributes= useAttrs() as any
 const newQuiz: Ref<Quiz> = ref<Quiz>({
     _id: "",
@@ -103,7 +103,7 @@ async function submitQuiz() {
     addQuestions()
     try {
         const token = localStorage.getItem('Bearer')
-        const response = await fetch('http://localhost:3030/add', {
+        const response = await fetch(`${runtimeConfig.public.BACKEND_URL}add`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
