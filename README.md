@@ -1,8 +1,21 @@
-# Nuxt 3 Minimal Starter
+# Quiz-app
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## How to run
 
-## Setup
+### Run with docker
+
+```cd docker```\
+```docker-compose up --build```
+
+### Create Admin for testing
+
+Just visit "localhost:3030/admin" this will create a admin login for testing.\
+Email    -> fake@mail.com\
+Password -> Password1
+
+
+
+### Setup
 
 Make sure to install the dependencies:
 
@@ -20,7 +33,7 @@ yarn install
 bun install
 ```
 
-## Development Server
+### Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -38,7 +51,7 @@ yarn dev
 bun run dev
 ```
 
-## Production
+### Production
 
 Build the application for production:
 
@@ -72,4 +85,6 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Link to backend
+
+https://github.com/Niklas-gif/quiz-app-backend

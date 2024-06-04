@@ -1,21 +1,31 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.nuxt
-    ports:
-      - "3000:80"
-
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile.go
+    container_name: go-backend
     ports:
       - "3030:3030"
+    depends_on:
+      - mongo
 
-  mongodb:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: nuxt-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+      
+  mongo:
     image: mongodb/mongodb-community-server
+    container_name: mongodbquizapp
     ports:
       - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
