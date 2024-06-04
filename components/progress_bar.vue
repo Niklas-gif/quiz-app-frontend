@@ -18,7 +18,7 @@ const props = defineProps<({
 
 <style scoped>
 .progress-bar-container {
-    width: 50%;
+    width: 75%;
     height: 20px;
     background-color: #707070; 
     border-radius: 4px;

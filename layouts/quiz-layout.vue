@@ -1,12 +1,16 @@
 <template>
   <div class="content">
-    <p v-if="!gameIsRunning"> GAME OVER!</p>
-    <p>{{ attributes.quiz.name }}</p>
-    <p>Question {{ index+1 }} from {{ attributes.quiz.questions.length }}</p>
+    <div class="flex justify-between">
+    <p class="quiz-title">{{ attributes.quiz.name }}</p>
+    <p class="quiz-count">Question:{{ index+1 }} from:{{ attributes.quiz.questions.length }}</p>
+  </div>
+  <div class="game-container">
+    <p class="quiz-title" v-if="!gameIsRunning"> GAME OVER!</p>
     <ProgressBar :progress="progress"></ProgressBar>
     <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
       :description="currentQuesiton.description" @answerSelected="selectCard">
     </QuestionComponent>
+  </div>
   </div>
 
 </template>
@@ -91,7 +95,17 @@ function nextQuestion() {
 </script>
 
 <style scoped>
+.quiz-title {
+  @apply font-bold text-xl text-sky-300 mx-5 my-2
+}
+
+.quiz-count {
+  @apply font-bold text-xl text-sky-300 mx-5  my-2
+}
 .content {
-  @apply flex flex-col h-svh justify-center items-center text-white bg-gray-700 bg-opacity-75 rounded-b-xl py-5 sm:mx-10 lg:mx-32;
+  @apply flex flex-col h-svh text-white bg-gray-700 bg-opacity-75 rounded-b-xl py-5 sm:mx-10 lg:mx-32;
+}
+.game-container {
+  @apply flex flex-col justify-start items-center
 }
 </style>

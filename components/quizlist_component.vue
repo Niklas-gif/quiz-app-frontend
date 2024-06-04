@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row h-svh">
     <Transition :name="transitionName">
-    <div v-if="isVisible" class="list-container">
+    <nav v-if="isVisible" class="list-container">
       <ul class="list">
         <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
           :class="{ 'selected': quiz == selectedQuiz }">
@@ -10,7 +10,7 @@
       </ul>
       <div class="flex flex-col p-5 justify-center">
       </div>
-    </div>
+    </nav>
   </Transition>
   <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"><IconForward/></button>
     <DetailComponent :quiz="selectedQuiz"></DetailComponent>
@@ -80,7 +80,7 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .list-container {
-  @apply flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl;
+  @apply flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl sm:max-w-72  max-w-32 truncate;
 }
 
 .list {
