@@ -1,12 +1,46 @@
+import type { NuxtApp } from "#app";
 import type { Quiz } from "./types/quiz";
 
-class NetworkService {
-    runtimeConfig = useRuntimeConfig()
+export class NetworkService {
+    private runtimeConfig = useRuntimeConfig()
+    private nuxt: NuxtApp;
+
+    constructor(nuxt: NuxtApp) {
+        this.nuxt = nuxt;
+    }
 
     async getQuizzes() {
         try {
-            const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes`) //TODO: Replace with env.
-            return await response.json()
+            const { data, error } = await useFetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes`, {
+                key: 'quiz-cache', // This key will be used to identify the cached data
+                getCachedData: (key) => {
+                  // Check if the data is already cached in the Nuxt payload
+                  if (this.nuxt.isHydrating && this.nuxt.payload.data[key]) {
+                    console.log("is cached")
+                    return this.nuxt.payload.data[key]
+                  }
+              
+                  // Check if the data is already cached in the static data
+                  if (this.nuxt.static.data[key]) {
+                    console.log("is cached static")
+                    return this.nuxt.static.data[key]
+                  }
+              
+                  return null
+                },
+              })
+              
+              if (!data.value) {
+                // The data was not cached, so fetch it from the server
+                //await refresh()
+                const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes`)
+                return await response.json()
+              } else {
+                // The data was cached, so use it
+                console.log('Using cached data:', data.value)
+                return data.value
+              }
+              
           } catch(error) {
             console.log(error)
           }

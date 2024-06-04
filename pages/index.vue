@@ -28,16 +28,20 @@
   import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
+  import { NetworkService } from '~/NetworkService';
+  import { useNuxtApp } from '#app';
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)
   const debug = ref(false)
+  const nuxtApp = useNuxtApp();
+
+  const networkService =  new NetworkService(nuxtApp)
   
   onMounted(async () => {
     isLoading.value = true
     try {
-      const response = await fetch('http://localhost:3030/quizzes') //TODO: Replace with env.
-      data.value = await response.json()
+      data.value = await networkService.getQuizzes() as any
     } catch(error) {
       console.log(error)
     }
