@@ -2,12 +2,12 @@
 
   <div v-if="isRevealed">
     <div v-if="isCorrect">
-      <div class="answer isCorrect">
+      <div class="answer isCorrect" :class="{ 'isCorrect isSelected': props.isSelected}">
         <p class="md:break-all">{{ props.description }}</p>
       </div>
     </div>
     <div v-else>
-      <div class="answer isFalse">
+      <div class="answer isFalse" :class="{ 'isFalse isSelected': props.isSelected}">
         <p class="md:break-all">{{ props.description }}</p>
       </div>
     </div>
@@ -63,9 +63,16 @@
   .answer.isCorrect {
     @apply bg-green-400 border-0 animate-pulse;
   }
+  .answer.isCorrect.isSelected {
+    @apply bg-green-900 border-0 animate-pulse;
+  }
   
   .answer.isFalse {
     @apply bg-red-500 border-0 animate-pulse;
+  }
+
+  .answer.isFalse.isSelected {
+    @apply bg-red-900 border-0 animate-pulse;
   }
 
   .answer.isDisabled {
