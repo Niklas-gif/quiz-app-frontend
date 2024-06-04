@@ -3,7 +3,7 @@
         <input class="input m-2" placeholder="Name of your quiz" v-model="newQuiz.name">
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>
-        <div class="grid grid-cols-1 lg:grid-cols-3 space-x-5">
+        <div class="grid grid-cols-1 lg:grid-cols-3 lg:space-x-5">
         <div v-for="question in newQuestions" class="question-box">
             <div class="flex flex-row">
                 <input class="input-container" placeholder="Question description" v-model="question.description">

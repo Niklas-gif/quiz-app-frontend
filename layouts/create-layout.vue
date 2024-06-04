@@ -3,7 +3,7 @@
         <input class="input m-2" placeholder="Name of your quiz" v-model="newQuiz.name">
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>
-        <div class="grid grid-cols-1 lg:grid-cols-3 space-x-5">
+        <div class="grid grid-cols-1 lg:grid-cols-3 lg:space-x-5">
         <div v-for="question in newQuestions" class="flex flex-col bg-slate-900 rounded-lg p-5 mb-5 space-y-5">
             <div class="flex flex-row">
                 <input class="input" placeholder="Question description" v-model="question.description">
@@ -123,7 +123,7 @@ async function submitQuiz() {
 
 <style scoped>
 .content  {
-    @apply text-white flex flex-col h-svh  items-center bg-gray-700 bg-opacity-75 rounded-none py-5 sm:mx-10 lg:mx-32 sm:rounded-b-xl;
+    @apply text-white flex flex-col items-center bg-gray-700 bg-opacity-75 rounded-none py-5 sm:mx-10 lg:mx-32 sm:rounded-b-xl;
   }
 
 .input {
