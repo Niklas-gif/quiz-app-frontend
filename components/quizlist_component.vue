@@ -1,21 +1,24 @@
 <template>
   <div class="flex flex-row h-svh">
     <Transition :name="transitionName">
-    <nav v-if="isVisible" class="list-container">
-      <ul class="list">
-        <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
-          :class="{ 'selected': quiz == selectedQuiz }">
-          {{ quiz.name }}
-        </li>
-      </ul>
-      <div class="flex flex-col p-5 justify-center">
-      </div>
-    </nav>
-  </Transition>
-  <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"><IconForward/></button>
+      <nav v-if="isVisible" class="list-container">
+        <div class="scrollable-list">
+          <ul class="list">
+            <li v-for="(quiz, index) in currentQuizzes" :key="index" @click="selectQuiz(quiz)" class="item"
+              :class="{ 'selected': quiz == selectedQuiz }">
+              {{ quiz.name }}
+            </li>
+          </ul>
+        </div>
+        <div class="flex flex-col p-5 justify-center">
+        </div>
+      </nav>
+    </Transition>
+    <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"><IconForward/></button>
     <DetailComponent :quiz="selectedQuiz"></DetailComponent>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { type Quiz } from "../types/quiz"
@@ -76,31 +79,27 @@ async function deleteQuiz(quiz: Quiz) {
 
 <style scoped>
 .quiz-heading {
-  @apply text-3xl text-sky-300 font-bold truncate
+  @apply text-3xl text-sky-300 font-bold truncate;
 }
 
 .list-container {
-  @apply flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl sm:max-w-72  max-w-32 truncate;
+  @apply flex flex-row bg-slate-900 bg-opacity-50 rounded-bl-xl sm:max-w-72 max-w-32 truncate;
+}
+
+.scrollable-list {
+  @apply overflow-y-auto max-h-screen;
 }
 
 .list {
   @apply sm:m-5;
 }
 
-/*.item {
- @apply  p-2 text-white bg-sky-500 hover:bg-sky-400 border-b-sky-700 border-b-2 hover:cursor-pointer;
-}*/
-
 .item {
   @apply p-2 text-white hover:text-sky-400 border-l-sky-700 hover:border-l-sky-300 border-l-2 hover:cursor-pointer;
 }
 
-/*.item.selected {
-  @apply bg-sky-700 hover:bg-sky-600
-}*/
-
 .item.selected {
-  @apply text-sky-400 border-l-sky-400
+  @apply text-sky-400 border-l-sky-400;
 }
 
 .info-container {

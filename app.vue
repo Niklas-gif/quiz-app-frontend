@@ -1,15 +1,18 @@
 <template>
   <div>
   <header class="header">
+    <nav>
     <NuxtLink  to="/"> 
         <button>
           <IconHome class="icon-header"></IconHome>
         </button>
     </NuxtLink>
-    
+  </nav>
+  <nav>
     <button  @click="toggleLogin">
       <IconLogin class="icon-header"></IconLogin>
     </button>
+  </nav>
   </header>
   <LoginComponent class="absolute right-0 sm:right-10 lg:right-32" v-show="showLogin"/> 
   <div>
@@ -23,8 +26,8 @@
 <script setup lang="ts">
 import IconLogin from "assets/icons/icon_login.vue"
 import IconHome from "assets/icons/icon_home.vue"
+import { provide } from "vue";
 const showLogin = ref(false)
-
 function toggleLogin() {
   showLogin.value = !showLogin.value
 }

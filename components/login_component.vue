@@ -7,6 +7,7 @@
                 <!--<button @click="login" class="login_button">Login</button>-->
             </form>
             <button @click="login" class="login-button">Login</button>
+            <input class="m-2" type="checkbox" v-model="saveLogin">Remember Login?</input>
         </div>
         <div v-show="isLogedIn">
             <button  @click="logout" class="logout-button">Logout</button>
@@ -20,6 +21,7 @@ import type { User } from '~/types/user';
 const isLogedIn = ref(false)
 const email = ref("")
 const password = ref("")
+const saveLogin = ref(false)
 
 
 onMounted(()=> {
@@ -27,6 +29,9 @@ onMounted(()=> {
         isLogedIn.value = true
     } else {
         isLogedIn.value = false
+    }
+    if(localStorage.getItem("Auth") != null) {
+        //TODO
     }
 })
 
