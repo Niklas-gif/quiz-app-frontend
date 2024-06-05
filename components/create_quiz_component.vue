@@ -58,29 +58,28 @@ const props = defineProps<({
 const emits = defineEmits(['quizChanged'])
 const newQuestions: Ref<Question[]> = ref([])
 
-  onMounted(()=>{
-    if(props.quiz != null && props.quiz.questions != null) {
-        newQuiz.value = props.quiz
-        newQuestions.value = props.quiz.questions
-    } else {
-        console.log("Props failed")
-    }
-  })
+onMounted(()=>{
+  if(props.quiz != null && props.quiz.questions != null) {
+      newQuiz.value = props.quiz
+      newQuestions.value = props.quiz.questions
+  } else {
+      console.log("Props failed")
+  }
+})
 
-    function createQuestion() {
-        newQuestions.value.push ({
-            description: "",
-            is_multiple_choice: false,
-            answers: [],
-        })
-    }
-
-    function addQuestions() {
-    newQuestions.value.forEach(question => {
-        newQuiz.value.questions.push(question)
+function createQuestion() {
+    newQuestions.value.push ({
+        description: "",
+        is_multiple_choice: false,
+        answers: [],
     })
-    //newQuestions.value = []
 }
+
+    //TODO Fallback incase the quiz cant be send to the backen
+function saveQuizToLocalStorage(quiz: Quiz) {
+    localStorage.setItem("NewQuiz",JSON.stringify(quiz))
+}
+
 
 function removeQuestion(questionToRemove: Question) {
     newQuestions.value = newQuestions.value.filter(question => question !== questionToRemove)

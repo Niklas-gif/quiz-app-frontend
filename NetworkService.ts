@@ -25,12 +25,12 @@ export class NetworkService {
                     console.log("is cached static")
                     return this.nuxt.static.data[key]
                   }
-              
-                  return null
+                  //return null
                 },
               })
               
               if (!data.value) {
+                console.log("not chached fetch again")
                 // The data was not cached, so fetch it from the server
                 //await refresh()
                 const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes`)
@@ -71,6 +71,7 @@ export class NetworkService {
             }
         } catch (error) {
             console.error('Error sending quiz data:', error);
+            throw error
         }
     }
 
