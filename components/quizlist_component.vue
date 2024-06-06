@@ -15,7 +15,7 @@
       </nav>
     </Transition>
     <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"><IconForward/></button>
-    <DetailComponent :quiz="selectedQuiz"></DetailComponent>
+    <DetailComponent @delete-quiz="removeQuizFromList" :quiz="selectedQuiz"></DetailComponent>
   </div>
 </template>
 
@@ -50,9 +50,9 @@ function selectQuiz(quiz: Quiz) {
   selectedQuiz.value = quiz
 }
 
-/*function removeQuizFromList(quizToDelete: Quiz) {
-  currentQuizzes.value = currentQuizzes.value.filter(quiz => { quizToDelete == quiz })
-}*/
+function removeQuizFromList(quizToDelete: Quiz) {
+  currentQuizzes.value = currentQuizzes.value.filter(quiz => quizToDelete._id !== quiz._id);
+}
 
 </script>
 

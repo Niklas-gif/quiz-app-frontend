@@ -29,6 +29,8 @@ const props = defineProps<({
   return props.quiz.questions.length
 })
 
+const emits = defineEmits(['deleteQuiz'])
+
 //TODO
 async function deleteQuiz(quiz: Quiz) {
   try {
@@ -42,9 +44,8 @@ async function deleteQuiz(quiz: Quiz) {
       body: JSON.stringify(quiz)
     })
     if (response.ok) {
-      console.log(response);
-      //removeQuizFromList(selectedQuiz.value)
-      //selectedQuiz.value = currentQuizzes.value[0]
+      console.log(response)
+      emits('deleteQuiz',quiz)
     }
   } catch (error) {
     console.error('Error sending quiz data:', error);
