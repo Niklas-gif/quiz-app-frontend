@@ -75,12 +75,6 @@ function createQuestion() {
     })
 }
 
-    //TODO Fallback incase the quiz cant be send to the backen
-function saveQuizToLocalStorage(quiz: Quiz) {
-    localStorage.setItem("NewQuiz",JSON.stringify(quiz))
-}
-
-
 function removeQuestion(questionToRemove: Question) {
     newQuestions.value = newQuestions.value.filter(question => question !== questionToRemove)
     newQuiz.value.questions = newQuestions.value
