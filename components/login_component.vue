@@ -1,15 +1,15 @@
 <template>
     <div class="content">
-        <div v-show="!isLogedIn">
+        <div v-if="responseText !== null">{{ responseText }}</div>
+        <div v-show="!isLogedin">
             <form class="form" action="post">
                 <input class="input" placeholder="email" type="email" v-model="email">
                 <input class="input" placeholder="password" type="password" v-model="password">
-                <!--<button @click="login" class="login_button">Login</button>-->
             </form>
             <button @click="login" class="login-button">Login</button>
-            <input class="m-2" type="checkbox" v-model="saveLogin">Remember Login?</input>
+            <input class="m-2" type="checkbox" :value="saveLogin" v-model="saveLogin" @click="toggleSaveLoginInfo()">Remember Login?</input>
         </div>
-        <div v-show="isLogedIn">
+        <div v-show="isLogedin">
             <button  @click="logout" class="logout-button">Logout</button>
         </div>
     </div>
@@ -18,24 +18,40 @@
 <script setup lang="ts">
 import type { User } from '~/types/user';
 
-const isLogedIn = ref(false)
+const isLogedin = ref(false)
 const email = ref("")
 const password = ref("")
 const saveLogin = ref(false)
+const responseText: Ref<string|null> = ref(null)
 
 
 onMounted(()=> {
     if(localStorage.getItem("Bearer") != null){
-        isLogedIn.value = true
+        isLogedin.value = true
     } else {
-        isLogedIn.value = false
+        isLogedin.value = false
     }
-    if(localStorage.getItem("Auth") != null) {
-        //TODO
-    }
+   saveLogin.value = JSON.parse(localStorage.getItem("SaveLogin")!) ?? false
+   if(saveLogin.value) {
+    email.value = localStorage.getItem("email")!
+    password.value = localStorage.getItem("password")!
+   }
 })
 
+function toggleSaveLoginInfo() {
+    localStorage.setItem("SaveLogin",!saveLogin.value as any)
+    saveLogin.value = JSON.parse(localStorage.getItem("SaveLogin")!) ?? false
+    if(saveLogin.value) {
+    localStorage.setItem("email",email.value)
+    localStorage.setItem("password",password.value)
+   } else {
+    localStorage.removeItem("email")
+    localStorage.removeItem("password")
+   }
+}
+
 async function login() {
+    console.log("Login")
     try {
         const response = await fetch('http://localhost:3030/login', {
             method: 'POST',
@@ -43,25 +59,32 @@ async function login() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                <User> {
-                id: 1,
-                email: email.value,
-                password: password.value,
-            })
+                <User>{
+                    id: 1,
+                    email: email.value,
+                    password: password.value,
+                })
         })
         if (response.ok) {
             const jsonResponse = await response.json()
-            localStorage.setItem("Bearer",jsonResponse.token)
-            isLogedIn.value = true
+            localStorage.setItem("Bearer", jsonResponse.token)
+            isLogedin.value = true
+            responseText.value = null
         }
     } catch (error) {
-        console.error('Error sending quiz data:', error)
+        //TODO FIX ERROR HANDLING
+        console.error('Login failed:', error)
+        responseText.value = "Password or Email is invalid."
+    }
+    if (saveLogin.value) {
+        localStorage.setItem("email", email.value)
+        localStorage.setItem("password", password.value)
     }
 }
 
 function logout() {
     localStorage.removeItem("Bearer")
-    isLogedIn.value = false
+    isLogedin.value = false
 }
 
 </script>
