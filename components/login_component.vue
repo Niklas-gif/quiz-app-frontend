@@ -51,7 +51,6 @@ function toggleSaveLoginInfo() {
 }
 
 async function login() {
-    console.log("Login")
     try {
         const response = await fetch('http://localhost:3030/login', {
             method: 'POST',
