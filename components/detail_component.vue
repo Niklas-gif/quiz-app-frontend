@@ -19,7 +19,9 @@
 </template>
 
 <script setup lang="ts">
+import { NetworkService } from '~/NetworkService';
 import type { Quiz } from '~/types/quiz';
+const networkService = new NetworkService(useNuxtApp())
 
 const props = defineProps<({
     quiz: Quiz,
@@ -31,22 +33,12 @@ const props = defineProps<({
 
 const emits = defineEmits(['deleteQuiz'])
 
-//TODO
-async function deleteQuiz(quiz: Quiz) {
+
+function deleteQuiz(quiz: Quiz) {
   try {
-    const token = localStorage.getItem('Bearer')
-    const response = await fetch('http://localhost:3030/delete', {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(quiz)
-    })
-    if (response.ok) {
-      console.log(response)
-      emits('deleteQuiz',quiz)
-    }
+    networkService.deleteQuiz(quiz)
+    emits('deleteQuiz',quiz)
+    
   } catch (error) {
     console.error('Error sending quiz data:', error);
   }

@@ -67,7 +67,7 @@ export class NetworkService {
                 body: JSON.stringify(quiz)
             })
             if (response.ok) {
-                console.log(response);
+               console.log(response);
             }
         } catch (error) {
             console.error('Error sending quiz data:', error);
@@ -107,8 +107,6 @@ export class NetworkService {
             })
             if (response.ok) {
               console.log(response);
-              //removeQuizFromList(selectedQuiz.value)
-              //selectedQuiz.value = currentQuizzes.value[0]
             }
           } catch (error) {
             console.error('Error sending quiz data:', error);

@@ -27,7 +27,7 @@ function saveQuizToLocalStorage(quiz: Quiz) {
     localStorage.setItem("NewQuiz",JSON.stringify(quiz))
 }
 
-async function submitQuiz(quiz: Quiz) {
+function submitQuiz(quiz: Quiz) {
     try {
        networkService.addQuiz(quiz);
         

@@ -1,14 +1,15 @@
 <template>
     <div class="content">
         <CreateQuizComponent :quiz="newQuiz" :quiz-changed="newQuiz"></CreateQuizComponent>
-        <button class="submit-button" @click="submitQuiz">Submit Changes</button>
+        <button class="submit-button" @click="submitQuiz(newQuiz)">Submit Changes</button>
     </div>
 
 </template>
 
 <script setup lang="ts">
+import { NetworkService } from '~/NetworkService';
 import type { Quiz } from '~/types/quiz';
-const runtimeConfig = useRuntimeConfig()
+const networkService = new NetworkService(useNuxtApp())
 
 const attributes= useAttrs() as any
 const newQuiz: Ref<Quiz> = ref<Quiz>({
@@ -24,20 +25,9 @@ onBeforeMount(()=>{
     }
 })
 
-async function submitQuiz() {
+function submitQuiz(quiz: Quiz) {
     try {
-        const token = localStorage.getItem('Bearer')
-        const response = await fetch(`${runtimeConfig.public.BACKEND_URL}update`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newQuiz.value)
-        })
-        if (response.ok) {
-            console.log(response);
-        }
+       networkService.updateQuiz(quiz)
     } catch (error) {
         console.error('Error sending quiz data:', error);
     }

@@ -30,17 +30,12 @@ const props = defineProps<({
   quizzes: Array<Quiz>,
 })>()
 
-//const visibleItems = ref(Array(props.quizzes.length).fill(false));
 const selectedQuiz: Ref<Quiz> = ref(props.quizzes[0])
 const currentQuizzes: Ref<Quiz[]> = ref(props.quizzes)
 const isVisible = ref(true)
 
 const transitionName = computed(() => isVisible.value ? 'slide-right' : 'slide-left')
 
-//TODO Delete quiz for the current state!!!
-/*function toggleDetails(index: number) {
-  visibleItems.value[index] = ! visibleItems.value[index]
-}*/
 
 function toggleVisibility() {
   isVisible.value = !isVisible.value
