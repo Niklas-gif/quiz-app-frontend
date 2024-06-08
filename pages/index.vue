@@ -18,13 +18,14 @@
       <div v-if="showList">
         <IconLoading v-if="isLoading"></IconLoading>
         <QuizListComponent v-else :quizzes="data" />
+        <FabButton></FabButton>
       </div>
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-
+  import FabButton from '~/components/fab_create_button.vue'
   import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
