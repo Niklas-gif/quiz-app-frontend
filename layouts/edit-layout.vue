@@ -3,7 +3,6 @@
         <CreateQuizComponent :quiz="newQuiz" :quiz-changed="newQuiz"></CreateQuizComponent>
         <button class="submit-button" @click="submitQuiz(newQuiz)">Submit Changes</button>
     </div>
-
 </template>
 
 <script setup lang="ts">

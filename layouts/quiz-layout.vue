@@ -24,6 +24,7 @@ import { provide } from 'vue';
 
 const attributes = useAttrs() as any
 const revealAnswers = ref(false)
+const correctQuestions = ref(0)
 
 //gets injected in answer components
 provide('revealAnswers', revealAnswers)
@@ -61,7 +62,7 @@ function startRound() {
   const interval = setInterval(() => {
     if (progress.value != 0) {
       progress.value -= 1
-    } else if(gameIsRunning.value) {
+    } else if (gameIsRunning.value) {
       roundIsRunning.value = false
       submitAnswer()
       clearInterval(interval)
@@ -73,6 +74,7 @@ function submitAnswer() {
   //We wait for 5 seconds after the round has ended!
   if (gameIsRunning.value) {
     revealAnswers.value = true
+    countCorrectAnswers()
     setTimeout(() => {
       selectedAnswers.value = []
       nextQuestion()
@@ -90,6 +92,18 @@ function nextQuestion() {
     gameIsRunning.value = false
     console.log("Gameover")
   }
+}
+
+function countCorrectAnswers() {
+  let tmp = correctQuestions.value
+  for (const answer of selectedAnswers.value) {
+    if(answer.is_correct) {
+      correctQuestions.value += 1
+    } else {
+      correctQuestions.value = tmp
+    }
+  }
+  console.log(`Correct Questions: ${correctQuestions.value}`)
 }
 
 </script>

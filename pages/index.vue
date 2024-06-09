@@ -1,5 +1,4 @@
 <template>
-  <!--<div class="content" :class="{ 'listopen': !showList }">-->
   <div class="content" :class="{ 'listopen': showList }">
     <h1 v-show="!showList" class="text-3xl font-bold my-5">Welcome to Quiz World!</h1>
     <div class="button-container">
