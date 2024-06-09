@@ -1,19 +1,25 @@
 # Quiz-app
+WIP!
 
 ## How to run
 
 ### Run with docker
 
-```cd docker```\
-```docker-compose up --build```
+```bash
+# Navigate to the docker folder
+cd docker
 
-### Create Admin for testing
+# Build the containers
+docker-compose up --build
+```
 
-Just visit "localhost:3030/admin" this will create a admin login for testing.\
+### Admin account credentials for testing
+
 Email    -> fake@mail.com\
 Password -> Password1
 
 
+## If you dont want to use docker
 
 ### Setup
 
