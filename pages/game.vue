@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import type { Quiz } from '../types/quiz'
-import { useRoute } from 'vue-router'
 import { NetworkService } from '~/NetworkService'
 import { ToastService } from '~/ToastService'
 

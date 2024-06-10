@@ -27,9 +27,9 @@
   import FabButton from '~/components/fab_create_button.vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
-  import { NetworkService } from '~/NetworkService';
-  import 'vue-toast-notification/dist/theme-sugar.css';
-  import { ToastService } from '~/ToastService';
+  import { NetworkService } from '~/NetworkService'
+  import 'vue-toast-notification/dist/theme-sugar.css'
+  import { ToastService } from '~/ToastService'
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)

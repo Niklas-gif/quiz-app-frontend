@@ -15,9 +15,6 @@
 
 <script setup lang="ts">
 import type { Quiz } from '~/types/quiz';
-
-const route = useRoute()
-const data = ref()
 const isLoading = ref(false)
 const newQuiz = ref<Quiz|null>(null)
 
