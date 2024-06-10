@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import QuestionComponent from '~/components/question_component.vue'
-import ProgressBar from '~/components/progress_bar.vue'
+import QuestionComponent from '~/components/game_components/question_component.vue'
+import ProgressBar from '~/components/game_components/progress_bar.vue'
 import { type Answer } from '~/types/answer'
 import { type Question } from '~/types/question'
 import { provide } from 'vue';
