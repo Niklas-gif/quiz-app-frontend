@@ -17,7 +17,7 @@
 
 import { defineProps } from 'vue'
 import AnswerComponent from './answer_component.vue'
-import {type Answer} from '../types/answer'
+import {type Answer} from '~/types/answer'
 
 const props = defineProps<({
     description: string,
