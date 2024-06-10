@@ -71,11 +71,13 @@ async function login() {
             responseText.value = null
         }
     } catch (error) {
-        //TODO FIX ERROR HANDLING
-        console.error('Login failed:', error)
+        //TODO still needs fixing
+        const errorMessage = await error
+        console.error('Login failed:',errorMessage)
         responseText.value = "Password or Email is invalid."
     }
     if (saveLogin.value) {
+        //This is just temporally use secure cookie / session
         localStorage.setItem("email", email.value)
         localStorage.setItem("password", password.value)
     }

@@ -30,11 +30,15 @@
   import IconLoading from "assets/icons/icon_loading.vue"
   import { NetworkService } from '~/NetworkService';
   import { useNuxtApp } from '#app';
+  import {useToast} from 'vue-toast-notification';
+  import 'vue-toast-notification/dist/theme-sugar.css';
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)
   const debug = ref(false)
   const nuxtApp = useNuxtApp();
+  const $toast = useToast();
+  //
 
   const networkService =  new NetworkService(nuxtApp)
   
@@ -43,7 +47,11 @@
     try {
       data.value = await networkService.getQuizzes() as any
     } catch(error) {
-      console.log(error)
+      let instance = $toast.error('Server is not available!')
+      setTimeout(()=>{
+        instance.dismiss()
+        $toast.clear()
+      },5000)
     }
     isLoading.value = false
   })

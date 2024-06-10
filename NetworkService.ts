@@ -42,7 +42,7 @@ export class NetworkService {
               }
               
           } catch(error) {
-            console.log(error)
+            throw error
           }
     }
 
