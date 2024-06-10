@@ -14,7 +14,10 @@
         </div>
       </nav>
     </Transition>
-    <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()"><IconForward/></button>
+    <button class="bg-slate-900 bg-opacity-50" @click="toggleVisibility()">
+      <IconForward v-if="isVisible"/>
+      <IconBackward v-else/>
+    </button>
     <DetailComponent @delete-quiz="removeQuizFromList" :quiz="selectedQuiz"></DetailComponent>
   </div>
 </template>

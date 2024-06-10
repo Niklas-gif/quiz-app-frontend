@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink to="/create" class="fab-button">
+    <NuxtLink to="/create" class="fab-button" title="Create your own new Quiz!">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -31,8 +31,6 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
-  
   .icon {
     width: 24px;
     height: 24px;
