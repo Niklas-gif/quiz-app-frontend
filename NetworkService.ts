@@ -46,7 +46,7 @@ export class NetworkService {
           }
     }
 
-    async getQuiz(quiz:Quiz,route:string) {
+    async getQuiz(route:string) {
         try {
             const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes/${route}`)
             return await response.json()

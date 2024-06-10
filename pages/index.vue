@@ -33,7 +33,7 @@
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)
-  const nuxtApp = useNuxtApp();
+  const nuxtApp = useNuxtApp()
   const networkService =  new NetworkService(nuxtApp)
   const toastService = new ToastService()
   
