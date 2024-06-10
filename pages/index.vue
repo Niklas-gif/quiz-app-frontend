@@ -19,6 +19,24 @@ enum Layouts {
 const currentLayout = ref(Layouts.index)
 const router = useRouter()
 
+onBeforeMount(()=>{
+  hanldeRoute()
+})
+
+function hanldeRoute() {
+  switch (currentLayout.value) {
+    case Layouts.index: 
+    router.push("/")
+    break
+    case Layouts.create:
+    router.push("/create")
+    break
+    case Layouts.edit:
+    router.push("/edit")
+    break
+  }
+}
+
 
 </script>
 
