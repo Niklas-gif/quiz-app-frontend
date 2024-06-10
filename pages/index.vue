@@ -25,33 +25,24 @@
 
 <script setup lang="ts">
   import FabButton from '~/components/fab_create_button.vue'
-  import { ref } from 'vue'
   import QuizListComponent from '~/components/quizlist_component.vue'
   import IconLoading from "assets/icons/icon_loading.vue"
   import { NetworkService } from '~/NetworkService';
-  import { useNuxtApp } from '#app';
-  import {useToast} from 'vue-toast-notification';
   import 'vue-toast-notification/dist/theme-sugar.css';
+  import { ToastService } from '~/ToastService';
   const data  = ref([])
   const isLoading  = ref(true)
   const showList = ref(false)
-  const debug = ref(false)
   const nuxtApp = useNuxtApp();
-  const $toast = useToast();
-  //
-
   const networkService =  new NetworkService(nuxtApp)
+  const toastService = new ToastService()
   
   onMounted(async () => {
     isLoading.value = true
     try {
       data.value = await networkService.getQuizzes() as any
     } catch(error) {
-      let instance = $toast.error('Server is not available!')
-      setTimeout(()=>{
-        instance.dismiss()
-        $toast.clear()
-      },5000)
+      toastService.serverUnavailable()
     }
     isLoading.value = false
   })
@@ -59,11 +50,6 @@
 function toggleList() {
     showList.value = !showList.value
 }
-
-function toggleDebug() {
-  debug.value = !debug.value
-}
-
 </script>
 
 <style scoped>

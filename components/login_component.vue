@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import { ToastService } from '~/ToastService';
 import type { User } from '~/types/user';
 
 const isLogedin = ref(false)
@@ -23,6 +24,7 @@ const email = ref("")
 const password = ref("")
 const saveLogin = ref(false)
 const responseText: Ref<string|null> = ref(null)
+const toastService = new ToastService()
 
 
 onMounted(()=> {
@@ -69,12 +71,15 @@ async function login() {
             localStorage.setItem("Bearer", jsonResponse.token)
             isLogedin.value = true
             responseText.value = null
+            toastService.displaySuccessLogin()
+        } else {
+            
+            const errorText = await response.text();
+            throw new Error(`Server responded with ${response.status}: ${errorText}`);
         }
     } catch (error) {
         //TODO still needs fixing
-        const errorMessage = await error
-        console.error('Login failed:',errorMessage)
-        responseText.value = "Password or Email is invalid."
+       toastService.wrongLoginCredentials()
     }
     if (saveLogin.value) {
         //This is just temporally use secure cookie / session
