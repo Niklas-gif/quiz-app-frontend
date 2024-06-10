@@ -35,6 +35,7 @@ const progress = ref(100)
 const index = ref(0)
 const gameIsRunning = ref(true)
 const roundIsRunning = ref(true)
+let interval: ReturnType<typeof setInterval> 
 
 function selectCard(answer: Answer) {
   if (!roundIsRunning.value) {
@@ -50,16 +51,22 @@ function selectCard(answer: Answer) {
     }
     selectedAnswers.value.push(answer)
   }
-  console.log(selectedAnswers.value)
 }
 
 onMounted(() => {
   startRound()
 })
 
+// If the player does not want to finish the game we stop it.
+onBeforeUnmount(() => {
+  clearInterval(interval)
+  gameIsRunning.value = false
+  roundIsRunning.value = false
+})
+
 function startRound() {
   revealAnswers.value = false
-  const interval = setInterval(() => {
+  interval = setInterval(() => {
     if (progress.value != 0) {
       progress.value -= 1
     } else if (gameIsRunning.value) {
