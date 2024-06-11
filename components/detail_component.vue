@@ -12,7 +12,12 @@
             <NuxtLink class="button-edit" :to="{ path: '/edit', query: { currentQuiz: quiz.name } }">
                 Edit
             </NuxtLink>
-            <button class="button-delete" @click="deleteQuiz(quiz)"> Delete Quiz</button>
+            <button class="button-delete" @click="deleteQuiz(quiz)"> Delete Quiz </button>
+            <!--<alert v-show="showAlert" class="flex flex-col">
+                <p> Do you realy want to delete the quiz?</p>
+                <button @click="deleteQuiz(quiz)">Delete</button>
+                <button @click="toggleAlert()"> go back</button>
+            </alert>-->
         </div>
     </div>
 
@@ -22,6 +27,7 @@
 import { NetworkService } from '~/NetworkService';
 import type { Quiz } from '~/types/quiz';
 const networkService = new NetworkService(useNuxtApp())
+const showAlert = ref(false)
 
 const props = defineProps<({
     quiz: Quiz,
@@ -33,7 +39,9 @@ const props = defineProps<({
 
 const emits = defineEmits(['deleteQuiz'])
 
-
+function toggleAlert() {
+    showAlert.value = !showAlert.value
+}
 function deleteQuiz(quiz: Quiz) {
   try {
     networkService.deleteQuiz(quiz)
