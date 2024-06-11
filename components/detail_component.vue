@@ -42,9 +42,9 @@ const emits = defineEmits(['deleteQuiz'])
 function toggleAlert() {
     showAlert.value = !showAlert.value
 }
-function deleteQuiz(quiz: Quiz) {
+async function deleteQuiz(quiz: Quiz) {
   try {
-    networkService.deleteQuiz(quiz)
+    const error = await networkService.deleteQuiz(quiz)
     emits('deleteQuiz',quiz)
     
   } catch (error) {

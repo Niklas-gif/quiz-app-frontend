@@ -34,14 +34,13 @@
   const showList = ref(false)
   const nuxtApp = useNuxtApp()
   const networkService =  new NetworkService(nuxtApp)
-  const toastService = new ToastService()
   
   onMounted(async () => {
     isLoading.value = true
     try {
       data.value = await networkService.getQuizzes() as any
     } catch(error) {
-      toastService.serverUnavailable()
+      console.log(error)
     }
     isLoading.value = false
   })

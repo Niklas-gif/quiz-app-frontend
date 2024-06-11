@@ -19,7 +19,6 @@ const isLoading = ref(false)
 const newQuiz = ref<Quiz|null>(null)
 const nuxtApp = useNuxtApp()
 const networkService =  new NetworkService(nuxtApp)
-const toastService = new ToastService()
 
 onMounted(async () => {
     isLoading.value = true
@@ -28,7 +27,6 @@ onMounted(async () => {
       newQuiz.value = data.value[0]
     } catch(error) {
       console.log(error)
-      toastService.serverUnavailable()
     }
     isLoading.value = false
 })

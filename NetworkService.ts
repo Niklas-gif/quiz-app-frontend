@@ -1,12 +1,15 @@
 import type { NuxtApp } from "#app";
+import { ToastService } from "./ToastService";
 import type { Quiz } from "./types/quiz";
 
 export class NetworkService {
     private runtimeConfig = useRuntimeConfig()
+    private toastService: ToastService
     private nuxt: NuxtApp;
 
     constructor(nuxt: NuxtApp) {
         this.nuxt = nuxt;
+        this.toastService = new ToastService
     }
 
     async getQuizzes() {
@@ -42,6 +45,7 @@ export class NetworkService {
               }
               
           } catch(error) {
+            this.toastService.serverUnavailable()
             throw error
           }
     }
@@ -67,7 +71,10 @@ export class NetworkService {
                 body: JSON.stringify(quiz)
             })
             if (response.ok) {
+                this.toastService.success('Added quiz!')
                console.log(response);
+            } else {
+              this.toastService.error("Couldn't add quiz quiz!")
             }
         } catch (error) {
             console.error('Error sending quiz data:', error);
@@ -87,7 +94,10 @@ export class NetworkService {
                 body: JSON.stringify(quiz)
             })
             if (response.ok) {
+                this.toastService.success('Updated quiz!')
                 console.log(response);
+            } else {
+              this.toastService.error('Updating quiz failed!')
             }
         } catch (error) {
             console.error('Error sending quiz data:', error);
@@ -106,7 +116,10 @@ export class NetworkService {
               body: JSON.stringify(quiz)
             })
             if (response.ok) {
+              this.toastService.success('quiz deleted!')
               console.log(response);
+            } else {
+              this.toastService.error('Could not delete quiz!')
             }
           } catch (error) {
             console.error('Error sending quiz data:', error);
