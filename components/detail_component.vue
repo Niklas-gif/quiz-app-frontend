@@ -12,13 +12,13 @@
             <NuxtLink class="button-edit" :to="{ path: '/edit', query: { currentQuiz: quiz.name } }">
                 Edit
             </NuxtLink>
-            <button class="button-delete" @click="deleteQuiz(quiz)"> Delete Quiz </button>
-            <!--<alert v-show="showAlert" class="flex flex-col">
-                <p> Do you realy want to delete the quiz?</p>
-                <button @click="deleteQuiz(quiz)">Delete</button>
-                <button @click="toggleAlert()"> go back</button>
-            </alert>-->
+            <button class="button-delete" :disabled="showAlert" @click="toggleAlert()" :class="{ 'disabled': showAlert}"> Delete Quiz </button>
         </div>
+        <alert v-show="showAlert" class="absolute top-1/2 left-1/2 items-center backdrop-blur-sm bg-slate-600 p-5 rounded-lg">
+            <p> Do you realy want to delete the quiz?</p>
+            <button class="button-delete" @click="deleteQuiz(quiz)">Delete</button>
+            <button class="button-edit" @click="toggleAlert()"> go back</button>
+        </alert>
     </div>
 
 </template>
@@ -68,15 +68,19 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .button-play {
-    @apply text-center hover:bg-purple-400 bg-purple-600 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
+    @apply text-center m-1 hover:bg-purple-400 bg-purple-600 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
 }
 
 .button-edit {
-    @apply text-center hover:bg-sky-300 bg-sky-500 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
+    @apply text-center m-1 hover:bg-sky-300 bg-sky-500 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
 }
 
 .button-delete {
-    @apply text-center hover:bg-red-400 bg-red-600 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
+    @apply text-center m-1 hover:bg-red-400 bg-red-600 text-white font-bold p-4 rounded-xl hover:cursor-pointer;
+}
+
+.button-delete.disabled {
+    @apply bg-gray-500
 }
 
 .button-container {
