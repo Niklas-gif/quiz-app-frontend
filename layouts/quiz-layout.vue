@@ -4,12 +4,15 @@
     <p class="quiz-title">Title: {{ attributes.quiz.name }}</p>
     <p class="quiz-count">Question: {{ index+1 }} from: {{ attributes.quiz.questions.length }}</p>
   </div>
-  <div class="game-container">
+  <div v-if="gameIsRunning" class="game-container">
     <p class="quiz-title" v-if="!gameIsRunning"> GAME OVER!</p>
     <ProgressBar :progress="progress"></ProgressBar>
     <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
       :description="currentQuesiton.description" @answerSelected="selectCard">
     </QuestionComponent>
+  </div>
+  <div v-else class="game-container">
+    <GameoverComponent :correct-questions="correctQuestions" :questions="attributes.quiz.questions"></GameoverComponent>
   </div>
   </div>
 
@@ -17,6 +20,7 @@
 
 <script setup lang="ts">
 import QuestionComponent from '~/components/game_components/question_component.vue'
+import GameoverComponent from '~/components/game_components/gameover_component.vue'
 import ProgressBar from '~/components/game_components/progress_bar.vue'
 import { type Answer } from '~/types/answer'
 import { type Question } from '~/types/question'
