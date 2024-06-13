@@ -84,6 +84,6 @@ async function deleteQuiz(quiz: Quiz) {
 }
 
 .button-container {
-    @apply flex flex-col lg:flex-row w-fit lg:space-x-2 lg:space-y-0 space-y-2;
+    @apply flex flex-col w-fit ;
 }
 </style>
