@@ -9,7 +9,6 @@
       >
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
       </svg>
-      <!--<p class="font-bold px-5 text-sm">New quiz</p>-->
     </NuxtLink>
   </template>
   
@@ -18,8 +17,7 @@
   
   <style scoped>
   .fab-button {
-    /*@apply bottom-10 lg:right-32;*/
-    @apply bg-sky-600 hover:bg-sky-400 lg:m-5 bottom-6 right-6 lg:right-32 lg:w-32 lg:h-32 h-24 w-24;
+    @apply bg-sky-600 hover:bg-sky-400 m-5 bottom-6 right-6 lg:right-32 lg:w-24 lg:h-24 h-24 w-24;
     position: fixed;
     color: white;
     border-radius: 50%;
