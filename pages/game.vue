@@ -21,11 +21,25 @@ const nuxtApp = useNuxtApp()
 const networkService =  new NetworkService(nuxtApp)
 const toastService = new ToastService()
 
+function shuffelQuiz(quiz: Quiz) {
+  let questions = quiz.questions
+  
+  for (let i = questions.length - 1; i > 0; i--) { 
+    let j = Math.floor(Math.random() * (i + 1))         
+    let temp = questions[i]
+    questions[i] = questions[j]
+    questions[j] = temp
+  }
+  
+  quiz.questions = questions
+  return quiz
+}
+
 onMounted(async () => {
     isLoading.value = true
     try {
       data.value = await networkService.getQuiz(`${route.query.currentQuiz}`)
-      currentQuiz.value = data.value[0]
+      currentQuiz.value = shuffelQuiz(data.value[0])
     } catch(error) {
       console.log(error)
       toastService.serverUnavailable()

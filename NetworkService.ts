@@ -15,15 +15,13 @@ export class NetworkService {
     async getQuizzes() {
         try {
             const { data, error } = await useFetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes`, {
-                key: 'quiz-cache', // This key will be used to identify the cached data
+                key: 'quiz-cache',
                 getCachedData: (key) => {
-                  // Check if the data is already cached in the Nuxt payload
                   if (this.nuxt.isHydrating && this.nuxt.payload.data[key]) {
                     console.log("is cached")
                     return this.nuxt.payload.data[key]
                   }
               
-                  // Check if the data is already cached in the static data
                   if (this.nuxt.static.data[key]) {
                     console.log("is cached static")
                     return this.nuxt.static.data[key]
@@ -34,12 +32,10 @@ export class NetworkService {
               
               if (!data.value) {
                 console.log("not chached fetch again")
-                // The data was not cached, so fetch it from the server
                 //await refresh()
                 const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}quizzes`)
                 return await response.json()
               } else {
-                // The data was cached, so use it
                 console.log('Using cached data:', data.value)
                 return data.value
               }
