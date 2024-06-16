@@ -50,6 +50,7 @@ function selectQuiz(quiz: Quiz) {
 
 function removeQuizFromList(quizToDelete: Quiz) {
   currentQuizzes.value = currentQuizzes.value.filter(quiz => quizToDelete._id !== quiz._id);
+  selectedQuiz.value = currentQuizzes.value[0]
 }
 
 </script>

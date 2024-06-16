@@ -60,6 +60,7 @@ export class NetworkService {
     }
 
     async addQuiz(quiz:Quiz) {
+      if(quiz.name.trim() != "" && quiz.name != undefined) {
         try {
             const token = localStorage.getItem('Bearer')
             const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}add`, {
@@ -72,17 +73,20 @@ export class NetworkService {
             })
             if (response.ok) {
                 this.toastService.success('Added quiz!')
-               console.log(response);
             } else {
-              this.toastService.error("Couldn't add quiz quiz!")
+              this.toastService.error("Couldn't add quiz!")
             }
         } catch (error) {
             console.error('Error sending quiz data:', error);
             throw error
         }
+      } else {
+        this.toastService.warning("You must give your quiz a name!")
+      }
     }
 
     async updateQuiz(quiz:Quiz) {
+      if(quiz.name.trim() != "" && quiz.name != undefined) {
         try {
             const token = localStorage.getItem('Bearer')
             const response = await fetch(`${this.runtimeConfig.public.BACKEND_URL}update`, {
@@ -102,6 +106,9 @@ export class NetworkService {
         } catch (error) {
             console.error('Error sending quiz data:', error);
         }
+      } else {
+        this.toastService.warning("You must give your quiz a name!")
+      }
     }
 
     async deleteQuiz(quiz:Quiz) {

@@ -50,6 +50,7 @@ async function deleteQuiz(quiz: Quiz) {
   } catch (error) {
     console.error('Error sending quiz data:', error);
   }
+  toggleAlert()
 }
 
 </script>
