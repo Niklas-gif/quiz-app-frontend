@@ -43,6 +43,8 @@ import type { Quiz } from '~/types/quiz';
 import { type Answer } from '../types/answer'
 import {type Question} from '../types/question'
 import IconTrash from "assets/icons/icon_trash.vue"
+import { ToastService } from '~/ToastService';
+const toastService = new ToastService()
 
 const props = defineProps<({
     quiz: Quiz,
@@ -81,15 +83,18 @@ function removeQuestion(questionToRemove: Question) {
 }
 
 function createAnswer(question: Question) {
-    question.answers.push({
-        description: "",
-        is_correct: false
-    })
+    if(question.answers.length < 4) {
+        question.answers.push({
+             description: "",
+             is_correct: false
+        })
+    } else {
+        toastService.error("Each question can only have 4 answers at max!")
+    }
 }
 
 function removeAnswer(question: Question, answerToRemove: Answer) {
     question.answers = question.answers.filter(answer => answer !== answerToRemove)
-    //BAD
 }
 
 </script>

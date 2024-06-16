@@ -8,8 +8,10 @@
 
 <script setup lang="ts">
 import { NetworkService } from '~/NetworkService';
+import { ToastService } from '~/ToastService';
 import type { Quiz } from '~/types/quiz';
 const networkService = new NetworkService(useNuxtApp())
+const toastService = new ToastService();
 const newQuiz: Ref<Quiz> = ref<Quiz>({
     _id: "",
     name: "",
@@ -27,13 +29,36 @@ function saveQuizToLocalStorage(quiz: Quiz) {
     localStorage.setItem("NewQuiz",JSON.stringify(quiz))
 }
 
+function validateQuiz() {
+    const questions = newQuiz.value.questions 
+    if(questions.length == 0) {
+        toastService.warning("Your quiz must have at least one question!")
+        return false
+    }
+    for (const question of questions) {
+        if (question.answers.length == 0) {
+            toastService.warning("Every question must have at least one answer!")
+            return false
+        }
+
+        if (!question.answers.some(answer => answer.is_correct)) {
+
+            toastService.warning("At least one answer needs to be true for every question!")
+            return false
+        }
+    }
+    return true
+}
+
 function submitQuiz(quiz: Quiz) {
-    try {
-       networkService.addQuiz(quiz);
-        
-    } catch (error) {
-        saveQuizToLocalStorage(quiz)
-        console.error('Error sending quiz data:', error);
+    if (validateQuiz()) {
+        try {
+            networkService.addQuiz(quiz);
+
+        } catch (error) {
+            saveQuizToLocalStorage(quiz)
+            console.error('Error sending quiz data:', error);
+        }
     }
 }
 

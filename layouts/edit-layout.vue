@@ -6,9 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import { NetworkService } from '~/NetworkService';
-import type { Quiz } from '~/types/quiz';
+import { NetworkService } from '~/NetworkService'
+import { ToastService } from '~/ToastService'
+import type { Quiz } from '~/types/quiz'
 const networkService = new NetworkService(useNuxtApp())
+const toastService = new ToastService()
 
 const attributes= useAttrs() as any
 const newQuiz: Ref<Quiz> = ref<Quiz>({
@@ -25,11 +27,34 @@ onBeforeMount(()=>{
 })
 
 function submitQuiz(quiz: Quiz) {
-    try {
-       networkService.updateQuiz(quiz)
-    } catch (error) {
-        console.error('Error sending quiz data:', error);
+    if (validateQuiz()) {
+        try {
+            networkService.updateQuiz(quiz)
+        } catch (error) {
+            console.error('Error sending quiz data:', error);
+        }
     }
+}
+
+function validateQuiz() {
+    const questions = newQuiz.value.questions 
+    if(questions.length == 0) {
+        toastService.warning("Your quiz must have at least one question!")
+        return false
+    }
+    for (const question of questions) {
+        if (question.answers.length == 0) {
+            toastService.warning("Every question must have at least one answer!")
+            return false
+        }
+
+        if (!question.answers.some(answer => answer.is_correct)) {
+
+            toastService.warning("At least one answer needs to be true for every question!")
+            return false
+        }
+    }
+    return true
 }
 
 </script>
