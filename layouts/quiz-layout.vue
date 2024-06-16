@@ -7,7 +7,7 @@
   <div v-if="gameIsRunning" class="game-container">
     <p class="quiz-title" v-if="!gameIsRunning"> GAME OVER!</p>
     <ProgressBar :progress="progress"></ProgressBar>
-    <QuestionComponent :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
+    <QuestionComponent :question="currentQuesiton" :selected-answers="selectedAnswers" :answers="currentQuesiton.answers"
       :description="currentQuesiton.description" @answerSelected="selectCard">
     </QuestionComponent>
   </div>
