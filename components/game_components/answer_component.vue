@@ -47,7 +47,7 @@
     p-2 m-2 
     cursor-pointer 
   text-white 
-    break-words
+    break-all
     shadow-lg
     bg-blue-500
     hover:bg-blue-300
