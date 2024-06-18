@@ -43,18 +43,11 @@ function toggleAlert() {
     showAlert.value = !showAlert.value
 }
 async function deleteQuiz(quiz: Quiz) {
-  try {
     const response = await networkService.deleteQuiz(quiz)
     if(response != undefined) {
         toggleAlert()
         return
     }
-    
-  } catch (error) {
-    console.error('Error sending quiz data:', error)
-    toggleAlert()
-    return
-  }
   emits('deleteQuiz',quiz)
   toggleAlert()
 }

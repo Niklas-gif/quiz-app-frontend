@@ -1,6 +1,7 @@
 import type { NuxtApp } from "#app";
 import { ToastService } from "./ToastService";
 import type { Quiz } from "./types/quiz";
+import type { User } from "./types/user";
 
 export class NetworkService {
     private runtimeConfig = useRuntimeConfig()
@@ -129,4 +130,31 @@ export class NetworkService {
             console.error('Error sending quiz data:', error);
           }    
     }
+    async login() {
+      try {
+          const response = await fetch('http://localhost:3030/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(
+                  <User>{
+                      id: 1,
+                      email: localStorage.getItem("email"),
+                      password: localStorage.getItem("password"),
+                  })
+          })
+          if (response.ok) {
+              const jsonResponse = await response.json()
+              localStorage.setItem("Bearer", jsonResponse.token)
+              this.toastService.displaySuccessLogin()
+          } else {
+              const errorText = await response.text();
+              throw new Error(`Server responded with ${response.status}: ${errorText}`);
+          }
+      } catch (error) {
+          //TODO still needs fixing
+         this.toastService.wrongLoginCredentials()
+      }
+  }
 }

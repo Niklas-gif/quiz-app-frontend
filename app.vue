@@ -26,11 +26,21 @@
 <script setup lang="ts">
 import IconLogin from "assets/icons/icon_login.vue"
 import IconHome from "assets/icons/icon_home.vue"
-import { provide } from "vue";
+import { NetworkService } from "./NetworkService";
 const showLogin = ref(false)
+const networkService = new NetworkService(useNuxtApp())
 function toggleLogin() {
   showLogin.value = !showLogin.value
 }
+
+onBeforeMount(()=> {
+  //If login credentials exist and are stored in local storage login again
+  if(localStorage.getItem("email") != undefined && localStorage.getItem("password") != undefined) {
+  networkService.login()
+  } else {
+    console.log("No login credentials")
+  }
+})
 
 
 </script>
