@@ -44,12 +44,18 @@ function toggleAlert() {
 }
 async function deleteQuiz(quiz: Quiz) {
   try {
-    const error = await networkService.deleteQuiz(quiz)
-    emits('deleteQuiz',quiz)
+    const response = await networkService.deleteQuiz(quiz)
+    if(response != undefined) {
+        toggleAlert()
+        return
+    }
     
   } catch (error) {
-    console.error('Error sending quiz data:', error);
+    console.error('Error sending quiz data:', error)
+    toggleAlert()
+    return
   }
+  emits('deleteQuiz',quiz)
   toggleAlert()
 }
 

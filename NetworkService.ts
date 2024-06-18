@@ -123,6 +123,7 @@ export class NetworkService {
               console.log(response);
             } else {
               this.toastService.error('Could not delete quiz!')
+              return response
             }
           } catch (error) {
             console.error('Error sending quiz data:', error);
