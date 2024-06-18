@@ -25,6 +25,7 @@ import ProgressBar from '~/components/game_components/progress_bar.vue'
 import { type Answer } from '~/types/answer'
 import { type Question } from '~/types/question'
 import { provide } from 'vue';
+import { ToastService } from '~/ToastService'
 
 const attributes = useAttrs() as any
 const revealAnswers = ref(false)
@@ -39,6 +40,7 @@ const progress = ref(100)
 const index = ref(0)
 const gameIsRunning = ref(true)
 const roundIsRunning = ref(true)
+const toastService = new ToastService
 let interval: ReturnType<typeof setInterval> 
 
 function selectCard(answer: Answer) {
@@ -114,18 +116,18 @@ function countCorrectAnswers() {
       correctQuestions.value = tmp
     }
   }
-  console.log(`Correct Questions: ${correctQuestions.value}`)
+  toastService.success(`Correct Questions: ${correctQuestions.value}`)
 }
 
 </script>
 
 <style scoped>
 .quiz-title {
-  @apply font-bold text-xl text-sky-300 mx-5 my-2
+  @apply font-bold text-sm md:text-xl text-sky-300 mx-5 my-2
 }
 
 .quiz-count {
-  @apply font-bold text-xl text-sky-300 mx-5  my-2
+  @apply font-bold text-sm md:text-xl text-sky-300 mx-5  my-2
 }
 .content {
   @apply flex flex-col h-svh text-white bg-gray-700 bg-opacity-75 rounded-b-xl py-5 sm:mx-10 lg:mx-32;
