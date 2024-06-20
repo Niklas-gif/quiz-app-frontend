@@ -33,14 +33,14 @@ function toggleLogin() {
   showLogin.value = !showLogin.value
 }
 
-onBeforeMount(()=> {
+/*onBeforeMount(()=> {
   //If login credentials exist and are stored in local storage login again
   if(localStorage.getItem("email") != undefined && localStorage.getItem("password") != undefined) {
   networkService.login()
   } else {
     console.log("No login credentials")
   }
-})
+})*/
 
 
 </script>

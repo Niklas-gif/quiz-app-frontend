@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <HelpInfoComponent/>
         <input class="input m-2" placeholder="Name of your quiz" v-model="newQuiz.name">
         <input class="input m-2" placeholder="A short description of your quiz." v-model="newQuiz.description">
         <AddQuizButton @click="createQuestion"/>

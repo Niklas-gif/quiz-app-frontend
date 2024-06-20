@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <CreateQuizComponent :quiz="newQuiz" :quiz-changed="newQuiz"></CreateQuizComponent>
-        <button class="submit-button" @click="submitQuiz(newQuiz)">Submit Changes</button>
+        <button class="submit-button" @click="submitQuiz(newQuiz)">Submit Quiz</button>
     </div>
 
 </template>
