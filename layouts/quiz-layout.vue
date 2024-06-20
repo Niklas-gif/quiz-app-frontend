@@ -109,13 +109,34 @@ function nextQuestion() {
 
 function countCorrectAnswers() {
   let tmp = correctQuestions.value
+  if(!currentQuesiton.value.is_multiple_choice) {
+    for (const answer of selectedAnswers.value) {
+      if(answer.is_correct) {
+        correctQuestions.value += 1
+      } else {
+        correctQuestions.value = tmp
+      }
+    }
+} else {
+  let allCorrect = true;
+  let correctAnswers = currentQuesiton.value.answers.filter(a => a.is_correct)
   for (const answer of selectedAnswers.value) {
-    if(answer.is_correct) {
-      correctQuestions.value += 1
-    } else {
+    
+    for (const correctAnswer of correctAnswers) {
+      if (!selectedAnswers.value.includes(correctAnswer)) {
+        allCorrect = false
+        break
+      }
+  }
+    if(!answer.is_correct) {
       correctQuestions.value = tmp
+      break
     }
   }
+  if (allCorrect) {
+      correctQuestions.value += 1
+    }
+}
   toastService.success(`Correct Questions: ${correctQuestions.value}`)
 }
 
